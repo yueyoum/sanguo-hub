@@ -3,8 +3,9 @@ from apps.admin.models import Admin
 
 class BaseAccountManager(models.Manager):
     def create(self, tp, **kwargs):
-        account = Account.objects.create(tp=tp)
-        kwargs['account'] = account
+        if 'account_id' not in kwargs:
+            account = Account.objects.create(tp=tp)
+            kwargs['account_id'] = account.id
         return super(BaseAccountManager, self).create(**kwargs)
 
 class AnonymousManager(BaseAccountManager):
@@ -100,10 +101,10 @@ class AccountBanHistory(models.Model):
     account = models.ForeignKey(Account)
     reason = models.CharField(max_length=255, blank=True)
     ban_at = models.DateTimeField()
-    ban_by = models.ForeignKey(Admin)
+    ban_by = models.ForeignKey(Admin, related_name='ban_history')
 
     recover_after = models.IntegerField(default=0)
-    recover_by = models.ForeignKey(Admin)
+    recover_by = models.ForeignKey(Admin, related_name='recover_history')
 
 
     class Meta:

@@ -27,6 +27,19 @@
 data为对应api成功时返回的数据
 
 
+### ret 错误代码
+
+    1:  请求参数错误
+    2:  注册，建立重复
+    3:  登录，用户不存在
+    4:  登录，密码错误
+
+    20: 建立角色，用户名太长
+    21: 建立角色，所在服已有角色
+    22: 建立角色，同服重名
+
+
+
 ### /api/server-list/      GET
 
 获取当前的server list
@@ -57,6 +70,8 @@ data为对应api成功时返回的数据
 
 每个NODE向GATE汇报自己servers状态
 
+**直接POST json.dumps后的数据**
+
 *   request
 
         {
@@ -75,6 +90,7 @@ data为对应api成功时返回的数据
 *   response data
 
         {}
+
 
 ### /api/account/register/  POST
 
@@ -95,8 +111,7 @@ data为对应api成功时返回的数据
 
         method 为下列三个之一
 
-            anonymous   -   匿名, 需要 token 字段
-            regular     -   自有帐号, 需要 name, password 字段
+            regular     -   自有帐号, 需要 name, password, token 字段
             third       -   第三方帐号， 需要 platform, uid 字段
 
 *   response
@@ -105,17 +120,20 @@ data为对应api成功时返回的数据
             'account_id': Int
         }
 
+
 ### /api/account/login/     POST
 
 帐号登录
 
 *   request
 
-        和 register 一样
+        和 register 一样，
+        但 method 多了 anonymous 方式，此种方式 token 为必要字段
 
 *   response
 
         和 register 一样
+
 
 
 ### /api/character/create/  POST

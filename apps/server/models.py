@@ -15,8 +15,8 @@ class Server(models.Model):
         (1, 'GOOD'), (2, 'BUSY'), (3, 'FULL'), (4, 'DOWN')
     )
 
-    node = models.ForeignKey(ServerNode)
-    id = models.IntegerField()
+    node = models.ForeignKey(ServerNode, related_name='servers')
+    sid = models.IntegerField(db_index=True)
     name = models.CharField(unique=True, max_length=32)
     status = models.IntegerField(choices=STATUS)
 
