@@ -7,8 +7,6 @@ from django.db import transaction
 
 from apps.server.models import ServerNode, Server
 from apps.character.models import Character
-from apps.account.models import Account
-
 from core.exception import GateException
 
 
@@ -18,26 +16,25 @@ def get_server_list(account_id=None):
         user_servers = Character.objects.only('server_id').filter(
             account_id=account_id).values_list('server_id', flat=True)
 
-    top = None
     all_servers = []
     for s in Server.objects.select_related('node').all():
+        if s.id == 0:
+            return
+
         this = {
-            'id': s.sid,
+            'id': s.id,
             'name': s.name,
             'status': s.status,
             'url': s.node.url,
             'port': s.node.port,
-            'have_char': s.sid in user_servers
+            'have_char': s.id in user_servers
         }
 
         all_servers.append(this)
 
-    res = {
-        'ret': 0,
-        'data': all_servers
-    }
+    return all_servers
 
-    return res
+
 
 
 def update_servers(data):

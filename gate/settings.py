@@ -24,6 +24,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+ENABLE_ADMIN = False
+
 # ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = '*'
 
@@ -50,7 +52,9 @@ MIDDLEWARE_CLASSES = (
     # 'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.messages.middleware.MessageMiddleware',
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'gate.middleware.UnpackAndVerifyData',
 )
+
 
 ROOT_URLCONF = 'gate.urls'
 
@@ -131,4 +135,16 @@ LOGGING = {
         }
     }
 }
+
+
+CRYPTO_KEY = '1234567890abcdef'
+CRYPTO_PREFIX = 'ok'
+
+GATE_SECRET_KEY = 'abcd'
+
+try:
+    from settings_local import *
+except ImportError:
+    pass
+
 

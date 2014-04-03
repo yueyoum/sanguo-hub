@@ -9,64 +9,42 @@
 
 ## API
 
-系统通过http api对外提供功能。
+系统通过http api对外提供功能。 **所有请求均为POST**
+
+#### TODO 安全验证
+
 
 返回数据均为json，格式为
 
     {
         'ret': Int,
-        'msg': String,
         'data': Dict,
     }
 
 
 其中 ret 为返回码。 **非0** 为有错误发生
-此时有msg, 没有data
+此时没有data
 
-当ret == 0时，才有data，没有msg
+当ret == 0时，才有data
 data为对应api成功时返回的数据
 
 
 ### ret 错误代码
 
     1:  请求参数错误
-    2:  注册，建立重复
-    3:  登录，用户不存在
-    4:  登录，密码错误
 
-    20: 建立角色，用户名太长
-    21: 建立角色，所在服已有角色
-    22: 建立角色，同服重名
+    20: 帐号登录，帐号不存在 - （只适用与自有帐号登录，其他情况没有就是建立帐号）
+    21: 帐号登录，密码不正确 - （只适用与自由帐号登录）
+    22: ban
 
-
-
-### /api/server-list/      GET
-
-获取当前的server list
-
-*   request
-
-        account_id  非必须
+    30: 建立角色，用户名太长
+    31: 建立角色，所在服已有角色
+    32: 建立角色，同服重名
+    33: 建立角色其他原因失败
 
 
-*   response data
 
-        [
-            {
-                'id': Int,
-                'name': String,
-                'status': Int,
-                'have_char': Boolean,
-                'url': String,
-                'port': Int,
-            }
-            ...
-        ]
-
-    request 中如果带了 account_id, 则会查询每个server中此帐号是否建立了角色。（就是返回中的have_char）
-
-
-### /api/server-list/      POST
+### /api/server-list/report/
 
 每个NODE向GATE汇报自己servers状态
 
@@ -76,12 +54,9 @@ data为对应api成功时返回的数据
 
         {
             'node-id': Int,
-            'url': String,
-            'port': Int,
             'servers': [
                 {
                     'id': Int,
-                    'name': String,
                     'status': Int,
                 }
             ]
@@ -92,9 +67,9 @@ data为对应api成功时返回的数据
         {}
 
 
-### /api/account/register/  POST
+### /api/account/login/
 
-帐号注册
+登录
 
 *   request
 
@@ -104,43 +79,35 @@ data为对应api成功时返回的数据
             'name': String,
             'password': String,
             'platform': String,
-            'uid': String
+            'uid': String,
+            'server_id': Int,
         }
 
-        除了method，其他字段不一定有
 
-        method 为下列三个之一
+        method 为下面几种之一
 
-            regular     -   自有帐号, 需要 name, password, token 字段
-            third       -   第三方帐号， 需要 platform, uid 字段
+            anonymous   - 只用填充token
+            regular     - 只用填充name 和 password
+            third       - 只用填充platform 和 uid
+
 
 *   response
 
         {
-            'account_id': Int
+            'account_id': Int,
+            'char_id': Int,
         }
 
 
-### /api/account/login/     POST
+        char_id 为 0 表示没有角色
 
-帐号登录
-
-*   request
-
-        和 register 一样，
-        但 method 多了 anonymous 方式，此种方式 token 为必要字段
-
-*   response
-
-        和 register 一样
-
-
-
-### /api/character/create/  POST
+### /api/character/create/
 
 建立角色
 
-__在GATE建立角色，但初始化工作实在各自的SERVER中做的__
+这里建立角色虽然是由node向GATE发起的请求，但在处理过程中为了利用mysql事务，
+
+当GATE在mysql中建立角色成功后，还要请求node api做角色初始化工作，如果初始化失败，则回滚建立角色的操作
 
 *   request
 

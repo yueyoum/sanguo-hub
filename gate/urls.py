@@ -1,15 +1,22 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
 
-# from django.contrib import admin
-# admin.autodiscover()
+if settings.ENABLE_ADMIN:
+    from django.contrib import admin
+    admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'gate.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+    urlpatterns = patterns('',
+    url(r'^admin/', include(admin.site.urls)),
+    )
 
-    # url(r'^admin/', include(admin.site.urls)),
+else:
+    urlpatterns = patterns('',
+        # Examples:
+        # url(r'^$', 'gate.views.home', name='home'),
+        # url(r'^blog/', include('blog.urls')),
 
-    url(r'', include('views.urls')),
-)
+        # url(r'^admin/', include(admin.site.urls)),
+
+        url(r'', include('views.urls')),
+    )
 
