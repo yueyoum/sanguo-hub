@@ -19,7 +19,7 @@ def get_server_list(account_id=None):
     all_servers = []
     for s in Server.objects.select_related('node').all():
         if s.id == 0:
-            return
+            continue
 
         this = {
             'id': s.id,

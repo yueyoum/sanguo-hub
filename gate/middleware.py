@@ -67,7 +67,12 @@ class UnpackAndVerifyData(object):
                         print "BAD SESSION"
                         return HttpResponse(status=403)
 
-                if msg_id == 100:
+                if msg_id == 200:
+                    # 200 is CreateCharacterRequest
+                    server_id = 0
+                elif msg_id == 100 or msg_id == 63:
+                    # 100 is StartGameRequest
+                    # 63  is ResumeRequest
                     server_id = p.server_id
                 else:
                     decrypted_session = decrypted_session.split(':')
