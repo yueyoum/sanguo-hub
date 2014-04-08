@@ -41,6 +41,8 @@ def create(request):
             this_server = Server.objects.select_related('node').get(id=server_id)
 
             x = requests.post('{0}:{1}/api/character/initialize/'.format(this_server.node.url, this_server.node.port), data=data)
+            if not x.ok:
+                raise GateException("char initialize failure. request not ok")
             res = x.json()
             if res['ret'] != 0:
                 raise GateException("char initialize failure")
@@ -48,6 +50,8 @@ def create(request):
             # XXX
             guide_server = Server.objects.select_related('node').get(id=0)
             x = requests.post('{0}:{1}/api/character/initialize/'.format(guide_server.node.url, guide_server.node.port), data=data)
+            if not x.ok:
+                raise GateException("char initialize failure. request not ok")
             res = x.json()
             if res['ret'] != 0:
                 raise GateException("char initialize failure")
