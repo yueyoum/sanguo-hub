@@ -8,6 +8,7 @@ class ServerNode(models.Model):
 
     class Meta:
         db_table = 'server_node'
+        ordering = ('id',)
 
 
 class Server(models.Model):

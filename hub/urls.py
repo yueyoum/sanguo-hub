@@ -19,4 +19,3 @@ else:
 
         url(r'', include('views.urls')),
     )
-

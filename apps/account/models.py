@@ -1,5 +1,4 @@
 from django.db import models
-from apps.admin.models import Admin
 
 class BaseAccountManager(models.Manager):
     def create(self, tp, **kwargs):
@@ -89,7 +88,7 @@ class AccountBan(models.Model):
     account = models.OneToOneField(Account)
     reason = models.CharField(max_length=255, blank=True)
     ban_at = models.DateTimeField(auto_now_add=True)
-    ban_by = models.ForeignKey(Admin)
+    ban_by = models.ForeignKey('auth.User')
 
     # recover after ? days. 0 means no auto recover
     recover_after = models.IntegerField(default=0)
@@ -101,10 +100,10 @@ class AccountBanHistory(models.Model):
     account = models.ForeignKey(Account)
     reason = models.CharField(max_length=255, blank=True)
     ban_at = models.DateTimeField()
-    ban_by = models.ForeignKey(Admin, related_name='ban_history')
+    ban_by = models.ForeignKey('auth.User', related_name='ban_history')
 
     recover_after = models.IntegerField(default=0)
-    recover_by = models.ForeignKey(Admin, related_name='recover_history')
+    recover_by = models.ForeignKey('auth.User', related_name='recover_history')
 
 
     class Meta:
