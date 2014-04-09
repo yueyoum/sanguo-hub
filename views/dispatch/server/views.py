@@ -7,8 +7,8 @@ __date__ = '4/2/14'
 from apps.account.models import AccountAnonymous, AccountRegular, AccountThird
 
 from core.server import get_server_list
-from utils import pack_msg
 from utils.decorate import proto_return
+from libs import pack_msg
 
 from protomsg import GetServerListResponse
 

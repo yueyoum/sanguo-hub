@@ -2,16 +2,27 @@
 
 ## 功能
 
-1.  汇总每个NODE中的server。server list从这里获取
-2.  Account 注册登录验证
-3.  Character建立
+1.  Admin 后台
+2.  直接提供与服务器无关功能
+3.  提供相关功能API
 
 
-## API
+### Admin 后台
+
+设置server，发送邮件，帐号查询...
+
+
+### 直接提供的功能
+
+这些请求由dispatch转发而来
+
+    *   获取server list
+    *   帐号注册
+
+
+### API
 
 系统通过http api对外提供功能。 **所有请求均为POST**
-
-#### TODO 安全验证
 
 
 返回数据均为json，格式为
@@ -29,7 +40,7 @@
 data为对应api成功时返回的数据
 
 
-### ret 错误代码
+#### ret 错误代码
 
     1:  请求参数错误
 
@@ -43,8 +54,28 @@ data为对应api成功时返回的数据
     33: 建立角色其他原因失败
 
 
+#### /api/server-list/
 
-### /api/server-list/report/
+获取server list
+
+*   request
+
+        {}
+
+*   response
+
+        {
+            IntId: {
+                'name': String,
+                'url': String,
+                'port': Int,
+                'status': Int,
+            },
+            ...
+        }
+
+
+#### /api/server-list/report/
 
 每个NODE向GATE汇报自己servers状态
 

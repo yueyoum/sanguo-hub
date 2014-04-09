@@ -3,10 +3,8 @@
 __author__ = 'Wang Chao'
 __date__ = '4/2/14'
 
-from django.http import HttpResponse
-
 from core.account import account_register
-from utils import pack_msg
+from libs import pack_msg
 from utils.decorate import proto_return
 
 from protomsg import RegisterResponse
