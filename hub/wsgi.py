@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 """
 
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gate.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hub.settings")
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()

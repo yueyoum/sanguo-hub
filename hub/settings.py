@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's#b^#c_2-=n$aa11n^o8-e&vo+6x7%@8%f_u_ts*5=cly4%g(j'
+SECRET_KEY = 'hdbtt87cejsk63ah-g+jab=c^iz@ukhmoib^yn*k+a5zal9q5p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     # 'django.contrib.sessions',
     # 'django.contrib.messages',
     # 'django.contrib.staticfiles',
-    'apps.admin',
     'apps.server',
     'apps.account',
     'apps.character',
@@ -52,13 +51,12 @@ MIDDLEWARE_CLASSES = (
     # 'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.messages.middleware.MessageMiddleware',
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'gate.middleware.UnpackAndVerifyData',
 )
 
 
-ROOT_URLCONF = 'gate.urls'
+ROOT_URLCONF = 'hub.urls'
 
-WSGI_APPLICATION = 'gate.wsgi.application'
+WSGI_APPLICATION = 'hub.wsgi.application'
 
 
 # Database
@@ -67,7 +65,7 @@ WSGI_APPLICATION = 'gate.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'sanguo_gate', # Or path to database file if using sqlite3.
+        'NAME': 'sanguo_hub', # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
         'PASSWORD': 'root',
@@ -128,23 +126,10 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-
-        'sanguo': {
-            'handlers': ['console'],
-            'level': 'DEBUG'
-        }
     }
 }
 
 
 CRYPTO_KEY = '1234567890abcdef'
 CRYPTO_PREFIX = 'ok'
-
-GATE_SECRET_KEY = 'abcd'
-
-try:
-    from settings_local import *
-except ImportError:
-    pass
-
 
