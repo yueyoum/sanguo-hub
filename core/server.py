@@ -16,6 +16,7 @@ def _servers():
             'name': s.name,
             'url': s.node.url,
             'port': s.node.port,
+            'status': s.status,
         }
     return ss
 
