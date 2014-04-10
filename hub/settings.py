@@ -51,7 +51,7 @@ MIDDLEWARE_CLASSES = (
     # 'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.messages.middleware.MessageMiddleware',
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'hub.middleware.RequestFilter',
+    'libs.middleware.RequestFilter',
 )
 
 
@@ -134,3 +134,7 @@ LOGGING = {
 CRYPTO_KEY = '1234567890abcdef'
 CRYPTO_PREFIX = 'ok'
 
+try:
+    from settings_local import *
+except ImportError:
+    pass

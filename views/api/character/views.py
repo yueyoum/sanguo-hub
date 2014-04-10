@@ -7,8 +7,8 @@ import requests
 from django.db import transaction, IntegrityError
 
 from apps.character.models import Character
-from apps.server.models import Server
 from core.exception import GateException
+from core.server import SERVERS
 from utils.decorate import json_return
 
 @json_return
@@ -38,23 +38,16 @@ def create(request):
                 'char_id': char.id,
                 'name': name
             }
-            this_server = Server.objects.select_related('node').get(id=server_id)
 
-            x = requests.post('{0}:{1}/api/character/initialize/'.format(this_server.node.url, this_server.node.port), data=data)
-            if not x.ok:
-                raise GateException("char initialize failure. request not ok")
-            res = x.json()
-            if res['ret'] != 0:
-                raise GateException("char initialize failure")
+            for sid in [server_id, 0]:
+                s = SERVERS[sid]
+                x = requests.post('{0}:{1}/api/character/initialize/'.format(s['url'], s['port']), data=data)
+                if not x.ok:
+                    raise GateException("Char Initialize Failure in Server: {0}".format(sid))
 
-            # XXX
-            guide_server = Server.objects.select_related('node').get(id=0)
-            x = requests.post('{0}:{1}/api/character/initialize/'.format(guide_server.node.url, guide_server.node.port), data=data)
-            if not x.ok:
-                raise GateException("char initialize failure. request not ok")
-            res = x.json()
-            if res['ret'] != 0:
-                raise GateException("char initialize failure")
+                res = x.json()
+                if res['ret'] != 0:
+                    raise GateException("Char Initialize Failure in Server: {0}. ret is {1}".format(sid, res['ret']))
 
     except IntegrityError as e:
         if 'account_id' in e.args[1]:

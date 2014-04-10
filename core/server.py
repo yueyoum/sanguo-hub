@@ -9,6 +9,19 @@ from apps.server.models import ServerNode, Server
 from apps.character.models import Character
 from core.exception import GateException
 
+def _servers():
+    ss = {}
+    for s in Server.objects.select_related('node').all():
+        ss[s.id] = {
+            'name': s.name,
+            'url': s.node.url,
+            'port': s.node.port,
+        }
+    return ss
+
+SERVERS = _servers()
+
+
 
 def get_server_list(account_id=None):
     user_servers = []
@@ -33,7 +46,6 @@ def get_server_list(account_id=None):
         all_servers.append(this)
 
     return all_servers
-
 
 
 

@@ -5,7 +5,6 @@ __date__ = '4/8/14'
 
 import struct
 
-from django.conf import settings
 from protomsg import RESPONSE_NOTIFY_TYPE
 
 
@@ -18,11 +17,9 @@ MSG_TYPE_START_GAME = 100
 MSG_TYPE_CRATE_CHARACTER = 200
 MSG_TYPE_RESUME = 63
 
-HUB_URL = settings.HUB_URL
 
 
-
-def msg_unpack(res):
+def unpack_msg(res):
     msg_id = NUM_FIELD.unpack(res[:4])[0]
     res = res[4:]
     len_of_msg = NUM_FIELD.unpack(res[:4])[0]
