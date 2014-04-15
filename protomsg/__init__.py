@@ -11,6 +11,7 @@ from achievement_pb2 import *
 from store_pb2 import *
 from character_pb2 import *
 from item_pb2 import *
+from levy_pb2 import *
 from formation_pb2 import *
 from friend_pb2 import *
 from battle_pb2 import *
@@ -22,6 +23,7 @@ RESPONSE_NOTIFY_TYPE = {
     "SyncResponse": 61,
     "ResumeResponse": 64,
     "SellResponse": 66,
+    "FreezeFunctionNotify": 67,
     "StartGameResponse": 101,
     "GetServerListResponse": 104,
     "RegisterResponse": 106,
@@ -122,6 +124,8 @@ RESPONSE_NOTIFY_TYPE = {
     "BroadcastNotify": 3500,
     "GuideNotify": 4000,
     "GuideFinishResponse": 4002,
+    "LevyNotify": 4100,
+    "LevyResponse": 4102,
 }
 
 REQUEST_TYPE = {
@@ -175,6 +179,7 @@ REQUEST_TYPE = {
     3304: "StoreBuyRequest",
     3401: "ChatSendRequest",
     4001: "GuideFinishRequest",
+    4101: "LevyRequest",
 }
 
 REQUEST_TYPE_REV = {
@@ -228,6 +233,7 @@ REQUEST_TYPE_REV = {
     "StoreBuyRequest": 3304,
     "ChatSendRequest": 3401,
     "GuideFinishRequest": 4001,
+    "LevyRequest": 4101,
 }
 
 TYPE_COMMAND = {
@@ -280,6 +286,7 @@ TYPE_COMMAND = {
    3304: "/store/buy/",
    3401: "/chat/send/",
    4001: "/guide/finish/",
+   4101: "/levy/",
 }
 
 COMMAND_TYPE = {v: k for k, v in TYPE_COMMAND.iteritems()}
