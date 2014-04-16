@@ -6,6 +6,9 @@
 
 settings_local.py
 
+
 env
 *.idea
+*.ini
+*.conf
 
