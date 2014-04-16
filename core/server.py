@@ -31,17 +31,20 @@ def get_server_list(account_id=None):
             account_id=account_id).values_list('server_id', flat=True)
 
     all_servers = []
-    for s in Server.objects.select_related('node').all():
-        if s.id == 0:
+    servers = SERVERS.items()
+    servers.sort(key=lambda item: item[0])
+
+    for sid, s in servers:
+        if sid == 0:
             continue
 
         this = {
-            'id': s.id,
-            'name': s.name,
-            'status': s.status,
-            'url': s.node.url,
-            'port': s.node.port,
-            'have_char': s.id in user_servers
+            'id': sid,
+            'name': s['name'],
+            'status': s['status'],  # FIXME, how to get server status
+            'url': s['url'],
+            'port': s['port'],
+            'have_char': sid in user_servers
         }
 
         all_servers.append(this)
@@ -49,7 +52,7 @@ def get_server_list(account_id=None):
     return all_servers
 
 
-
+# FIXME
 def update_servers(data):
     try:
         node_id = int(data['node-id'])

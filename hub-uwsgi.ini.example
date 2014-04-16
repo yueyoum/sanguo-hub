@@ -1,0 +1,17 @@
+[uwsgi]
+chdir = /PATH
+virtualenv = /PATH/env
+env = DJANGO_SETTINGS_MODULE=hub.settings
+module = django.core.handlers.wsgi:WSGIHandler()
+socket = 127.0.0.1:9021
+listen = 2048
+max-requests = 50000
+reload-on-as = 512
+master = true
+processes = 4
+threads = 4
+enable-threads = true
+buffer-size = 32768
+daemonize = /tmp/hub-uwsgi.log
+pidfile = /tmp/hub-uwsgi.pid
+

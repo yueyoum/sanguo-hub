@@ -55,9 +55,6 @@ def server_list(request):
     if not top:
         top = all_servers[-1]
 
-    print top
-    print all_servers
-
     response = GetServerListResponse()
     response.ret = 0
 
