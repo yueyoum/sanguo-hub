@@ -24,7 +24,7 @@ class Mail(models.Model):
     content = models.TextField()
     send_at = models.DateTimeField(db_index=True)
     send_type = models.IntegerField(choices=SEND_TYPE)
-    send_to = models.CommaSeparatedIntegerField(max_length=255, blank=True, help_text='指定服务器: id,id  指定角色: name,name')
+    send_to = models.CharField(max_length=255, blank=True, help_text='指定服务器: id,id  指定角色: name,name')
 
     attachment = models.ForeignKey(Package, null=True, blank=True)
 

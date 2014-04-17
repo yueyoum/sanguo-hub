@@ -49,7 +49,7 @@ def make_payload(mail):
         'id': mail.id,
         'name': mail.name,
         'content': mail.content,
-        'send_at': mail.send_at,
+        'send_at': mail.send_at.strftime('%Y-%m-%m %H:%M:%S'),
         'attachment': mail.attachment.export_data()
     }
     return data
