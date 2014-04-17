@@ -41,6 +41,66 @@ class Package(models.Model):
         verbose_name_plural = "物品包"
 
 
+    def export_data(self):
+        data = {
+            'gold': self.gold,
+            'sycee': self.sycee,
+            'exp': self.exp,
+            'official_exp': self.official_exp,
+        }
+
+        heros = self.package_hero.all()
+        heros_data = []
+        for h in heros:
+            heros_data.append({
+                'id': h.hero,
+                'level': h.level,
+                'step': h.step,
+                'amount': h.amount,
+            })
+
+        souls = self.package_hero_soul.all()
+        souls_data = []
+        for s in souls:
+            souls_data.append({
+                'id': s.soul,
+                'amount': s.amount,
+            })
+
+        equips = self.package_equipment.all()
+        equips_data = []
+        for e in equips:
+            equips_data.append({
+                'id': e.equipment,
+                'level': e.level,
+                'amount': e.amount,
+            })
+
+        gems = self.package_gem.all()
+        gems_data = []
+        for g in gems:
+            gems_data.append({
+                'id': g.gem,
+                'amount': g.amount,
+            })
+
+        stuffs = self.package_stuff.all()
+        stuffs_data = []
+        for s in stuffs:
+            stuffs_data.append({
+                'id': s.stuff,
+                'amount': s.amount,
+            })
+
+        data['heros'] = heros_data
+        data['souls'] = souls_data
+        data['equipments'] = equips_data
+        data['gems'] = gems_data
+        data['stuffs'] = stuffs_data
+        return data
+
+
+
 class PackageHero(models.Model):
     package = models.ForeignKey(Package, related_name='package_hero')
     hero = models.IntegerField(choices=HEROS)
