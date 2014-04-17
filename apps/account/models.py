@@ -25,7 +25,7 @@ class Account(models.Model):
     tp = models.CharField(db_index=True, max_length=32)
 
     register_at = models.DateTimeField(auto_now_add=True)
-    last_login = models.DateTimeField(auto_now=True)
+    last_login = models.DateTimeField(auto_now=True, db_index=True)
     last_server_id = models.IntegerField(default=0)
     all_server_ids = models.CharField(max_length=255, blank=True)
     login_times = models.IntegerField(default=0)
@@ -50,7 +50,7 @@ class Account(models.Model):
 
 class AccountAnonymous(models.Model):
     token = models.CharField(unique=True, max_length=255)
-    account = models.OneToOneField(Account)
+    account = models.OneToOneField(Account, related_name='info_anonymous')
 
     objects = AnonymousManager()
 
@@ -61,7 +61,7 @@ class AccountAnonymous(models.Model):
 class AccountRegular(models.Model):
     name = models.CharField(unique=True, max_length=255)
     passwd = models.CharField(max_length=255)
-    account = models.OneToOneField(Account)
+    account = models.OneToOneField(Account, related_name='info_regular')
 
     objects = RegularManager()
 
@@ -72,7 +72,7 @@ class AccountRegular(models.Model):
 class AccountThird(models.Model):
     platform = models.CharField(max_length=255)
     uid = models.CharField(max_length=255)
-    account = models.OneToOneField(Account)
+    account = models.OneToOneField(Account, related_name='info_third')
 
     objects = ThirdManager()
 

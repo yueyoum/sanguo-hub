@@ -11,11 +11,5 @@ if settings.ENABLE_ADMIN:
 
 else:
     urlpatterns = patterns('',
-        # Examples:
-        # url(r'^$', 'gate.views.home', name='home'),
-        # url(r'^blog/', include('blog.urls')),
-
-        # url(r'^admin/', include(admin.site.urls)),
-
         url(r'', include('views.urls')),
     )
