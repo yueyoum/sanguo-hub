@@ -17,29 +17,48 @@ from apps.mail.models import Mail as ModelMail
 from apps.character.models import Character
 from core.server import SERVERS
 
-# API /mail/send  payload
+#
+# API /api/mail/send
+# payload
 # {
 #     'server_id': sid,
 #     'char_id': [cid, cid...],
-#     'data': {
+#     'mail': {
 #         'id': mail id,
 #         'name': mail name,
+#         'content': mail content,
 #         'send_at': mail send at,
-#         'gold': 0,
-#         'sycee': 0,
-#         'exp': 0,
-#         'official_exp': 0,
-#         'heros': [],
-#         'herosouls': [],
-#         'equipments': [],
-#         'gems': [],
-#         'stuffs': []
+#         'attachment': {
+#             'gold': 0,
+#             'sycee': 0,
+#             'exp': 0,
+#             'official_exp': 0,
+#             'heros': [],
+#             'herosouls': [],
+#             'equipments': [],
+#             'gems': [],
+#             'stuffs': []
+#         }
 #     }
 # }
+#
+
+def make_payload(mail):
+    data = {}
+    data['mail'] = {
+        'id': mail.id,
+        'name': mail.name,
+        'content': mail.content,
+        'send_at': mail.send_at,
+        'attachment': mail.attachment.export_data()
+    }
+    return data
 
 
 
 def send_one_mail(mail):
+    data = make_payload(mail)
+
     if mail.send_type == 3:
         # 发给部分角色
         names = mail.send_to.split(',')
@@ -51,12 +70,7 @@ def send_one_mail(mail):
         for sid, csids in cid_sid:
             this_server = SERVERS[sid]
             this_server_cids = [_c for _c, _ in csids]
-            # FIXME
-            data = {
-                'char_id': this_server_cids,
-                'data': {}
-            }
-
+            data['char_id'] = this_server_cids
             req = requests.post('{0}:{1}/api/mail/send/'.format(this_server['url'], this_server['port']), data=json.dumps(data))
             if not req.ok:
                 raise Exception("send mail error!")
@@ -70,13 +84,10 @@ def send_one_mail(mail):
         # 发给部分服务器
         sids = [int(i) for i in mail.send_to.split(',')]
 
+
     # FIXME
     for sid in sids:
-        data = {
-            'server_id': sid,
-            'data': {}
-        }
-
+        data['server_id'] = sid
         this_server = SERVERS[sid]
 
         req = requests.post('{0}:{1}/api/mail/send/'.format(this_server['url'], this_server['port']), data=json.dumps(data))
