@@ -1,0 +1,876 @@
+[
+{
+    "pk": 0, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "swing2", 
+        "hit_effect": "blood", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "", 
+        "anger_self": 32, 
+        "trig_start": 1, 
+        "anger_rival_team": 20, 
+        "trig_cooldown": 1, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 100, 
+        "name": "\u666e\u901a\u653b\u51fb1"
+    }
+},
+{
+    "pk": 2, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "swing", 
+        "hit_effect": "blood", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "", 
+        "anger_self": 32, 
+        "trig_start": 1, 
+        "anger_rival_team": 20, 
+        "trig_cooldown": 1, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 100, 
+        "name": "\u666e\u901a\u653b\u51fb\uff08\u8fdc\u7a0b\uff09"
+    }
+},
+{
+    "pk": 19, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "120%\u5355\u4f53", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 20, 
+        "trig_cooldown": 2, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 50, 
+        "name": "\u91cd\u51fb\uff08*\u5c0f\u578b\uff09"
+    }
+},
+{
+    "pk": 20, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "swing", 
+        "hit_effect": "blood", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u653b\u51fb\u540e\u964d\u4f4e\u5bf9\u65b9\u9632\u5fa1 ", 
+        "anger_self": 40, 
+        "trig_start": 1, 
+        "anger_rival_team": -20, 
+        "trig_cooldown": 2, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 100, 
+        "name": "\u771f\u00b7\u5043\u6708\u5200\u6cd5"
+    }
+},
+{
+    "pk": 21, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "swing", 
+        "hit_effect": "blood", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u653b\u51fb\u540e\u964d\u4f4e\u5bf9\u65b9\u9632\u5fa1\r\n", 
+        "anger_self": 30, 
+        "trig_start": 2, 
+        "anger_rival_team": -20, 
+        "trig_cooldown": 2, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 80, 
+        "name": "\u5043\u6708\u5200\u6cd5"
+    }
+},
+{
+    "pk": 22, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "flare5", 
+        "hit_effect": "earthquake", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u6a2a\u626b\u5343\u519b", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 25, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 21, 
+        "name": "\u65e0\u53cc"
+    }
+},
+{
+    "pk": 23, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "flare3", 
+        "hit_effect": "sharpe hit", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u91cd\u521b\u5355\u4e2a\u654c\u4eba", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 25, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u9f99\u80c6"
+    }
+},
+{
+    "pk": 24, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "flare3", 
+        "hit_effect": "blood", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u91cd\u521b\u5355\u4e2a\u654c\u4eba", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 25, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u731b\u864e\u4e0b\u5c71"
+    }
+},
+{
+    "pk": 25, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "swing2", 
+        "hit_effect": "blood", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u5355\u4f53\u4f24\u5bb3140%", 
+        "anger_self": 0, 
+        "trig_start": 2, 
+        "anger_rival_team": 25, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u91cd\u51fb"
+    }
+},
+{
+    "pk": 26, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "swing2", 
+        "hit_effect": "blood", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u5355\u4f53\u4f24\u5bb3140%", 
+        "anger_self": 0, 
+        "trig_start": 2, 
+        "anger_rival_team": 25, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u91cd\u51fb"
+    }
+},
+{
+    "pk": 27, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "swing2", 
+        "hit_effect": "blood", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u5355\u4f53\u4f24\u5bb3170%", 
+        "anger_self": 0, 
+        "trig_start": 2, 
+        "anger_rival_team": 25, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 30, 
+        "name": "\u731b\u51fb"
+    }
+},
+{
+    "pk": 28, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "swing2", 
+        "hit_effect": "blood", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u5355\u4f53\u4f24\u5bb3140%", 
+        "anger_self": 0, 
+        "trig_start": 2, 
+        "anger_rival_team": 25, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 35, 
+        "name": "\u91cd\u51fb"
+    }
+},
+{
+    "pk": 29, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "flare4", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u9632\u5fa1\u59ff\u6001\uff0c\u5927\u5e45\u63d0\u5347\u9632\u5fa1\u529b", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u91d1\u521a"
+    }
+},
+{
+    "pk": 32, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "flare3", 
+        "hit_effect": "blood", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u8fde\u51fb\uff0c\u5bf9\u654c\u65b9\u9020\u6210180~270%\u4f24\u5bb3", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 25, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u897f\u51c9\u94c1\u9a91"
+    }
+},
+{
+    "pk": 33, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "flare3", 
+        "hit_effect": "blood", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u8fde\u51fb\uff0c\u5bf9\u654c\u65b9\u9020\u6210120%~180%\u4f24\u5bb3", 
+        "anger_self": 0, 
+        "trig_start": 2, 
+        "anger_rival_team": 25, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u9a91\u5175\u51b2\u950b"
+    }
+},
+{
+    "pk": 35, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "flare1", 
+        "hit_effect": "sharpe hit", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u968f\u673a\u76ee\u6807\u9ad8\u4f24\u5bb3220%", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u767e\u6b65\u7a7f\u6768"
+    }
+},
+{
+    "pk": 36, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "flare1", 
+        "hit_effect": "sharpe hit", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u968f\u673a\u76ee\u6807\u9ad8\u4f24\u5bb3160%", 
+        "anger_self": 0, 
+        "trig_start": 2, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 35, 
+        "name": "\u4e71\u7bad"
+    }
+},
+{
+    "pk": 38, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "flare1", 
+        "hit_effect": "sharpe hit", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u968f\u673a\u76ee\u6807\u4e2d\u4f24\u5bb3130%\uff0c\u53d1\u52a8\u6982\u7387\u9ad8", 
+        "anger_self": 85, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 2, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 75, 
+        "name": "\u6697\u5668\u00b7\u98de\u5200"
+    }
+},
+{
+    "pk": 40, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "arua", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 15, 
+        "des": "\u81ea\u8eab\u5c5e\u6027\u5168\u9762\u63d0\u5347\uff0c\u5168\u961f\u66b4\u51fb\u5c0f\u5e45\u4e0a\u5347\u5e76\u63d0\u5347\u6012\u6c14", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u5978\u96c4"
+    }
+},
+{
+    "pk": 41, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "arua", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 15, 
+        "des": "\u81ea\u8eab\u5c5e\u6027\u5168\u9762\u63d0\u5347\uff0c\u5168\u961f\u653b\u51fb\u5c0f\u5e45\u4e0a\u5347\u5e76\u63d0\u5347\u6012\u6c14", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u4ec1\u541b"
+    }
+},
+{
+    "pk": 42, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "arua", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 15, 
+        "des": "\u81ea\u8eab\u5c5e\u6027\u5168\u9762\u63d0\u5347\uff0c\u5168\u961f\u9632\u5fa1\u5c0f\u5e45\u4e0a\u5347\u5e76\u63d0\u5347\u6012\u6c14", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u57fa\u4e1a"
+    }
+},
+{
+    "pk": 43, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 15, 
+        "des": "\u81ea\u8eab\u5168\u5c5e\u6027\u63d0\u534710%", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u7fa4\u96c4"
+    }
+},
+{
+    "pk": 44, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 10, 
+        "des": "\u5c0f\u961f\u9632\u5fa1\u4e0a\u5347\u5e76\u5c11\u91cf\u63d0\u5347\u6012\u6c14", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u9635\u6cd5\u00b7\u636e\u5b88"
+    }
+},
+{
+    "pk": 45, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 10, 
+        "des": "\u5c0f\u961f\u653b\u51fb\u4e0a\u5347\u5e76\u5c11\u91cf\u63d0\u5347\u6012\u6c14", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u9635\u6cd5\u00b7\u5f3a\u653b"
+    }
+},
+{
+    "pk": 46, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 10, 
+        "des": "\u5c0f\u961f\u653b\uff0c\u9632\u4e0a\u5347\u5e76\u5c11\u91cf\u63d0\u5347\u6012\u6c14", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u9635\u6cd5\u00b7\u638e\u89d2\u4e4b\u52bf"
+    }
+},
+{
+    "pk": 48, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "summon aura", 
+        "hit_effect": "rockfall", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "AOE 140%", 
+        "anger_self": 25, 
+        "trig_start": 1, 
+        "anger_rival_team": 20, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 30, 
+        "name": "\u843d\u77f3"
+    }
+},
+{
+    "pk": 49, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "summon aura", 
+        "hit_effect": "fire explosion", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "AOE 150%", 
+        "anger_self": 0, 
+        "trig_start": 2, 
+        "anger_rival_team": 20, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u706b\u653b"
+    }
+},
+{
+    "pk": 50, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "summon aura", 
+        "hit_effect": "lightning", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "AOE 120%\uff0c\u91ca\u653e\u9891\u7387\u9ad8", 
+        "anger_self": 50, 
+        "trig_start": 1, 
+        "anger_rival_team": 20, 
+        "trig_cooldown": 2, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 22, 
+        "name": "\u6c34\u653b (\u65e0\u7279\u6548)"
+    }
+},
+{
+    "pk": 52, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "summon aura", 
+        "hit_effect": "lightning2", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "AOE 140%\uff0c\u91ca\u653e\u6982\u7387\u9ad8", 
+        "anger_self": 50, 
+        "trig_start": 1, 
+        "anger_rival_team": 20, 
+        "trig_cooldown": 2, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u53ec\u5524\u00b7\u72c2\u98ce (\u65e0\u7279\u6548\uff09"
+    }
+},
+{
+    "pk": 53, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "summon aura", 
+        "hit_effect": "fire explosion", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "AOE 180%", 
+        "anger_self": 0, 
+        "trig_start": 2, 
+        "anger_rival_team": 20, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 35, 
+        "name": "\u53ec\u5524\u00b7\u5929\u706b"
+    }
+},
+{
+    "pk": 54, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "summon aura", 
+        "hit_effect": "lightning2", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "AOE 170%\uff0c\u4e24\u76ee\u6807\uff0c\u91ca\u653e\u6982\u7387\u9ad8", 
+        "anger_self": 30, 
+        "trig_start": 1, 
+        "anger_rival_team": 20, 
+        "trig_cooldown": 2, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 18, 
+        "name": "\u53ec\u5524\u00b7\u96f7\u7535"
+    }
+},
+{
+    "pk": 56, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "arua", 
+        "hit_effect": "sharpe hit", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u5168\u4f53AOE 100%\uff0c\u6bcf\u56de\u5408\u91ca\u653e", 
+        "anger_self": 100, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 1, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 100, 
+        "name": "\u5929\u5973\u6563\u82b1"
+    }
+},
+{
+    "pk": 57, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "arua", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u968f\u673a\u654c\u65b9\u76ee\u6807\u6655\u77292\u56de\u5408\uff0c\u5e76\u964d\u4f4e\u6012\u6c14\u53ca\u9632\u5fa1", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": -50, 
+        "trig_cooldown": 2, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 30, 
+        "name": "\u6d1b\u795e "
+    }
+},
+{
+    "pk": 58, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "arua", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 25, 
+        "des": "\u5168\u5458\u653b\u51fb\u63d0\u5347", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u80e1\u7b33"
+    }
+},
+{
+    "pk": 59, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "arua", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 25, 
+        "des": "\u5168\u5458\u5927\u5e45\u66b4\u51fb\u63d0\u5347", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u65e0\u534e"
+    }
+},
+{
+    "pk": 60, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "arua", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 25, 
+        "des": "\u5168\u5458\u9632\u5fa1\u5927\u5e45\u63d0\u5347", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u6c5f\u4e1c\u4e8c\u4e54"
+    }
+},
+{
+    "pk": 61, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "arua", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 25, 
+        "des": "\u5168\u5458\u653b\uff0c\u9632\u4e2d\u91cf\u63d0\u5347", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 1, 
+        "mode_name": "\u4e3b\u52a8", 
+        "prob": 25, 
+        "name": "\u667a\u8c0b"
+    }
+},
+{
+    "pk": 65, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u88ab\u52a8\u4e2d\u91cf\u66b4\u51fb\uff0c\u63d0\u5347\u6012\u6c14", 
+        "anger_self": 50, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u95ed\u6708"
+    }
+},
+{
+    "pk": 66, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u88ab\u52a8\u5927\u91cf\u66b4\u51fb", 
+        "anger_self": 15, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u66b4\u6012"
+    }
+},
+{
+    "pk": 67, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u88ab\u52a8\u63d0\u5347\u81ea\u8eab\u9632\u5fa1", 
+        "anger_self": 15, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u6b66\u5723"
+    }
+},
+{
+    "pk": 68, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u88ab\u52a8\u4e2d\u91cf\u63d0\u5347\u653b\u51fb", 
+        "anger_self": 25, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u5de8\u529b"
+    }
+},
+{
+    "pk": 69, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u88ab\u52a8\u964d\u4f4e\u5c11\u91cf\u9632\u5fa1\uff0c\u5927\u91cf\u63d0\u5347\u653b\u51fb\uff0c\u63d0\u5347\u6012\u6c14", 
+        "anger_self": 25, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u7834\u91dc\u6c89\u821f"
+    }
+},
+{
+    "pk": 70, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 10, 
+        "des": "\u88ab\u52a8\u4e2d\u91cf\u9632\u5fa1\uff0c\u5c11\u91cf\u63d0\u5347\u6012\u6c14", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u516b\u9635\u56fe"
+    }
+},
+{
+    "pk": 71, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u63d0\u5347\u56e2\u961f\u9632\u5fa130%", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 30, 
+        "name": "\u516b\u95e8\u91d1\u9501\u9635"
+    }
+},
+{
+    "pk": 72, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 50, 
+        "des": "\u63d0\u5347\u5168\u5c5e\u6027\uff0c\u589e\u52a0\u5168\u961f\u6012\u6c14", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 100, 
+        "name": "\u821e\u59ec"
+    }
+},
+{
+    "pk": 73, 
+    "model": "skill.skill", 
+    "fields": {
+        "cast_effect": "", 
+        "hit_effect": "", 
+        "is_fullscreen": false, 
+        "anger_self_team": 0, 
+        "des": "\u8bc6\u7834\u2014\u2014\u964d\u4f4e\u5bf9\u65b9\u5168\u4f53\u9632\u5fa1", 
+        "anger_self": 0, 
+        "trig_start": 1, 
+        "anger_rival_team": 0, 
+        "trig_cooldown": 3, 
+        "mode": 2, 
+        "mode_name": "\u88ab\u52a8", 
+        "prob": 50, 
+        "name": "\u7cbe\u901a\u5175\u6cd5"
+    }
+}
+]

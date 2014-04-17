@@ -1,0 +1,602 @@
+[
+{
+    "pk": 1, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "1\u7ea7\u653b\u51fb\u5b9d\u77f3", 
+        "level": 1, 
+        "tp_name": "\u7ea2", 
+        "value": 16, 
+        "used_for": "attack", 
+        "merge_to": 2, 
+        "used_for_name": "\u653b\u51fb", 
+        "sell_gold": 1000, 
+        "icon": "\u7ea2\u5b9d\u77f31"
+    }
+},
+{
+    "pk": 2, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "2\u7ea7\u653b\u51fb\u5b9d\u77f3", 
+        "level": 2, 
+        "tp_name": "\u7ea2", 
+        "value": 21, 
+        "used_for": "attack", 
+        "merge_to": 3, 
+        "used_for_name": "\u653b\u51fb", 
+        "sell_gold": 5000, 
+        "icon": "\u7ea2\u5b9d\u77f32"
+    }
+},
+{
+    "pk": 3, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "3\u7ea7\u653b\u51fb\u5b9d\u77f3", 
+        "level": 3, 
+        "tp_name": "\u7ea2", 
+        "value": 28, 
+        "used_for": "attack", 
+        "merge_to": 4, 
+        "used_for_name": "\u653b\u51fb", 
+        "sell_gold": 12000, 
+        "icon": "\u7ea2\u5b9d\u77f33"
+    }
+},
+{
+    "pk": 4, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "4\u7ea7\u653b\u51fb\u5b9d\u77f3", 
+        "level": 4, 
+        "tp_name": "\u7ea2", 
+        "value": 36, 
+        "used_for": "attack", 
+        "merge_to": 5, 
+        "used_for_name": "\u653b\u51fb", 
+        "sell_gold": 30000, 
+        "icon": "\u7ea2\u5b9d\u77f34"
+    }
+},
+{
+    "pk": 5, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "5\u7ea7\u653b\u51fb\u5b9d\u77f3", 
+        "level": 5, 
+        "tp_name": "\u7ea2", 
+        "value": 46, 
+        "used_for": "attack", 
+        "merge_to": 6, 
+        "used_for_name": "\u653b\u51fb", 
+        "sell_gold": 65000, 
+        "icon": "\u7ea2\u5b9d\u77f35"
+    }
+},
+{
+    "pk": 6, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "6\u7ea7\u653b\u51fb\u5b9d\u77f3", 
+        "level": 6, 
+        "tp_name": "\u7ea2", 
+        "value": 60, 
+        "used_for": "attack", 
+        "merge_to": 7, 
+        "used_for_name": "\u653b\u51fb", 
+        "sell_gold": 150000, 
+        "icon": "\u7ea2\u5b9d\u77f36"
+    }
+},
+{
+    "pk": 7, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "7\u7ea7\u653b\u51fb\u5b9d\u77f3", 
+        "level": 7, 
+        "tp_name": "\u7ea2", 
+        "value": 80, 
+        "used_for": "attack", 
+        "merge_to": 8, 
+        "used_for_name": "\u653b\u51fb", 
+        "sell_gold": 400000, 
+        "icon": "\u7ea2\u5b9d\u77f37"
+    }
+},
+{
+    "pk": 8, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "8\u7ea7\u653b\u51fb\u5b9d\u77f3", 
+        "level": 8, 
+        "tp_name": "\u7ea2", 
+        "value": 105, 
+        "used_for": "attack", 
+        "merge_to": 9, 
+        "used_for_name": "\u653b\u51fb", 
+        "sell_gold": 750000, 
+        "icon": "\u7ea2\u5b9d\u77f38"
+    }
+},
+{
+    "pk": 9, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "9\u7ea7\u653b\u51fb\u5b9d\u77f3", 
+        "level": 9, 
+        "tp_name": "\u7ea2", 
+        "value": 140, 
+        "used_for": "attack", 
+        "merge_to": 10, 
+        "used_for_name": "\u653b\u51fb", 
+        "sell_gold": 1200000, 
+        "icon": "\u7ea2\u5b9d\u77f39"
+    }
+},
+{
+    "pk": 10, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "10\u7ea7\u653b\u51fb\u5b9d\u77f3", 
+        "level": 10, 
+        "tp_name": "\u7ea2", 
+        "value": 170, 
+        "used_for": "attack", 
+        "merge_to": null, 
+        "used_for_name": "\u653b\u51fb", 
+        "sell_gold": 2880000, 
+        "icon": "\u7ea2\u5b9d\u77f310"
+    }
+},
+{
+    "pk": 11, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "1\u7ea7\u751f\u547d\u5b9d\u77f3", 
+        "level": 1, 
+        "tp_name": "\u9ec4", 
+        "value": 40, 
+        "used_for": "hp", 
+        "merge_to": 12, 
+        "used_for_name": "\u751f\u547d\u4e0a\u9650", 
+        "sell_gold": 1000, 
+        "icon": "\u9ec4\u5b9d\u77f31"
+    }
+},
+{
+    "pk": 12, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "2\u7ea7\u751f\u547d\u5b9d\u77f3", 
+        "level": 2, 
+        "tp_name": "\u9ec4", 
+        "value": 52, 
+        "used_for": "hp", 
+        "merge_to": 13, 
+        "used_for_name": "\u751f\u547d\u4e0a\u9650", 
+        "sell_gold": 5000, 
+        "icon": "\u9ec4\u5b9d\u77f32"
+    }
+},
+{
+    "pk": 13, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "3\u7ea7\u751f\u547d\u5b9d\u77f3", 
+        "level": 3, 
+        "tp_name": "\u9ec4", 
+        "value": 68, 
+        "used_for": "hp", 
+        "merge_to": 14, 
+        "used_for_name": "\u751f\u547d\u4e0a\u9650", 
+        "sell_gold": 12000, 
+        "icon": "\u9ec4\u5b9d\u77f33"
+    }
+},
+{
+    "pk": 14, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "4\u7ea7\u751f\u547d\u5b9d\u77f3", 
+        "level": 4, 
+        "tp_name": "\u9ec4", 
+        "value": 88, 
+        "used_for": "hp", 
+        "merge_to": 15, 
+        "used_for_name": "\u751f\u547d\u4e0a\u9650", 
+        "sell_gold": 30000, 
+        "icon": "\u9ec4\u5b9d\u77f34"
+    }
+},
+{
+    "pk": 15, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "5\u7ea7\u751f\u547d\u5b9d\u77f3", 
+        "level": 5, 
+        "tp_name": "\u9ec4", 
+        "value": 115, 
+        "used_for": "hp", 
+        "merge_to": 16, 
+        "used_for_name": "\u751f\u547d\u4e0a\u9650", 
+        "sell_gold": 65000, 
+        "icon": "\u9ec4\u5b9d\u77f35"
+    }
+},
+{
+    "pk": 16, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "6\u7ea7\u653b\u51fb\u5b9d\u77f3", 
+        "level": 6, 
+        "tp_name": "\u7ea2", 
+        "value": 60, 
+        "used_for": "attack", 
+        "merge_to": 7, 
+        "used_for_name": "\u653b\u51fb", 
+        "sell_gold": 150000, 
+        "icon": "\u9ec4\u5b9d\u77f36"
+    }
+},
+{
+    "pk": 17, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "7\u7ea7\u751f\u547d\u5b9d\u77f3", 
+        "level": 7, 
+        "tp_name": "\u9ec4", 
+        "value": 195, 
+        "used_for": "hp", 
+        "merge_to": 18, 
+        "used_for_name": "\u751f\u547d\u4e0a\u9650", 
+        "sell_gold": 400000, 
+        "icon": "\u9ec4\u5b9d\u77f37"
+    }
+},
+{
+    "pk": 18, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "8\u7ea7\u751f\u547d\u5b9d\u77f3", 
+        "level": 8, 
+        "tp_name": "\u9ec4", 
+        "value": 255, 
+        "used_for": "hp", 
+        "merge_to": 19, 
+        "used_for_name": "\u751f\u547d\u4e0a\u9650", 
+        "sell_gold": 750000, 
+        "icon": "\u9ec4\u5b9d\u77f38"
+    }
+},
+{
+    "pk": 19, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "9\u7ea7\u751f\u547d\u5b9d\u77f3", 
+        "level": 9, 
+        "tp_name": "\u9ec4", 
+        "value": 330, 
+        "used_for": "hp", 
+        "merge_to": 20, 
+        "used_for_name": "\u751f\u547d\u4e0a\u9650", 
+        "sell_gold": 1200000, 
+        "icon": "\u9ec4\u5b9d\u77f39"
+    }
+},
+{
+    "pk": 20, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "10\u7ea7\u751f\u547d\u5b9d\u77f3", 
+        "level": 10, 
+        "tp_name": "\u9ec4", 
+        "value": 430, 
+        "used_for": "hp", 
+        "merge_to": null, 
+        "used_for_name": "\u751f\u547d\u4e0a\u9650", 
+        "sell_gold": 2880000, 
+        "icon": "\u9ec4\u5b9d\u77f310"
+    }
+},
+{
+    "pk": 21, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "1\u7ea7\u9632\u5fa1\u5b9d\u77f3", 
+        "level": 1, 
+        "tp_name": "\u84dd", 
+        "value": 8, 
+        "used_for": "defense", 
+        "merge_to": 22, 
+        "used_for_name": "\u9632\u5fa1", 
+        "sell_gold": 1000, 
+        "icon": "\u7d2b\u5b9d\u77f31"
+    }
+},
+{
+    "pk": 22, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "2\u7ea7\u9632\u5fa1\u5b9d\u77f3", 
+        "level": 2, 
+        "tp_name": "\u84dd", 
+        "value": 11, 
+        "used_for": "defense", 
+        "merge_to": 23, 
+        "used_for_name": "\u9632\u5fa1", 
+        "sell_gold": 5000, 
+        "icon": "\u7d2b\u5b9d\u77f32"
+    }
+},
+{
+    "pk": 23, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "3\u7ea7\u9632\u5fa1\u5b9d\u77f3", 
+        "level": 3, 
+        "tp_name": "\u84dd", 
+        "value": 14, 
+        "used_for": "defense", 
+        "merge_to": 24, 
+        "used_for_name": "\u9632\u5fa1", 
+        "sell_gold": 12000, 
+        "icon": "\u7d2b\u5b9d\u77f33"
+    }
+},
+{
+    "pk": 24, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "4\u7ea7\u9632\u5fa1\u5b9d\u77f3", 
+        "level": 4, 
+        "tp_name": "\u84dd", 
+        "value": 18, 
+        "used_for": "defense", 
+        "merge_to": 25, 
+        "used_for_name": "\u9632\u5fa1", 
+        "sell_gold": 30000, 
+        "icon": "\u7d2b\u5b9d\u77f34"
+    }
+},
+{
+    "pk": 25, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "5\u7ea7\u9632\u5fa1\u5b9d\u77f3", 
+        "level": 5, 
+        "tp_name": "\u84dd", 
+        "value": 23, 
+        "used_for": "defense", 
+        "merge_to": 26, 
+        "used_for_name": "\u9632\u5fa1", 
+        "sell_gold": 65000, 
+        "icon": "\u7d2b\u5b9d\u77f35"
+    }
+},
+{
+    "pk": 26, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "6\u7ea7\u9632\u5fa1\u5b9d\u77f3", 
+        "level": 6, 
+        "tp_name": "\u84dd", 
+        "value": 30, 
+        "used_for": "defense", 
+        "merge_to": 27, 
+        "used_for_name": "\u9632\u5fa1", 
+        "sell_gold": 150000, 
+        "icon": "\u7d2b\u5b9d\u77f36"
+    }
+},
+{
+    "pk": 27, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "7\u7ea7\u9632\u5fa1\u5b9d\u77f3", 
+        "level": 7, 
+        "tp_name": "\u84dd", 
+        "value": 40, 
+        "used_for": "defense", 
+        "merge_to": 28, 
+        "used_for_name": "\u9632\u5fa1", 
+        "sell_gold": 400000, 
+        "icon": "\u7d2b\u5b9d\u77f37"
+    }
+},
+{
+    "pk": 28, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "8\u7ea7\u9632\u5fa1\u5b9d\u77f3", 
+        "level": 8, 
+        "tp_name": "\u84dd", 
+        "value": 55, 
+        "used_for": "defense", 
+        "merge_to": 29, 
+        "used_for_name": "\u9632\u5fa1", 
+        "sell_gold": 750000, 
+        "icon": "\u7d2b\u5b9d\u77f38"
+    }
+},
+{
+    "pk": 29, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "9\u7ea7\u9632\u5fa1\u5b9d\u77f3", 
+        "level": 9, 
+        "tp_name": "\u84dd", 
+        "value": 70, 
+        "used_for": "defense", 
+        "merge_to": 30, 
+        "used_for_name": "\u9632\u5fa1", 
+        "sell_gold": 1200000, 
+        "icon": "\u7d2b\u5b9d\u77f39"
+    }
+},
+{
+    "pk": 30, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "10\u7ea7\u9632\u5fa1\u5b9d\u77f3", 
+        "level": 10, 
+        "tp_name": "\u84dd", 
+        "value": 90, 
+        "used_for": "defense", 
+        "merge_to": null, 
+        "used_for_name": "\u9632\u5fa1", 
+        "sell_gold": 2880000, 
+        "icon": "\u7d2b\u5b9d\u77f310"
+    }
+},
+{
+    "pk": 31, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "1\u7ea7\u66b4\u51fb\u5b9d\u77f3", 
+        "level": 1, 
+        "tp_name": "\u6a59", 
+        "value": 15, 
+        "used_for": "crit", 
+        "merge_to": 32, 
+        "used_for_name": "\u66b4\u51fb", 
+        "sell_gold": 1000, 
+        "icon": "\u7eff\u5b9d\u77f31"
+    }
+},
+{
+    "pk": 32, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "2\u7ea7\u66b4\u51fb\u5b9d\u77f3", 
+        "level": 2, 
+        "tp_name": "\u6a59", 
+        "value": 20, 
+        "used_for": "crit", 
+        "merge_to": 33, 
+        "used_for_name": "\u66b4\u51fb", 
+        "sell_gold": 5000, 
+        "icon": "\u7eff\u5b9d\u77f32"
+    }
+},
+{
+    "pk": 33, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "3\u7ea7\u66b4\u51fb\u5b9d\u77f3", 
+        "level": 3, 
+        "tp_name": "\u6a59", 
+        "value": 25, 
+        "used_for": "crit", 
+        "merge_to": 34, 
+        "used_for_name": "\u66b4\u51fb", 
+        "sell_gold": 12000, 
+        "icon": "\u7eff\u5b9d\u77f33"
+    }
+},
+{
+    "pk": 34, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "4\u7ea7\u66b4\u51fb\u5b9d\u77f3", 
+        "level": 4, 
+        "tp_name": "\u6a59", 
+        "value": 35, 
+        "used_for": "crit", 
+        "merge_to": 35, 
+        "used_for_name": "\u66b4\u51fb", 
+        "sell_gold": 30000, 
+        "icon": "\u7eff\u5b9d\u77f34"
+    }
+},
+{
+    "pk": 35, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "5\u7ea7\u66b4\u51fb\u5b9d\u77f3", 
+        "level": 5, 
+        "tp_name": "\u6a59", 
+        "value": 45, 
+        "used_for": "crit", 
+        "merge_to": 36, 
+        "used_for_name": "\u66b4\u51fb", 
+        "sell_gold": 65000, 
+        "icon": "\u7eff\u5b9d\u77f35"
+    }
+},
+{
+    "pk": 36, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "6\u7ea7\u66b4\u51fb\u5b9d\u77f3", 
+        "level": 6, 
+        "tp_name": "\u6a59", 
+        "value": 55, 
+        "used_for": "crit", 
+        "merge_to": 37, 
+        "used_for_name": "\u66b4\u51fb", 
+        "sell_gold": 150000, 
+        "icon": "\u7eff\u5b9d\u77f36"
+    }
+},
+{
+    "pk": 37, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "7\u7ea7\u66b4\u51fb\u5b9d\u77f3", 
+        "level": 7, 
+        "tp_name": "\u6a59", 
+        "value": 75, 
+        "used_for": "crit", 
+        "merge_to": 38, 
+        "used_for_name": "\u66b4\u51fb", 
+        "sell_gold": 400000, 
+        "icon": "\u7eff\u5b9d\u77f37"
+    }
+},
+{
+    "pk": 38, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "8\u7ea7\u66b4\u51fb\u5b9d\u77f3", 
+        "level": 8, 
+        "tp_name": "\u6a59", 
+        "value": 95, 
+        "used_for": "crit", 
+        "merge_to": 39, 
+        "used_for_name": "\u66b4\u51fb", 
+        "sell_gold": 750000, 
+        "icon": "\u7eff\u5b9d\u77f38"
+    }
+},
+{
+    "pk": 39, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "9\u7ea7\u66b4\u51fb\u5b9d\u77f3", 
+        "level": 9, 
+        "tp_name": "\u6a59", 
+        "value": 120, 
+        "used_for": "crit", 
+        "merge_to": 40, 
+        "used_for_name": "\u66b4\u51fb", 
+        "sell_gold": 1200000, 
+        "icon": "\u7eff\u5b9d\u77f39"
+    }
+},
+{
+    "pk": 40, 
+    "model": "item.gem", 
+    "fields": {
+        "name": "10\u7ea7\u66b4\u51fb\u5b9d\u77f3", 
+        "level": 10, 
+        "tp_name": "\u6a59", 
+        "value": 155, 
+        "used_for": "crit", 
+        "merge_to": null, 
+        "used_for_name": "\u66b4\u51fb", 
+        "sell_gold": 2880000, 
+        "icon": "\u7eff\u5b9d\u77f310"
+    }
+}
+]
