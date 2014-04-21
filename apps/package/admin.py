@@ -5,7 +5,6 @@ from django.contrib import admin
 from apps.package.models import (
     Package,
     PackageHero,
-    PackageHeroSoul,
     PackageEquipment,
     PackageGem,
     PackageStuff,
@@ -25,9 +24,6 @@ class HeroInfoInline(admin.TabularInline):
     model = PackageHero
     extra = 1
 
-class HeroSoulInfoInline(admin.TabularInline):
-    model = PackageHeroSoul
-    extra = 1
 
 class EquipInfoInline(admin.TabularInline):
     model = PackageEquipment
@@ -43,25 +39,15 @@ class StuffInfoInline(admin.TabularInline):
 
 class PackageAdmin(admin.ModelAdmin):
     inlines = (
-        HeroInfoInline, HeroSoulInfoInline, EquipInfoInline,
+        HeroInfoInline, EquipInfoInline,
         GemInfoInline, StuffInfoInline
     )
 
-    list_display = ('id', 'name', 'gold', 'sycee', 'exp', 'official_exp', 'Heros', 'HeroSouls', 'Equips', 'Gems', 'Stuffs')
+    list_display = ('id', 'name', 'gold', 'sycee', 'exp', 'official_exp', 'Heros',  'Equips', 'Gems', 'Stuffs')
+
 
     def Heros(self, obj):
         data = obj.package_hero.all()
-        def _make_text(x):
-            text = u'{0}, 等级: {1}, 阶数: {2}, 数量: {3}, 概率: {4}'.format(
-                HEROS_DICT[x.hero], x.level, x.step, x.amount, x.prob
-            )
-            return text
-        texts = [_make_text(x) for x in data]
-        return '<br />'.join(texts)
-    Heros.allow_tags = True
-
-    def HeroSouls(self, obj):
-        data = obj.package_hero_soul.all()
         def _make_text(x):
             text = u'{0}, 数量: {1}, 概率: {2}'.format(
                 HEROS_DICT[x.hero], x.amount, x.prob
@@ -69,7 +55,7 @@ class PackageAdmin(admin.ModelAdmin):
             return text
         texts = [_make_text(x) for x in data]
         return '<br />'.join(texts)
-    HeroSouls.allow_tags = True
+    Heros.allow_tags = True
 
 
     def Equips(self, obj):

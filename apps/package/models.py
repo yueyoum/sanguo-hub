@@ -54,17 +54,8 @@ class Package(models.Model):
         for h in heros:
             heros_data.append({
                 'id': h.hero,
-                'level': h.level,
-                'step': h.step,
                 'amount': h.amount,
-            })
-
-        souls = self.package_hero_soul.all()
-        souls_data = []
-        for s in souls:
-            souls_data.append({
-                'id': s.soul,
-                'amount': s.amount,
+                'prob': h.prob,
             })
 
         equips = self.package_equipment.all()
@@ -74,6 +65,7 @@ class Package(models.Model):
                 'id': e.equipment,
                 'level': e.level,
                 'amount': e.amount,
+                'prob': e.prob,
             })
 
         gems = self.package_gem.all()
@@ -82,6 +74,7 @@ class Package(models.Model):
             gems_data.append({
                 'id': g.gem,
                 'amount': g.amount,
+                'prob': g.prob,
             })
 
         stuffs = self.package_stuff.all()
@@ -90,10 +83,10 @@ class Package(models.Model):
             stuffs_data.append({
                 'id': s.stuff,
                 'amount': s.amount,
+                'prob': s.prob,
             })
 
         data['heros'] = heros_data
-        data['souls'] = souls_data
         data['equipments'] = equips_data
         data['gems'] = gems_data
         data['stuffs'] = stuffs_data
@@ -104,23 +97,11 @@ class Package(models.Model):
 class PackageHero(models.Model):
     package = models.ForeignKey(Package, related_name='package_hero')
     hero = models.IntegerField(choices=HEROS)
-    level = models.IntegerField(default=1, verbose_name='强化等级')
-    step = models.IntegerField(default=0, verbose_name='进阶阶数')
     amount = models.IntegerField(default=1, verbose_name='数量')
     prob = models.IntegerField(default=100000, verbose_name='概率')
 
     class Meta:
         db_table = 'package_hero'
-
-
-class PackageHeroSoul(models.Model):
-    package = models.ForeignKey(Package, related_name='package_hero_soul')
-    soul = models.IntegerField(choices=HEROS)
-    amount = models.IntegerField(default=1, verbose_name='数量')
-    prob = models.IntegerField(default=100000, verbose_name='概率')
-
-    class Meta:
-        db_table = 'package_hero_soul'
 
 
 class PackageEquipment(models.Model):
