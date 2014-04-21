@@ -6,6 +6,7 @@ __date__ = '4/1/14'
 import requests
 from django.db import transaction, IntegrityError
 
+from apps.account.models import AccountRegular
 from apps.character.models import Character
 from core.exception import GateException
 from core.server import SERVERS
@@ -64,3 +65,29 @@ def create(request):
         }
     }
 
+
+# @json_return
+# def find_char_id(request):
+#     try:
+#         email = request.POST['email']
+#         server_id = int(request.POST['server_id'])
+#     except (KeyError, ValueError):
+#         return {'ret': 1}
+#
+#
+#     try:
+#         acc = AccountRegular.objects.select_related('account').get(name=email)
+#     except AccountRegular.DoesNotExist:
+#         return {'ret': 40}
+#
+#     try:
+#         char = Character.objects.get(account_id=acc.account.id, server_id=server_id)
+#     except Character.DoesNotExist:
+#         return {'ret': 40}
+#
+#     return {
+#         'ret': 0,
+#         'data': {
+#             'char_id': char.id
+#         }
+#     }

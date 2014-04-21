@@ -16,4 +16,6 @@ class GateException(Exception):
         Exception.__init__(self)
 
 
+class APIDataError(Exception):
+    pass
 
