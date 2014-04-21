@@ -24,7 +24,7 @@ class Mail(models.Model):
     content = models.TextField()
     send_at = models.DateTimeField(db_index=True)
     send_type = models.IntegerField(choices=SEND_TYPE)
-    send_to = models.CharField(max_length=255, blank=True, help_text='指定服务器: id,id  指定角色: name,name')
+    send_to = models.CharField(max_length=255, blank=True, help_text='指定服务器: id,id  指定角色: id,id')
 
     attachment = models.ForeignKey(Package, null=True, blank=True)
 
@@ -48,9 +48,9 @@ class Mail(models.Model):
         elif self.send_type == 3:
             if not self.send_to:
                 raise ValidationError("Send to Character Can not be blank")
-            for name in self.send_to.split(','):
-                if not Character.objects.filter(name=name).exists():
-                    raise ValidationError("Character {0} Does not exists".format(name))
+            for cid in self.send_to.split(','):
+                if not Character.objects.filter(id=cid).exists():
+                    raise ValidationError("Character {0} Does not exists".format(cid))
 
     class Meta:
         db_table = 'mail'

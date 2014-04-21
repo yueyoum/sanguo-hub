@@ -1,7 +1,8 @@
 __author__ = 'wang'
 
 import os
-
+import sys
+sys.path.append(os.getcwd())
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hub.settings_admin')
 
 from django.conf import settings

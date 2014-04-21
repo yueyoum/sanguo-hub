@@ -3,6 +3,8 @@
 __author__ = 'Wang Chao'
 __date__ = '2/26/14'
 
+from _base import Logger
+
 import json
 import traceback
 from itertools import groupby
@@ -12,7 +14,6 @@ from django.utils import timezone
 
 import requests
 
-from _base import Logger
 from apps.mail.models import Mail as ModelMail
 from apps.character.models import Character
 from core.server import SERVERS
@@ -34,7 +35,6 @@ from core.server import SERVERS
 #             'exp': 0,
 #             'official_exp': 0,
 #             'heros': [],
-#             'herosouls': [],
 #             'equipments': [],
 #             'gems': [],
 #             'stuffs': []
@@ -61,8 +61,8 @@ def send_one_mail(mail):
 
     if mail.send_type == 3:
         # 发给部分角色
-        names = mail.send_to.split(',')
-        chars = Character.objects.filter(name__in=names)
+        cids = [int(i) for i in mail.send_to.split(',')]
+        chars = Character.objects.filter(id__in=cids)
         cid_sid = [(c.id, c.server_id) for c in chars]
         cid_sid.sort(key=lambda item: item[1])
         cid_sid = groupby(cid_sid, lambda item: item[1])
