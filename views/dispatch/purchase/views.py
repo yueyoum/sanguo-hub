@@ -30,8 +30,8 @@ def verify(request):
     p = Purchase(req.char_id)
     error_code, product_id = p.verify(req.receipt)
     response = BuyVerityResponse()
+    response.ret = error_code
     if error_code:
-        response.ret = error_code
         return pack_msg(response)
 
     name = PRODUCTS[product_id]['name']
