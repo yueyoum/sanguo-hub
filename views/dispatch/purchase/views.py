@@ -14,7 +14,7 @@ from protomsg import GetProductsResponse, BuyVerityResponse
 def get_products(request):
     response = GetProductsResponse()
     response.ret = 0
-    for k, v in PRODUCTS:
+    for k, v in PRODUCTS.iteritems():
         p = response.products.add()
         p.id = k
         p.name = v['name']
