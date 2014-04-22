@@ -11,7 +11,7 @@ class ProductsAdmin(admin.ModelAdmin):
 
 class PurchaseFailureLogAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'product_id', 'actual_sycee', 'char_id', 'buy_date', 'receipt',
+        'id', 'char_id', 'buy_date',
         'inner_error', 'apple_error'
     )
 
@@ -19,7 +19,7 @@ class PurchaseFailureLogAdmin(admin.ModelAdmin):
 
 class PurchaseSuccessLogAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'product_id', 'actual_sycee', 'char_id', 'buy_date', 'receipt',
+        'id', 'char_id', 'buy_date', 'product_id', 'actual_sycee',
         'quantity', 'bvrs', 'send_done'
     )
 

@@ -21,8 +21,6 @@ class Products(models.Model):
 
 
 class PurchaseLog(models.Model):
-    product_id = models.CharField(max_length=255)
-    actual_sycee = models.IntegerField("实际元宝")
     char_id = models.IntegerField("购买者ID")
     buy_date = models.DateTimeField("购买时间", auto_now_add=True)
 
@@ -43,6 +41,8 @@ class PurchaseFailureLog(PurchaseLog):
 
 
 class PurchaseSuccessLog(PurchaseLog):
+    product_id = models.CharField(max_length=255)
+    actual_sycee = models.IntegerField("实际元宝")
     quantity = models.IntegerField("数量")
     bvrs = models.CharField("版本号", max_length=255)
     send_done = models.BooleanField("成功给出物品", default=False)

@@ -79,15 +79,12 @@ class Purchase(object):
 
 
     def verify(self, receipt):
-        print receipt
-
         try:
             c = Character.objects.get(id=self.char_id)
         except Character.DoesNotExist:
             return (2, "")
 
         data = {
-            'product_id': 'xxx',
             'char_id': self.char_id,
             'receipt': receipt,
         }
@@ -104,7 +101,7 @@ class Purchase(object):
 
             data['inner_error'] = inner_error
             data['apple_error'] = apple_error
-            self.save_purchase_log(data)
+            self.save_purchase_failure_log(data)
 
             # FIXME error code
             print "verify error"
@@ -114,10 +111,12 @@ class Purchase(object):
         product_id = res['receipt']['product_id']
         quantity = res['receipt']['quantity']
 
+        data['product_id'] = product_id
+        data['actual_sycee'] = PRODUCTS[product_id]['actual_sycee']
         data['quantity'] = quantity
         data['bvrs'] = res['receipt']['bvrs']
 
-        log_id = self.save_purchase_log(data)
+        log_id = self.save_purchase_success_log(data)
 
 
         # cal server api to send sycee
@@ -139,51 +138,24 @@ class Purchase(object):
         return (0, product_id)
 
 
-    def save_purchase_log(self, data):
-        # data like this:
-        # {
-        #     'product_id': '',
-        #     'char_id': 0,
-        #     'receipt': '',
-        #
-        #     'inner_error': *,
-        #     'apple_error': *,
-        #
-        #     'quantity': *,
-        #     'bvrs': *,
-        # }
-        #
+    def save_purchase_failure_log(self, data):
+        PurchaseFailureLog.objects.create(
+            char_id=data['char_id'],
+            receipt=data['receipt'],
+            inner_error=data['inner_error'],
+            apple_error=data['apple_error'],
+        )
 
-        # 打 * 号的意思是不一定有
-
-        if 'inner_error' in data or 'apple_error' in data:
-            # failure
-            p = PurchaseFailureLog.objects.create(
-                product_id=data['product_id'],
-                actual_sycee=data['actual_sycee'],
-                char_id=data['char_id'],
-                receipt=data['receipt'],
-
-                inner_error=data['inner_error'],
-                apple_error=data['apple_error'],
-            )
-
-            log_id = p.id
-        else:
-            # success
-            p = PurchaseSuccessLog.objects.create(
-                product_id=data['product_id'],
-                actual_sycee=data['actual_sycee'],
-                char_id=data['char_id'],
-                receipt=data['receipt'],
-
-                quantity=data['quantity'],
-                bvrs=data['bvrs'],
-            )
-
-            log_id = p.id
-
-        return log_id
+    def save_purchase_success_log(self, data):
+        p = PurchaseSuccessLog.objects.create(
+            char_id=data['char_id'],
+            receipt=data['receipt'],
+            product_id=data['product_id'],
+            actual_sycee=data['actual_sycee'],
+            quantity=data['quantity'],
+            bvrs=data['bvrs'],
+        )
+        return p.id
 
 
     def set_send_done(self, log_id):
