@@ -109,7 +109,7 @@ class Purchase(object):
 
 
         product_id = res['receipt']['product_id']
-        quantity = res['receipt']['quantity']
+        quantity = int(res['receipt']['quantity'])
 
         data['product_id'] = product_id
         data['actual_sycee'] = PRODUCTS[product_id]['actual_sycee']
