@@ -72,8 +72,9 @@ class Purchase(object):
                 return (1, "")
 
             print res
-            if res['status'] != 0:
-                return (res['status'], "")
+
+        if res['status'] != 0:
+            return (res['status'], "")
 
         return (0, res)
 
