@@ -28,7 +28,7 @@ def verify(request):
     req = request._proto
 
     p = Purchase(req.char_id)
-    error_code, product_id = p.verify(req.receipt)
+    error_code, product_id, add_sycee = p.verify(req.receipt)
     response = BuyVerityResponse()
     response.ret = error_code
     if error_code:
@@ -36,4 +36,5 @@ def verify(request):
 
     name = PRODUCTS[product_id]['name']
     response.name = name
+    response.add_sycee = add_sycee
     return pack_msg(response)

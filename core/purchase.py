@@ -83,7 +83,7 @@ class Purchase(object):
         try:
             c = Character.objects.get(id=self.char_id)
         except Character.DoesNotExist:
-            return (2, "")
+            return (2, "", 0)
 
         data = {
             'char_id': self.char_id,
@@ -106,7 +106,7 @@ class Purchase(object):
 
             # FIXME error code
             print "verify error"
-            return (2, "")
+            return (2, "", 0)
 
 
         product_id = res['receipt']['product_id']
@@ -122,21 +122,22 @@ class Purchase(object):
 
         # cal server api to send sycee
         s = SERVERS[c.server_id]
+        add_sycee = PRODUCTS[product_id]['actual_sycee'] * quantity
         data = {
             'char_id': self.char_id,
-            'sycee': PRODUCTS[product_id]['actual_sycee'] * quantity
+            'sycee': add_sycee
         }
         req = requests.post('{0}:{1}/api/purchase/done/'.format(s['url'], s['port']), data=data)
         if not req.ok:
-            return (2, "")
+            return (2, "", 0)
 
         res = req.json()
         if res['ret'] != 0:
-            return (2, "")
+            return (2, "", 0)
 
         self.set_send_done(log_id)
 
-        return (0, product_id)
+        return (0, product_id, add_sycee)
 
 
     def save_purchase_failure_log(self, data):
