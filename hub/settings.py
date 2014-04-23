@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'apps.package',
     'apps.mail',
     'apps.purchase',
+    'apps.store',
 )
 
 MIDDLEWARE_CLASSES = (

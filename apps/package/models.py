@@ -1,28 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import json
-import os
 
 from django.db import models
-from django.conf import settings
 
-FIXTURES_PATH = settings.FIXTURES_PATH
-
-def _make_data(s):
-    with open(os.path.join(FIXTURES_PATH, s), 'r') as f:
-        data = f.read()
-
-    data = json.loads(data)
-    choose = []
-    for d in data:
-        choose.append((d['pk'], d['fields']['name']))
-    choose.sort(key=lambda item: item[0])
-    return choose
-
-HEROS = _make_data('heros.json')
-EQUIPMENTS = _make_data('equipments.json')
-GEMS = _make_data('gems.json')
-STUFFS = _make_data('stuffs.json')
+from core.fixtures import HEROS, EQUIPMENTS, GEMS, STUFFS
 
 
 class Package(models.Model):
