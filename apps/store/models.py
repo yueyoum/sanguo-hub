@@ -31,7 +31,7 @@ class Store(models.Model):
     original_price = models.IntegerField("原价")
     sell_price = models.IntegerField("售价")
 
-    has_total_amount = models.BooleanField("是否总量限制", default=False)
+    has_total_amount = models.BooleanField("是否总量限制", default=False, db_index=True)
     total_amount = models.IntegerField("总量", default=0, help_text='如果没有总量限制，则此数值无意义')
     total_amount_run_time = models.IntegerField("实时总量", default=0)
 
