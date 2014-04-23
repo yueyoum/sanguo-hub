@@ -40,7 +40,10 @@ class Mail(models.Model):
             if not self.send_to:
                 raise ValidationError("Send to Server Can not be blank")
             for sid in self.send_to.split(','):
-                sid = int(sid)
+                try:
+                    sid = int(sid)
+                except ValueError:
+                    raise ValidationError("id MUST be integer")
                 if sid == 0:
                     raise ValidationError("Server id can not be 0")
                 if not Server.objects.filter(id=sid).exists():
@@ -49,6 +52,10 @@ class Mail(models.Model):
             if not self.send_to:
                 raise ValidationError("Send to Character Can not be blank")
             for cid in self.send_to.split(','):
+                try:
+                    cid = int(cid)
+                except ValueError:
+                    raise ValidationError("id MUST be integer")
                 if not Character.objects.filter(id=cid).exists():
                     raise ValidationError("Character {0} Does not exists".format(cid))
 
