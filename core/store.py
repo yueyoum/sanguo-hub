@@ -14,6 +14,7 @@ def _get_store_goods():
     if STORE:
         return
 
+    STORE = {}
     fields = ModelStore._meta.get_all_field_names()
 
     for s in ModelStore.objects.all():
