@@ -35,9 +35,6 @@ def get_server_list(account_id=None):
     servers.sort(key=lambda item: item[0])
 
     for sid, s in servers:
-        if sid == 0:
-            continue
-
         this = {
             'id': sid,
             'name': s['name'],

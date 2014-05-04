@@ -8,6 +8,7 @@ from django.db import transaction, IntegrityError
 from apps.account.models import AccountAnonymous, AccountRegular, AccountThird, Account
 from apps.character.models import Character
 from core.exception import GateException
+from preset import errormsg
 
 
 def get_register_request_data(post):
@@ -66,26 +67,23 @@ def account_register(data):
     try:
         data = get_register_request_data(data)
     except (KeyError, GateException):
-        return {'ret': 1}
+        return {'ret': errormsg.BAD_MESSAGE}
 
     try:
         with transaction.atomic():
             if data['method'] == 'regular':
                 try:
                     old_account = AccountAnonymous.objects.get(token=data['token'])
-                    print "got old_account"
                 except AccountAnonymous.DoesNotExist:
                     account = AccountRegular.objects.create(name=data['name'], passwd=data['password'])
-                    print "create regular"
                 else:
-                    print "xxx"
                     account = AccountRegular.objects.create(name=data['name'], passwd=data['password'], account_id=old_account.account_id)
                     Account.objects.filter(id=old_account.account_id).update(tp='regular')
                     AccountAnonymous.objects.filter(token=data['token']).delete()
             else:
                 account = AccountThird.objects.create(platform=data['platform'], uid=data['uid'])
     except IntegrityError:
-        return {'ret': 100}
+        return {'ret': errormsg.ACCOUNT_HAS_BEEN_REGISTED}
 
     return {
         'ret': 0,
@@ -100,7 +98,7 @@ def account_login(data):
     try:
         data = get_login_request_data(data)
     except (KeyError, ValueError, GateException):
-        return {'ret': 1}
+        return {'ret': errormsg.BAD_MESSAGE}
 
     if data['method'] == 'anonymous':
         # 匿名登录，如果没此记录，就创建用户
@@ -111,16 +109,16 @@ def account_login(data):
                 with transaction.atomic():
                     account = AccountAnonymous.objects.create(token=data['token'])
             except IntegrityError:
-                return {'ret': 2}
+                return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
 
     elif data['method'] == 'regular':
         try:
             account = AccountRegular.objects.select_related('account').get(name=data['name'])
         except AccountRegular.DoesNotExist:
-            return {'ret': 20}
+            return {'ret': errormsg.ACCOUNT_NOT_EXSIT}
 
         if account.passwd != data['password']:
-            return {'ret': 21}
+            return {'ret': errormsg.WRONG_PASSWORD}
 
         # TODO account ban
     else:
@@ -131,7 +129,7 @@ def account_login(data):
                 with transaction.atomic():
                     account = AccountThird.objects.create(platform=data['platform'], uid=data['uid'])
             except IntegrityError:
-                return {'ret': 2}
+                return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
 
     try:
         char = Character.objects.get(account_id=account.account.id, server_id=data['server_id'])

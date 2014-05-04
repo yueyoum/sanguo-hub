@@ -6,6 +6,7 @@ __date__ = '4/22/14'
 from django.db import transaction
 
 from apps.store.models import Store as ModelStore, StoreBuyLog
+from preset import errormsg
 
 STORE = None
 
@@ -42,10 +43,10 @@ class Store(object):
             goods_id = int(data['goods_id'])
             goods_amount = int(data['goods_amount'])
         except (KeyError, ValueError):
-            return {'ret': 1}
+            return {'ret': errormsg.BAD_MESSAGE}
 
         if goods_id not in STORE:
-            return {'ret': 60}
+            return {'ret': errormsg.STORE_GOODS_NOT_EXIST}
 
         data = {}
 
@@ -54,10 +55,10 @@ class Store(object):
                 try:
                     g = ModelStore.objects.select_for_update().get(id=goods_id)
                 except ModelStore.DoesNotExist:
-                    return {'ret': 60}
+                    return {'ret': errormsg.STORE_GOODS_NOT_EXIST}
 
                 if g.total_amount_run_time < goods_amount:
-                    return {'ret': 61}
+                    return {'ret': errormsg.STORE_GOODS_AMOUNT_NOT_ENOUGH}
 
                 g.total_amount_run_time -= goods_amount
                 g.save()
