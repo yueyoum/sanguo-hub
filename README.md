@@ -8,7 +8,7 @@
 4.  source env/bin/activate
 5.  pip install -r requirements.txt
 6.  python manage.py syncdb --settings=hub.settings_admin
-7.  python manage.py collectstatic
+7.  python manage.py collectstatic --settings=hub.settings_admin
 7.  set hub uwsgi, nginx. and run
 8.  set hub admin uwsgi, nginx. and run
 9.  enter admin, set servers

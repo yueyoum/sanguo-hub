@@ -1,6 +1,6 @@
 [uwsgi]
 chdir = /PATH
-virtualenv = /env
+virtualenv = env
 env = DJANGO_SETTINGS_MODULE=hub.settings_admin
 module = django.core.handlers.wsgi:WSGIHandler()
 socket = 127.0.0.1:9021

@@ -3,20 +3,13 @@
 __author__ = 'Wang Chao'
 __date__ = '4/1/14'
 
-import json
 import struct
-
 from django.http import HttpResponse
+
+from libs.decorate import json_return
 
 NUM_FIELD = struct.Struct('>i')
 
-def json_return(func):
-    def wrap(*args, **kwargs):
-        res = func(*args, **kwargs)
-        if isinstance(res, dict):
-            return HttpResponse(json.dumps(res), content_type='application/json')
-        return res
-    return wrap
 
 def proto_return(func):
     def wrap(*args, **kwargs):
