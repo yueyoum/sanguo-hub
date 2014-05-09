@@ -6,6 +6,7 @@
 
 settings_local.py
 
+config.xml
 
 env
 *.idea
