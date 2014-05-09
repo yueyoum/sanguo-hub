@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 FIXTURES_PATH = os.path.join(BASE_DIR, 'fixtures')
 LOG_PATH = os.path.join(BASE_DIR, 'logs')
 
@@ -21,14 +21,17 @@ LOG_PATH = os.path.join(BASE_DIR, 'logs')
 SECRET_KEY = 'hdbtt87cejsk63ah-g+jab=c^iz@ukhmoib^yn*k+a5zal9q5p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = False
 
 ENABLE_ADMIN = False
 
-# ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = '*'
+ADMINS = (
+    ('Wang Chao', 'my_sting@163.com'),
+)
+
+ALLOWED_HOSTS = '*'
 
 
 # Application definition
@@ -65,22 +68,6 @@ ROOT_URLCONF = 'hub.urls'
 
 WSGI_APPLICATION = 'hub.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'sanguo_hub', # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1', # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '3306', # Set to empty string for default.
-        'CONN_MAX_AGE': 120,
-    }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -137,10 +124,32 @@ LOGGING = {
 }
 
 
-CRYPTO_KEY = '1234567890abcdef'
-CRYPTO_PREFIX = 'ok'
+# project settings
+import xml.etree.ElementTree as et
+tree = et.ElementTree(file=os.path.join(BASE_DIR, "config.xml"))
 
-try:
-    from settings_local import *
-except ImportError:
-    pass
+MYSQL_HOST = tree.find('mysql/host').text
+MYSQL_PORT = int( tree.find('mysql/port').text )
+MYSQL_DB = tree.find('mysql/db').text
+MYSQL_USER = tree.find('mysql/user').text
+MYSQL_PASSWORD = tree.find('mysql/password').text
+MYSQL_AGE = int( tree.find('mysql/age').text )
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': MYSQL_DB, # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': MYSQL_USER,
+        'PASSWORD': MYSQL_PASSWORD,
+        'HOST': MYSQL_HOST, # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': MYSQL_PORT, # Set to empty string for default.
+        'CONN_MAX_AGE': MYSQL_AGE,
+    }
+}
+
+CRYPTO_KEY = tree.find('crypto/key').text
+CRYPTO_PREFIX = tree.find('crypto/prefix').text
+
+del et
+del tree

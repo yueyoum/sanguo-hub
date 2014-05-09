@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <mysql>
+        <host>127.0.0.1</host>
+        <port>3306</port>
+        <db>sanguo_hub</db>
+        <user>root</user>
+        <password>root</password>
+        <age>120</age>
+    </mysql>
+
+
+    <!-- below are common settings for all nodes -->
+    <!-- which means all nodes must keep the same settings -->
+
+    <crypto>
+        <key>1234567890abcdef</key>
+        <prefix>ok</prefix>
+    </crypto>
+</config>

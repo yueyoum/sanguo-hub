@@ -1,8 +1,3 @@
-upstream hubuwsgi {
-    server 127.0.0.1:9021;
-}
-
-
 server {
   listen 10002;
   server_name 192.168.1.100 work.mztimes.com;
@@ -11,8 +6,29 @@ server {
   error_log   off;
 
   location / {
-    uwsgi_pass hubuwsgi;
+    uwsgi_pass 127.0.0.1:9021;
     include uwsgi_params;
   }
 }
+
+
+server {
+  listen 10003;
+  server_name 192.168.1.100 work.mztimes.com;
+
+  access_log  off;
+  error_log   off;
+
+  location /static/ {
+    alias /PATH/static/;
+  }
+
+  location / {
+    uwsgi_pass 127.0.0.1:9022;
+    include uwsgi_params;
+  }
+}
+
+
+
 

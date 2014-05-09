@@ -1,5 +1,19 @@
 # GATE SERVER
 
+## Deploy
+
+1.  cp config.template.xml config.xml
+2.  vim config.xml
+3.  virtualenv env
+4.  source env/bin/activate
+5.  pip install -r requirements.txt
+6.  python manage.py syncdb --settings=hub.settings_admin
+7.  python manage.py collectstatic
+7.  set hub uwsgi, nginx. and run
+8.  set hub admin uwsgi, nginx. and run
+9.  enter admin, set servers
+
+
 ## 功能
 
 1.  Admin 后台
@@ -38,24 +52,6 @@
 
 当ret == 0时，才有data
 data为对应api成功时返回的数据
-
-
-#### ret 错误代码
-
-    1:  请求参数错误
-
-    20: 帐号登录，帐号不存在 - （只适用与自有帐号登录，其他情况没有就是建立帐号）
-    21: 帐号登录，密码不正确 - （只适用与自由帐号登录）
-    22: ban
-
-    30: 建立角色，用户名太长
-    31: 建立角色，所在服已有角色
-    32: 建立角色，同服重名
-    33: 建立角色其他原因失败
-    40: 根据name和server_id无法查询到角色
-
-    60: 商城购买查不到对应商品
-    61: 所购买商品有总数限制，并且此次购买已经达到限制
 
 
 #### /api/server-list/

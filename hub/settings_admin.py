@@ -4,8 +4,6 @@ ENABLE_ADMIN = True
 USE_I18N = True
 LANGUAGE_CODE = 'zh-CN'
 
-# ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = '*'
 
 
 # Application definition
