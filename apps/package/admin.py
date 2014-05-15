@@ -5,6 +5,7 @@ from django.contrib import admin
 from apps.package.models import (
     Package,
     PackageHero,
+    PackageSoul,
     PackageEquipment,
     PackageGem,
     PackageStuff,
@@ -24,6 +25,9 @@ class HeroInfoInline(admin.TabularInline):
     model = PackageHero
     extra = 1
 
+class SoulInfoInline(admin.TabularInline):
+    model = PackageSoul
+    extra = 1
 
 class EquipInfoInline(admin.TabularInline):
     model = PackageEquipment
@@ -39,11 +43,11 @@ class StuffInfoInline(admin.TabularInline):
 
 class PackageAdmin(admin.ModelAdmin):
     inlines = (
-        HeroInfoInline, EquipInfoInline,
+        HeroInfoInline, SoulInfoInline, EquipInfoInline,
         GemInfoInline, StuffInfoInline
     )
 
-    list_display = ('id', 'name', 'gold', 'sycee', 'exp', 'official_exp', 'Heros',  'Equips', 'Gems', 'Stuffs')
+    list_display = ('id', 'name', 'gold', 'sycee', 'exp', 'official_exp', 'Heros', 'Souls', 'Equips', 'Gems', 'Stuffs')
 
 
     def Heros(self, obj):
@@ -56,6 +60,18 @@ class PackageAdmin(admin.ModelAdmin):
         texts = [_make_text(x) for x in data]
         return '<br />'.join(texts)
     Heros.allow_tags = True
+
+
+    def Souls(self, obj):
+        data = obj.package_soul.all()
+        def _make_text(x):
+            text = u'{0}, 数量: {1}, 概率: {2}'.format(
+                HEROS_DICT[x.hero], x.amount, x.prob
+            )
+            return text
+        texts = [_make_text(x) for x in data]
+        return '<br />'.join(texts)
+    Souls.allow_tags = True
 
 
     def Equips(self, obj):

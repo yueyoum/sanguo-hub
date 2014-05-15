@@ -39,6 +39,15 @@ class Package(models.Model):
                 'prob': h.prob,
             })
 
+        souls = self.package_soul.all()
+        souls_data = []
+        for s in souls:
+            souls_data.append({
+                'id': s.soul,
+                'amount': s.amount,
+                'prob': s.prob,
+            })
+
         equips = self.package_equipment.all()
         equips_data = []
         for e in equips:
@@ -68,6 +77,7 @@ class Package(models.Model):
             })
 
         data['heros'] = heros_data
+        data['souls'] = souls_data
         data['equipments'] = equips_data
         data['gems'] = gems_data
         data['stuffs'] = stuffs_data
@@ -83,6 +93,16 @@ class PackageHero(models.Model):
 
     class Meta:
         db_table = 'package_hero'
+
+
+class PackageSoul(models.Model):
+    package = models.ForeignKey(Package, related_name='package_soul')
+    soul = models.IntegerField(choices=HEROS)
+    amount = models.IntegerField(default=1, verbose_name='数量')
+    prob = models.IntegerField(default=100000, verbose_name='概率')
+
+    class Meta:
+        db_table = 'package_soul'
 
 
 class PackageEquipment(models.Model):
