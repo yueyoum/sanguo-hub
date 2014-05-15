@@ -25,7 +25,6 @@ from core.server import SERVERS
 #     'server_id': sid,
 #     'char_id': [cid, cid...],
 #     'mail': {
-#         'id': mail id,
 #         'name': mail name,
 #         'content': mail content,
 #         'send_at': mail send at,
@@ -35,6 +34,7 @@ from core.server import SERVERS
 #             'exp': 0,
 #             'official_exp': 0,
 #             'heros': [],
+#             'souls': [],
 #             'equipments': [],
 #             'gems': [],
 #             'stuffs': []
@@ -46,7 +46,6 @@ from core.server import SERVERS
 def make_payload(mail):
     data = {}
     data['mail'] = {
-        'id': mail.id,
         'name': mail.name,
         'content': mail.content,
         'send_at': mail.send_at.strftime('%Y-%m-%m %H:%M:%S'),
@@ -79,13 +78,11 @@ def send_one_mail(mail):
     if mail.send_type == 1:
         # 发给全部
         sids = SERVERS.keys()
-        sids.remove(0)
     else:
         # 发给部分服务器
         sids = [int(i) for i in mail.send_to.split(',')]
 
 
-    # FIXME
     for sid in sids:
         data['server_id'] = sid
         this_server = SERVERS[sid]
