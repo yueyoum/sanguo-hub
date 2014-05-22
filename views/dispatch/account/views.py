@@ -18,7 +18,6 @@ def register(request):
         'method': 'regular',
         'name': req.email,
         'password': req.password,
-        'token': req.device_token,
     }
 
     res = account_register(data)

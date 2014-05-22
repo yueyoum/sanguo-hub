@@ -24,19 +24,24 @@ def _msg_server(msg, s):
 def server_list(request):
     req = request._proto
 
-    # FIXME
-    if req.anonymous.device_token:
+    token = req.anonymous.device_token
+    email = req.regular.email
+    password = req.regular.password
+
+    if token:
         try:
-            acc = AccountAnonymous.objects.select_related('account').get(token=req.anonymous.device_token)
+            acc = AccountAnonymous.objects.select_related('account').get(id=int(token))
         except AccountAnonymous.DoesNotExist:
             acc = None
-    else:
+    elif email:
         try:
-            acc = AccountRegular.objects.select_related('account').get(name=req.regular.email)
-            if acc.passwd != req.regular.password:
+            acc = AccountRegular.objects.select_related('account').get(name=email)
+            if acc.passwd != password:
                 acc = None
         except AccountRegular.DoesNotExist:
             acc = None
+    else:
+        acc = None
 
     if acc:
         account_id = acc.account.id
