@@ -9,6 +9,7 @@ from apps.account.models import AccountAnonymous, AccountRegular, AccountThird
 from core.server import get_server_list
 from utils.decorate import proto_return
 from libs import pack_msg
+from preset import errormsg
 
 from protomsg import GetServerListResponse
 
@@ -29,6 +30,13 @@ def server_list(request):
     password = req.regular.password
 
     if token:
+        try:
+            token = int(token)
+        except:
+            x = GetServerListResponse()
+            x.ret = errormsg.BAD_MESSAGE
+            return pack_msg(x)
+
         try:
             acc = AccountAnonymous.objects.select_related('account').get(id=int(token))
         except AccountAnonymous.DoesNotExist:

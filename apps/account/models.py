@@ -49,8 +49,6 @@ class Account(models.Model):
 
 
 class AccountAnonymous(models.Model):
-    # token = models.CharField(unique=True, max_length=255)
-    id = models.IntegerField(primary_key=True)
     account = models.OneToOneField(Account, related_name='info_anonymous')
 
     objects = AnonymousManager()
