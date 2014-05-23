@@ -142,7 +142,12 @@ def account_login(data):
                 return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
         else:
             try:
-                account = AccountAnonymous.objects.select_related('account').get(id=int(data['token']))
+                new_token = int(data['token'])
+            except:
+                return {'ret': errormsg.BAD_MESSAGE}
+
+            try:
+                account = AccountAnonymous.objects.select_related('account').get(id=new_token)
             except AccountAnonymous.DoesNotExist:
                 return {'ret': errormsg.ACCOUNT_NOT_EXSIT}
 
