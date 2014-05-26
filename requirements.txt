@@ -4,3 +4,4 @@ protobuf==2.5.0
 pycrypto==2.6
 pytz==2013.7
 requests==2.2.1
+arrow==0.4.2

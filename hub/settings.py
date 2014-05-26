@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'apps.mail',
     'apps.purchase',
     'apps.store',
+    'apps.activatecode',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,6 +83,7 @@ USE_L10N = False
 
 USE_TZ = True
 DATETIME_FORMAT = 'Y-m-d H:i:s'
+DATE_FORMAT = 'Y-m-d'
 
 
 # Static files (CSS, JavaScript, Images)

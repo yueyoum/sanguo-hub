@@ -13,7 +13,6 @@ urlpatterns = patterns('',
                        url(r'purchase/verify/$', 'views.dispatch.purchase.views.verify'),
 
 
-
                        url(r'^api/server-list/$', 'views.api.server.views.server_list'),
                        url(r'^api/server-list/report/$', 'views.api.server.views.server_list_report'),
                        url(r'^api/account/login/$', 'views.api.account.views.login'),
@@ -22,5 +21,5 @@ urlpatterns = patterns('',
                        url(r'^api/store/get/$', 'views.api.store.views.get'),
                        url(r'^api/store/buy/$', 'views.api.store.views.buy'),
 
-
+                       url(r'api/activatecode/use/$', 'views.api.activatecode.views.use'),
 )
