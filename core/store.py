@@ -35,7 +35,6 @@ def newest_store_goods():
     return STORE
 
 
-
 class Store(object):
     def buy(self, data):
         try:

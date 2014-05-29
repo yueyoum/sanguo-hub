@@ -3,7 +3,6 @@
 __author__ = 'Wang Chao'
 __date__ = '4/1/14'
 
-import requests
 from django.db import transaction, IntegrityError
 
 from apps.character.models import Character
@@ -11,6 +10,9 @@ from core.exception import GateException
 from core.server import SERVERS
 from utils.decorate import json_return
 from preset import errormsg
+
+from utils.api import apicall
+from libs.apiclient import APIFailure
 
 @json_return
 def create(request):
@@ -41,11 +43,11 @@ def create(request):
             }
 
             s = SERVERS[server_id]
-            x = requests.post('{0}:{1}/api/character/initialize/'.format(s['url'], s['port']), data=data)
-            if not x.ok:
+            try:
+                res = apicall(data=data, cmd='{0}:{1}/api/character/initialize/'.format(s['url'], s['port']))
+            except APIFailure:
                 raise GateException("Char Initialize Failure in Server: {0}".format(server_id))
 
-            res = x.json()
             if res['ret'] != 0:
                 raise GateException("Char Initialize Failure in Server: {0}. ret is {1}".format(server_id, res['ret']))
 

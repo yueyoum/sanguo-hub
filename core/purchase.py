@@ -12,6 +12,8 @@ from apps.character.models import Character
 from apps.purchase.models import Products, PurchaseSuccessLog, PurchaseFailureLog
 
 from core.server import SERVERS
+from utils.api import apicall
+from libs.apiclient import APIFailure
 
 
 VERITY_URL = 'https://buy.itunes.apple.com/verifyReceipt'
@@ -53,7 +55,6 @@ class Purchase(object):
             if not req.ok:
                 raise RequestsNotOK("requests not ok")
             return req.json()
-
 
         try:
             res = _do(VERITY_URL)
@@ -125,13 +126,15 @@ class Purchase(object):
         add_sycee = PRODUCTS[product_id]['actual_sycee'] * quantity
         data = {
             'char_id': self.char_id,
-            'sycee': add_sycee
+            'sycee': add_sycee,
+            'actual_sycee': add_sycee,  # FIXME
         }
-        req = requests.post('{0}:{1}/api/purchase/done/'.format(s['url'], s['port']), data=data)
-        if not req.ok:
+
+        try:
+            res = apicall(data=data, cmd='{0}:{1}/api/purchase/done/'.format(s['url'], s['port']), data=data)
+        except APIFailure:
             return (2, "", 0)
 
-        res = req.json()
         if res['ret'] != 0:
             return (2, "", 0)
 
