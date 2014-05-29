@@ -131,7 +131,7 @@ class Purchase(object):
         }
 
         try:
-            res = apicall(data=data, cmd='{0}:{1}/api/purchase/done/'.format(s['url'], s['port']), data=data)
+            res = apicall(data=data, cmd='{0}:{1}/api/purchase/done/'.format(s['url'], s['port']))
         except APIFailure:
             return (2, "", 0)
 
