@@ -1,12 +1,21 @@
 from django.contrib import admin
 
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
 from apps.purchase.models import Products, PurchaseFailureLog, PurchaseSuccessLog
 
+class ProductsResources(resources.ModelResource):
+    class Meta:
+        model = Products
 
-class ProductsAdmin(admin.ModelAdmin):
+
+class ProductsAdmin(ImportExportModelAdmin):
     list_display = (
         'id', 'name', 'des', 'sycee', 'actual_sycee'
     )
+
+    resource_class = ProductsResources
 
 
 class PurchaseFailureLogAdmin(admin.ModelAdmin):
