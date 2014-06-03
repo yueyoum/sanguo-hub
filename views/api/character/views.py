@@ -14,6 +14,17 @@ from preset import errormsg
 from utils.api import apicall
 from libs.apiclient import APIFailure
 
+
+def get_name_length(name):
+    length = 0
+    for n in name:
+        n_utf8 = n.encode('utf-8')
+        n_length = 1 if len(n_utf8) == 1 else 2
+        length += n_length
+
+    return length
+
+
 @json_return
 def create(request):
     try:
@@ -23,7 +34,8 @@ def create(request):
     except (KeyError, ValueError):
         return {'ret': errormsg.BAD_MESSAGE}
 
-    if len(name) > 7:
+    name_length = get_name_length(name)
+    if name_length > 14:
         return {'ret': errormsg.CHAR_NAME_TOO_LONG}
 
     try:
