@@ -22,7 +22,7 @@ class AccountAdmin(admin.ModelAdmin):
 
     def Token(self, obj):
         if obj.tp == 'anonymous':
-            return obj.info_anonymous.token
+            return obj.info_anonymous.id
         return ''
 
     def Platform(self, obj):
