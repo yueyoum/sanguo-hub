@@ -8,6 +8,7 @@ from django.db import transaction, IntegrityError
 from apps.account.models import AccountAnonymous, AccountRegular, AccountThird, Account
 from apps.character.models import Character
 from core.exception import GateException
+from core.server import SERVERS
 from preset import errormsg
 
 
@@ -129,6 +130,9 @@ def account_login(data):
     except (KeyError, ValueError, GateException):
         return {'ret': errormsg.BAD_MESSAGE}
 
+    if data['server_id'] not in SERVERS:
+        return {'ret': errormsg.SERVER_NOT_EXIST}
+
     new_token = 0
     if data['method'] == 'anonymous':
         # 匿名登录
@@ -171,6 +175,10 @@ def account_login(data):
                 return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
 
     # TODO account ban
+
+    account.account.last_server_id = data['server_id']
+    account.account.save()
+
     try:
         char = Character.objects.get(account_id=account.account.id, server_id=data['server_id'])
         char_id = char.id
