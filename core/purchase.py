@@ -11,9 +11,7 @@ import requests
 from apps.character.models import Character
 from apps.purchase.models import Products, PurchaseSuccessLog, PurchaseFailureLog
 
-from core.server import SERVERS
-from utils.api import apicall
-from libs.apiclient import APIFailure
+from utils.api import api_purchase_done, APIFailure
 
 
 VERITY_URL = 'https://buy.itunes.apple.com/verifyReceipt'
@@ -122,7 +120,6 @@ class Purchase(object):
 
 
         # cal server api to send sycee
-        s = SERVERS[c.server_id]
         add_sycee = PRODUCTS[product_id]['actual_sycee'] * quantity
         data = {
             'char_id': self.char_id,
@@ -131,7 +128,7 @@ class Purchase(object):
         }
 
         try:
-            res = apicall(data=data, cmd='{0}:{1}/api/purchase/done/'.format(s['url'], s['port']))
+            res = api_purchase_done(c.server_id, data)
         except APIFailure:
             return (2, "", 0)
 

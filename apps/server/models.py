@@ -3,8 +3,9 @@ from django.db import models
 
 class ServerNode(models.Model):
     id = models.IntegerField(primary_key=True)
-    url = models.CharField(max_length=255)
+    host = models.CharField(max_length=255)
     port = models.IntegerField()
+    port_https = models.IntegerField()
 
     class Meta:
         db_table = 'server_node'

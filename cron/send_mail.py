@@ -12,11 +12,12 @@ from itertools import groupby
 from django.db.models import Q
 from django.utils import timezone
 
-import requests
 
 from apps.mail.models import Mail as ModelMail
 from apps.character.models import Character
 from core.server import SERVERS
+
+from utils.api import api_send_mail, APIFailure
 
 #
 # API /api/mail/send
@@ -67,11 +68,11 @@ def send_one_mail(mail):
         cid_sid = groupby(cid_sid, lambda item: item[1])
 
         for sid, csids in cid_sid:
-            this_server = SERVERS[sid]
             this_server_cids = [_c for _c, _ in csids]
             data['char_id'] = this_server_cids
-            req = requests.post('{0}:{1}/api/mail/send/'.format(this_server['url'], this_server['port']), data=json.dumps(data))
-            if not req.ok:
+            try:
+                api_send_mail(sid, json.dumps(data))
+            except APIFailure:
                 raise Exception("send mail error!")
         return
 
@@ -85,10 +86,9 @@ def send_one_mail(mail):
 
     for sid in sids:
         data['server_id'] = sid
-        this_server = SERVERS[sid]
-
-        req = requests.post('{0}:{1}/api/mail/send/'.format(this_server['url'], this_server['port']), data=json.dumps(data))
-        if not req.ok:
+        try:
+            api_send_mail(sid, json.dumps(data))
+        except APIFailure:
             raise Exception("send mail error!")
 
 

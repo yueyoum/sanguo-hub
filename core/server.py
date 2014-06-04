@@ -14,8 +14,9 @@ def _servers():
     for s in Server.objects.select_related('node').all():
         ss[s.id] = {
             'name': s.name,
-            'url': s.node.url,
+            'host': s.node.host,
             'port': s.node.port,
+            'port_https': s.node.port_https,
             'status': s.status,
         }
     return ss
@@ -39,8 +40,9 @@ def get_server_list(account_id=None):
             'id': sid,
             'name': s['name'],
             'status': s['status'],  # FIXME, how to get server status
-            'url': s['url'],
+            'host': s['host'],
             'port': s['port'],
+            'port_https': s['port_https'],
             'have_char': sid in user_servers
         }
 
@@ -51,35 +53,4 @@ def get_server_list(account_id=None):
 
 # FIXME
 def update_servers(data):
-    try:
-        node_id = int(data['node-id'])
-        url = data['url']
-        port = data['port']
-
-        servers = []
-        for s in data['servers']:
-            servers.append([int(s['id']), s['name'], int(s['status'])])
-
-    except (KeyError, ValueError):
-        raise GateException(1)
-
-    with transaction.atomic():
-        try:
-            node = ServerNode.objects.get(id=node_id)
-        except ServerNode.DoesNotExist:
-            node = ServerNode(id=node_id)
-
-        node.url = url
-        node.port = port
-        node.save()
-
-        node.servers.all().delete()
-
-        server_datas = []
-        for _id, name, status in servers:
-            server_datas.append(
-                Server(node=node, sid=_id, name=name, status=status)
-            )
-
-        Server.objects.bulk_create(server_datas)
-
+    pass

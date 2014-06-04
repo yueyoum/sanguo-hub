@@ -7,12 +7,10 @@ from django.db import transaction, IntegrityError
 
 from apps.character.models import Character
 from core.exception import GateException
-from core.server import SERVERS
 from utils.decorate import json_return
 from preset import errormsg
 
-from utils.api import apicall
-from libs.apiclient import APIFailure
+from utils.api import api_character_initialize, APIFailure
 
 
 def get_name_length(name):
@@ -54,9 +52,8 @@ def create(request):
                 'name': name
             }
 
-            s = SERVERS[server_id]
             try:
-                res = apicall(data=data, cmd='{0}:{1}/api/character/initialize/'.format(s['url'], s['port']))
+                res = api_character_initialize(server_id, data)
             except APIFailure:
                 raise GateException("Char Initialize Failure in Server: {0}".format(server_id))
 

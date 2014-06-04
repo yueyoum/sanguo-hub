@@ -8,7 +8,7 @@ class ServerInLine(admin.TabularInline):
     model = Server
 
 class ServerNodeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'url', 'port', 'Servers')
+    list_display = ('id', 'host', 'port', 'port_https', 'Servers')
 
     inlines = [ServerInLine,]
 
