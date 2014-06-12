@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'apps.purchase',
     'apps.store',
     'apps.activatecode',
+    'apps.checkin',
 )
 
 MIDDLEWARE_CLASSES = (
