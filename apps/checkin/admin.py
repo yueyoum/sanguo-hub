@@ -18,8 +18,10 @@ class CheckInItemInline(admin.TabularInline):
 
 class CheckIndateAdmin(admin.ModelAdmin):
     list_display = (
-        'checkin_date', 'Items'
+        'checkin_date',
     )
+
+    inlines = [CheckInItemInline,]
 
 
 admin.site.register(CheckInDate, CheckIndateAdmin)
