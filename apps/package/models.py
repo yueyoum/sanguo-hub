@@ -7,7 +7,12 @@ from core.fixtures import HEROS, EQUIPMENTS, GEMS, STUFFS
 
 
 class Package(models.Model):
+    MODE = (
+        (1, '默认'),
+        (2, '只生成一样'),
+    )
     name = models.CharField(max_length=64, verbose_name='名字')
+    mode = models.IntegerField(choices=MODE, default=1)
     gold = models.IntegerField(default=0, verbose_name="金币")
     sycee = models.IntegerField(default=0, verbose_name='元宝')
     exp = models.IntegerField(default=0, verbose_name='经验')
@@ -24,6 +29,7 @@ class Package(models.Model):
 
     def export_data(self):
         data = {
+            'mode': self.mode,
             'gold': self.gold,
             'sycee': self.sycee,
             'exp': self.exp,
