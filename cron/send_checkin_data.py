@@ -3,29 +3,19 @@
 __author__ = 'Wang Chao'
 __date__ = '14-6-12'
 
-from _base import Logger
-
 import json
 import traceback
 
-import arrow
-
-from apps.checkin.models import CheckInDate
-from core.signals import send_checkin_data_signal
-
+from _base import Logger
+from core.checkin import get_checkin_obj
 from utils.api import api_send_checkin_data, APIFailure
 
 
-def run(method='SIGNAL'):
+def run():
     logger = Logger('send_checkin_data.log')
-    logger.write("Send CheckIn Data Start By {0}.".format(method))
+    logger.write("Send CheckIn Data Start.")
 
-    checkins = CheckInDate.objects.filter(checkin_date__gte=arrow.utcnow().date())[0:1]
-    if checkins:
-        checkin_obj = checkins[0]
-    else:
-        checkins = CheckInDate.objects.all().order_by('-checkin_date')[0:1]
-        checkin_obj = checkins[0]
+    checkin_obj = get_checkin_obj()
 
     logger.write("Got CheckIn Object: {0}".format(checkin_obj.checkin_date))
 
@@ -39,13 +29,5 @@ def run(method='SIGNAL'):
 
     logger.close()
 
-
-send_checkin_data_signal.connect(
-    run,
-    dispatch_uid='cron.send_checkin_data'
-)
-
-
 if __name__ == '__main__':
-    run(method='CRON')
-
+    run()
