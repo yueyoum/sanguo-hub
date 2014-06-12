@@ -22,4 +22,5 @@ urlpatterns = patterns('',
                        url(r'^api/store/buy/$', 'views.api.store.views.buy'),
 
                        url(r'api/activatecode/use/$', 'views.api.activatecode.views.use'),
+                       url(r'api/checkin/get/$', 'views.api.checkin.views.get_checkin_package'),
 )

@@ -1,2 +1,4 @@
 # 每隔一定时间发送邮件
 */10 * * * * /PATH/send_mail.sh
+# 每天通知各个server新的checkin data
+0 0 * * * /PATH/send_checkin_data.sh
