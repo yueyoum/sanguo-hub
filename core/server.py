@@ -18,6 +18,7 @@ def _servers():
             'port': s.node.port,
             'port_https': s.node.port_https,
             'status': s.status,
+            'node': s.node.id
         }
     return ss
 
