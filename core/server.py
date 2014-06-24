@@ -9,6 +9,19 @@ from apps.server.models import ServerNode, Server
 from apps.character.models import Character
 from core.exception import GateException
 
+
+def _nodes():
+    nodes = {}
+    for n in ServerNode.objects.all():
+        nodes[n.id] = {
+            'host': n.host,
+            'port': n.port,
+            'port_https': n.port_https
+        }
+    return nodes
+
+NODES = _nodes()
+
 def _servers():
     ss = {}
     for s in Server.objects.select_related('node').all():
