@@ -231,6 +231,17 @@
     }
 },
 {
+    "pk": 144, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "STUFF_CAN_NOT_USE", 
+        "text_zh": "\u6b64\u9053\u5177\u4e0d\u80fd\u4f7f\u7528", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
     "pk": 150, 
     "model": "errormsg.errormsg", 
     "fields": {
@@ -621,6 +632,17 @@
     "fields": {
         "error_index": "HANG_NO_TIME_FINAL", 
         "text_zh": "\u5f53\u65e5\u6302\u673a\u65f6\u95f4\u5df2\u7ecf\u7528\u5b8c", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 705, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "HANG_GOING", 
+        "text_zh": "\u6302\u673a\u4e2d\uff0c\u65e0\u6cd5\u6218\u6597", 
         "link_to": null, 
         "des": "", 
         "area": ""
