@@ -16,11 +16,6 @@ def api_character_initialize(server_id, data):
     url = 'https://{0}:{1}/api/character/initialize/'.format(s['host'], s['port_https'])
     return apicall(data=data, cmd=url)
 
-def api_purchase_done(server_id, data):
-    s = SERVERS[server_id]
-    url = 'https://{0}:{1}/api/purchase/done/'.format(s['host'], s['port_https'])
-    return apicall(data=data, cmd=url)
-
 def api_send_mail(server_id, data):
     s = SERVERS[server_id]
     url = 'https://{0}:{1}/api/mail/send/'.format(s['host'], s['port_https'])

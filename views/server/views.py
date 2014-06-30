@@ -4,7 +4,7 @@ __author__ = 'Wang Chao'
 __date__ = '4/2/14'
 
 
-from apps.account.models import AccountAnonymous, AccountRegular, AccountThird
+from apps.account.models import AccountAnonymous, AccountRegular
 
 from core.server import get_server_list
 from utils.decorate import proto_return
@@ -19,6 +19,8 @@ def _msg_server(msg, s):
     msg.name = s['name']
     msg.status = s['status']
     msg.have_char = s['have_char']
+    msg.host = s['host']
+    msg.port = s['port']
 
 
 @proto_return
@@ -77,4 +79,3 @@ def server_list(request):
         _msg_server(msg_s, s)
 
     return pack_msg(response)
-

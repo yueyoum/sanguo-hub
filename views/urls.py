@@ -6,11 +6,8 @@ __date__ = '4/1/14'
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('',
-                       url(r'^world/server-list/$', 'views.dispatch.server.views.server_list'),
-                       url(r'^player/register/$', 'views.dispatch.account.views.register'),
-
-                       url(r'purchase/products/$', 'views.dispatch.purchase.views.get_products'),
-                       url(r'purchase/verify/$', 'views.dispatch.purchase.views.verify'),
+                       url(r'^world/server-list/$', 'views.server.views.server_list'),
+                       url(r'^player/register/$', 'views.account.views.register'),
 
 
                        url(r'^api/server-list/$', 'views.api.server.views.server_list'),
@@ -25,4 +22,8 @@ urlpatterns = patterns('',
 
                        url(r'api/activatecode/use/$', 'views.api.activatecode.views.use'),
                        url(r'api/checkin/get/$', 'views.api.checkin.views.get_checkin_package'),
+
+                       url(r'api/purchase/products/$', 'views.api.purchase.views.products'),
+                       url(r'api/purchase/verify/$', 'views.api.purchase.views.verify'),
+                       url(r'api/purchase/done/$', 'views.api.purchase.views.set_done'),
 )

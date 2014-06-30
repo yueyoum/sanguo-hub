@@ -6,37 +6,33 @@ __date__ = '4/1/14'
 from apps.server.models import Server
 from apps.character.models import Character
 
-
+def _make_server_dict(s):
+    return {
+        'id': s.id,
+        'name': s.name,
+        'status': s.status,
+        'host': s.host,
+        'port': s.port,
+        'port_https': s.port_https,
+    }
 
 def _servers():
     ss = {}
     for s in Server.objects.all():
-        ss[s.id] = {
-            'name': s.name,
-            'status': s.status,
-            'host': s.host,
-            'port': s.port,
-            'port_https': s.port_https,
-        }
+        ss[s.id] = _make_server_dict(s)
     return ss
 
 SERVERS = _servers()
 
 def _update_server(s):
-    SERVERS[s.id] = {
-        'name': s.name,
-        'status': s.status,
-        'host': s.host,
-        'port': s.port,
-        'port_https': s.port_https
-    }
+    SERVERS[s.id] = _make_server_dict(s)
 
 
 def register_server(data):
     try:
         server_id = int(data['id'])
         name = data['name']
-        host = data['ip']
+        host = data['host']
         port = int(data['port'])
         port_https = int(data['port_https'])
     except (KeyError, ValueError):

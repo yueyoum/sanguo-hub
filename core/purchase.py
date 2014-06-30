@@ -11,26 +11,23 @@ import requests
 from apps.character.models import Character
 from apps.purchase.models import Products, PurchaseSuccessLog, PurchaseFailureLog
 
-from utils.api import api_purchase_done, APIFailure
+from preset import errormsg
 
 
 VERITY_URL = 'https://buy.itunes.apple.com/verifyReceipt'
 VERITY_URL_TEST = 'https://sandbox.itunes.apple.com/verifyReceipt'
 
 
-def _products():
-    ps = {}
+def get_product_list():
+    products = {}
     for p in Products.objects.all():
-        ps[p.id] = {
+        products[p.id] = {
             'name': p.name,
             'des': p.des,
             'sycee': p.sycee,
             'actual_sycee': p.actual_sycee,
         }
-    return ps
-
-PRODUCTS = _products()
-
+    return products
 
 
 
@@ -38,58 +35,59 @@ class RequestsNotOK(Exception):
     pass
 
 
+def _do_verify(receipt):
+    """
+
+    :param receipt:
+    :return: (return_code, apple_response)
+    :rtype : (int, dict)
+    """
+    data = json.dumps({
+        'receipt-data': b64encode(receipt)
+    })
+
+    def _do(url):
+        req = requests.post(url, data=data, timeout=5)
+        if not req.ok:
+            raise RequestsNotOK("requests not ok")
+        return req.json()
+
+    try:
+        res = _do(VERITY_URL)
+    except:
+        return (errormsg.PURCHASE_APPLE_ERROR, "")
+
+    if res['status'] == 21007:
+        # 测试的交易凭证，却发到了正式服务器去验证
+        try:
+            res = _do(VERITY_URL_TEST)
+        except:
+            return (errormsg.PURCHASE_APPLE_ERROR, "")
+
+    if res['status'] != 0:
+        print "Verify Failure. {0}".format(res)
+        return (errormsg.PURCHASE_VERIFY_ERROR, "")
+
+    return (0, res)
+
+
 class Purchase(object):
     def __init__(self, char_id):
         self.char_id = char_id
-
-
-    def _do_verify(self, receipt):
-        data = json.dumps({
-            'receipt-data': b64encode(receipt)
-        })
-
-        def _do(url):
-            req = requests.post(url, data=data, timeout=5)
-            if not req.ok:
-                raise RequestsNotOK("requests not ok")
-            return req.json()
-
-        try:
-            res = _do(VERITY_URL)
-        except Exception as e:
-            print e
-            return (1, "")
-
-        print res
-        if res['status'] == 21007:
-            # 测试的交易凭证，却发到了正式服务器去验证
-
-            try:
-                res = _do(VERITY_URL_TEST)
-            except Exception as e:
-                print e
-                return (1, "")
-
-            print res
-
-        if res['status'] != 0:
-            return (res['status'], "")
-
-        return (0, res)
 
 
     def verify(self, receipt):
         try:
             c = Character.objects.get(id=self.char_id)
         except Character.DoesNotExist:
-            return (2, "", 0)
+            return {'ret': errormsg.CHARACTER_NOT_FOUND}
 
         data = {
             'char_id': self.char_id,
             'receipt': receipt,
         }
 
-        err_code, res = self._do_verify(receipt)
+        err_code, res = _do_verify(receipt)
         if err_code:
             # FIXME error return
             if err_code > 20000:
@@ -103,41 +101,33 @@ class Purchase(object):
             data['apple_error'] = apple_error
             self.save_purchase_failure_log(data)
 
-            # FIXME error code
-            print "verify error"
-            return (2, "", 0)
-
+            return {'ret': err_code}
 
         product_id = res['receipt']['product_id']
         quantity = int(res['receipt']['quantity'])
 
+        products = get_product_list()
+
         data['product_id'] = product_id
-        data['actual_sycee'] = PRODUCTS[product_id]['actual_sycee']
+        data['actual_sycee'] = products[product_id]['actual_sycee']
         data['quantity'] = quantity
         data['bvrs'] = res['receipt']['bvrs']
 
         log_id = self.save_purchase_success_log(data)
 
+        add_sycee = products[product_id]['actual_sycee'] * quantity
 
-        # cal server api to send sycee
-        add_sycee = PRODUCTS[product_id]['actual_sycee'] * quantity
-        data = {
-            'char_id': self.char_id,
-            'sycee': add_sycee,
-            'actual_sycee': add_sycee,  # FIXME
+        return {
+            'ret': 0,
+            'data': {
+                'log_id': log_id,
+                'char_id': self.char_id,
+                'product_id': product_id,
+                'name': products[product_id]['name'],
+                'sycee': add_sycee,
+                'actual_sycee': add_sycee
+            }
         }
-
-        try:
-            res = api_purchase_done(c.server_id, data)
-        except APIFailure:
-            return (2, "", 0)
-
-        if res['ret'] != 0:
-            return (2, "", 0)
-
-        self.set_send_done(log_id)
-
-        return (0, product_id, add_sycee)
 
 
     def save_purchase_failure_log(self, data):
@@ -160,6 +150,5 @@ class Purchase(object):
         return p.id
 
 
-    def set_send_done(self, log_id):
-        PurchaseSuccessLog.objects.filter(id=log_id).update(send_done=True)
-
+def set_done(log_id):
+    PurchaseSuccessLog.objects.filter(id=log_id).update(send_done=True)
