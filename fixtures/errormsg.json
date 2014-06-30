@@ -71,7 +71,7 @@
     "fields": {
         "error_index": "LOGIN_RE", 
         "text_zh": "\u4f60\u7684\u5e10\u53f7\u5728\u522b\u5904\u767b\u5f55\uff0c\u8bf7\u91cd\u65b0\u767b\u5f55", 
-        "link_to": null, 
+        "link_to": 100, 
         "des": "", 
         "area": ""
     }
@@ -1270,6 +1270,28 @@
     "fields": {
         "error_index": "ACTIVATE_CODE_NOT_START", 
         "text_zh": "\u6b64\u6fc0\u6d3b\u7801\u8fd8\u672a\u5230\u4f7f\u7528\u65f6\u95f4", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 4100, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "PURCHASE_APPLE_ERROR", 
+        "text_zh": "\u82f9\u679c\u670d\u52a1\u5668\u9519\u8bef\uff0c\u65e0\u6cd5\u9a8c\u8bc1\u60a8\u7684\u8d2d\u4e70\u8bf7\u6c42", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 4101, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "PURCHASE_VERIFY_ERROR", 
+        "text_zh": "\u9a8c\u8bc1\u9519\u8bef\uff0c\u65e0\u6548\u8d2d\u4e70", 
         "link_to": null, 
         "des": "", 
         "area": ""
