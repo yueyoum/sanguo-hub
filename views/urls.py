@@ -14,7 +14,9 @@ urlpatterns = patterns('',
 
 
                        url(r'^api/server-list/$', 'views.api.server.views.server_list'),
-                       url(r'^api/server-list/report/$', 'views.api.server.views.server_list_report'),
+                       url(r'^api/server-list/report/$', 'views.api.server.views.server_report_view'),
+                       url(r'^api/server-list/register/$', 'views.api.server.views.server_register_view'),
+
                        url(r'^api/account/login/$', 'views.api.account.views.login'),
                        url(r'^api/account/bind/$', 'views.api.account.views.bind'),
                        url(r'^api/character/create/$', 'views.api.character.views.create'),

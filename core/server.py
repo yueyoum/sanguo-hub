@@ -3,40 +3,60 @@
 __author__ = 'Wang Chao'
 __date__ = '4/1/14'
 
-from django.db import transaction
-
-from apps.server.models import ServerNode, Server
+from apps.server.models import Server
 from apps.character.models import Character
-from core.exception import GateException
 
 
-def _nodes():
-    nodes = {}
-    for n in ServerNode.objects.all():
-        nodes[n.id] = {
-            'host': n.host,
-            'port': n.port,
-            'port_https': n.port_https
-        }
-    return nodes
-
-NODES = _nodes()
 
 def _servers():
     ss = {}
-    for s in Server.objects.select_related('node').all():
+    for s in Server.objects.all():
         ss[s.id] = {
             'name': s.name,
-            'host': s.node.host,
-            'port': s.node.port,
-            'port_https': s.node.port_https,
             'status': s.status,
-            'node': s.node.id
+            'host': s.host,
+            'port': s.port,
+            'port_https': s.port_https,
         }
     return ss
 
 SERVERS = _servers()
 
+def _update_server(s):
+    SERVERS[s.id] = {
+        'name': s.name,
+        'status': s.status,
+        'host': s.host,
+        'port': s.port,
+        'port_https': s.port_https
+    }
+
+
+def register_server(data):
+    try:
+        server_id = int(data['id'])
+        name = data['name']
+        host = data['ip']
+        port = int(data['port'])
+        port_https = int(data['port_https'])
+    except (KeyError, ValueError):
+        return {'ret': 1}
+
+    try:
+        s = Server.objects.get(id=server_id)
+    except Server.DoesNotExist:
+        s = Server()
+        s.id = server_id
+
+    s.name = name
+    s.status = 1
+    s.host = host
+    s.port = port
+    s.port_https = port_https
+    s.save()
+
+    _update_server(s)
+    return {'ret': 0}
 
 
 def get_server_list(account_id=None):
@@ -53,7 +73,7 @@ def get_server_list(account_id=None):
         this = {
             'id': sid,
             'name': s['name'],
-            'status': s['status'],  # FIXME, how to get server status
+            'status': s['status'],  # FIXME, update server status
             'host': s['host'],
             'port': s['port'],
             'port_https': s['port_https'],
@@ -66,5 +86,5 @@ def get_server_list(account_id=None):
 
 
 # FIXME
-def update_servers(data):
+def update_server(data):
     pass

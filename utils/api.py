@@ -6,7 +6,7 @@ __date__ = '5/29/14'
 # Keep APIFailure here
 from libs.apiclient import HTTPSAPIClient, APIFailure
 
-from core.server import SERVERS, NODES
+from core.server import SERVERS
 
 HTTPSAPIClient.install_pem('/opt/ca/client.pem')
 apicall = HTTPSAPIClient()
@@ -27,6 +27,6 @@ def api_send_mail(server_id, data):
     return apicall(data=data, cmd=url)
 
 def api_send_checkin_data(data):
-    for n in NODES.values():
-        url = 'https://{0}:{1}/api/checkin/send/'.format(n['host'], n['port_https'])
+    for s in SERVERS.values():
+        url = 'https://{0}:{1}/api/checkin/send/'.format(s['host'], s['port_https'])
         apicall(data=data, cmd=url)
