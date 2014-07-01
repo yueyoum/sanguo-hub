@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import post_save, post_delete
 
 
 class Server(models.Model):
@@ -21,3 +22,22 @@ class Server(models.Model):
     class Meta:
         db_table = 'server'
         ordering = ('id',)
+
+
+def _change_handler(*args, **kwargs):
+    from core.server import make_servers
+    make_servers()
+
+post_save.connect(
+    _change_handler,
+    sender=Server,
+    dispatch_uid='apps.server.post_save'
+)
+
+post_delete.connect(
+    _change_handler,
+    sender=Server,
+    dispatch_uid='apps.server.post_delete'
+)
+
+

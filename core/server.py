@@ -16,13 +16,15 @@ def _make_server_dict(s):
         'port_https': s.port_https,
     }
 
-def _servers():
-    ss = {}
-    for s in Server.objects.all():
-        ss[s.id] = _make_server_dict(s)
-    return ss
+SERVERS = {}
 
-SERVERS = _servers()
+def make_servers():
+    global SERVERS
+    SERVERS = {}
+    for s in Server.objects.all():
+        SERVERS[s.id] = _make_server_dict(s)
+
+make_servers()
 
 def _update_server(s):
     SERVERS[s.id] = _make_server_dict(s)
