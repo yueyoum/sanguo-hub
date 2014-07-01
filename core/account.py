@@ -8,7 +8,7 @@ from django.db import transaction, IntegrityError
 from apps.account.models import AccountAnonymous, AccountRegular, AccountThird, Account
 from apps.character.models import Character
 from core.exception import GateException
-from core.server import SERVERS
+from core.server import make_servers
 from preset import errormsg
 
 
@@ -130,7 +130,8 @@ def account_login(data):
     except (KeyError, ValueError, GateException):
         return {'ret': errormsg.BAD_MESSAGE}
 
-    if data['server_id'] not in SERVERS:
+    servers = make_servers()
+    if data['server_id'] not in servers:
         return {'ret': errormsg.SERVER_NOT_EXIST}
 
     new_token = 0

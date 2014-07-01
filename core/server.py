@@ -24,6 +24,8 @@ def make_servers():
     for s in Server.objects.all():
         SERVERS[s.id] = _make_server_dict(s)
 
+    return SERVERS
+
 make_servers()
 
 def _update_server(s):
