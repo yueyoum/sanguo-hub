@@ -4,7 +4,7 @@ __author__ = 'Wang Chao'
 __date__ = '14-6-12'
 
 from _base import Logger
-from utils.api import api_check_server, APIFailure
+from utils.api import api_check_server
 from core.server import SERVERS, pong_from_server
 
 
@@ -14,7 +14,10 @@ def run():
     for s in SERVERS.keys():
         try:
             res = api_check_server(s)
-        except APIFailure:
+        except:
+            import traceback
+            logger.write('---- ERROR ----')
+            logger.write(traceback.format_exc())
             status = 4
         else:
             status = res['data']['status']

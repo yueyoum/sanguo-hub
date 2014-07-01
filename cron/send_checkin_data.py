@@ -8,7 +8,7 @@ import traceback
 
 from _base import Logger
 from core.checkin import get_checkin_obj
-from utils.api import api_send_checkin_data, APIFailure
+from utils.api import api_send_checkin_data
 
 
 def run():
@@ -23,8 +23,8 @@ def run():
 
     try:
         api_send_checkin_data(data)
-    except APIFailure:
-        logger.write("---- APIFailure ----")
+    except:
+        logger.write("---- ERROR ----")
         logger.write(traceback.format_exc())
 
     logger.close()
