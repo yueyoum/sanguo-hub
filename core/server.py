@@ -28,6 +28,15 @@ def _update_server(s):
     SERVERS[s.id] = _make_server_dict(s)
 
 
+
+def pong_from_server(server_id, status):
+    s = Server.objects.get(id=server_id)
+    s.status = status
+    s.save()
+    _update_server(s)
+
+
+
 def register_server(data):
     try:
         server_id = int(data['id'])
@@ -41,12 +50,23 @@ def register_server(data):
     try:
         s = Server.objects.get(id=server_id)
     except Server.DoesNotExist:
-        s = Server()
-        s.id = server_id
+        s = Server.objects.create(
+            id=server_id,
+            name=name,
+            host=host,
+            port=port,
+            port_https=port_https
+        )
+        _update_server(s)
+        return {'ret': 0}
+
+    if s.host != host:
+        print "server {0} try to register. but {0} already exists, and the host {1} not equal the try register host {2}".format(
+            server_id, s.host, host
+        )
+        return {'ret': 2}
 
     s.name = name
-    s.status = 1
-    s.host = host
     s.port = port
     s.port_https = port_https
     s.save()
