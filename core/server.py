@@ -86,7 +86,7 @@ def get_server_list(account_id=None):
             account_id=account_id).values_list('server_id', flat=True)
 
     all_servers = []
-    servers = SERVERS.items()
+    servers = make_servers().items()
     servers.sort(key=lambda item: item[0])
 
     for sid, s in servers:
