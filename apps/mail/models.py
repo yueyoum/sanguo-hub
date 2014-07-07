@@ -30,6 +30,7 @@ class Mail(models.Model):
 
     create_at = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STAUTS, default=1, db_index=True)
+    has_send_to = models.CharField(max_length=255, blank=True, help_text='已经发送的')
 
 
     def __unicode__(self):

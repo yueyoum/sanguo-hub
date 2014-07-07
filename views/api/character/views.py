@@ -44,10 +44,8 @@ def create(request):
                 name=name,
             )
 
-            # FIXME
             data = {
                 'account_id': account_id,
-                'server_id': server_id,
                 'char_id': char.id,
                 'name': name
             }
