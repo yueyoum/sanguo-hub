@@ -6,12 +6,11 @@ __date__ = '4/1/14'
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('',
+                       # called from client directly
                        url(r'^world/server-list/$', 'views.server.views.server_list'),
                        url(r'^player/register/$', 'views.account.views.register'),
 
-
-                       url(r'^api/server-list/$', 'views.api.server.views.server_list'),
-                       url(r'^api/server-list/report/$', 'views.api.server.views.server_report_view'),
+                        # API called from server
                        url(r'^api/server-list/register/$', 'views.api.server.views.server_register_view'),
 
                        url(r'^api/account/login/$', 'views.api.account.views.login'),

@@ -5,13 +5,14 @@ __date__ = '14-6-12'
 
 from _base import Logger
 from utils.api import api_check_server
-from core.server import SERVERS, pong_from_server
+from core.server import make_servers, pong_from_server
 
 
 def run():
     logger = Logger('check_server.log')
+    servers = make_servers()
 
-    for s in SERVERS.keys():
+    for s in servers.keys():
         try:
             res = api_check_server(s)
         except:

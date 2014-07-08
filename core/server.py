@@ -45,6 +45,7 @@ def register_server(data):
     try:
         server_id = int(data['id'])
         name = data['name']
+        status = int(data['status'])
         host = data['host']
         port = int(data['port'])
         port_https = int(data['port_https'])
@@ -71,6 +72,7 @@ def register_server(data):
         return {'ret': 2}
 
     s.name = name
+    s.status = status
     s.port = port
     s.port_https = port_https
     s.save()
@@ -104,7 +106,3 @@ def get_server_list(account_id=None):
 
     return all_servers
 
-
-# FIXME
-def update_server(data):
-    pass

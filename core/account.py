@@ -195,3 +195,26 @@ def account_login(data):
         }
     }
     return res
+
+
+def account_find(name):
+    ret = {'ret': 0, 'data': {}}
+
+    try:
+        account = AccountRegular.objects.get(name=name)
+    except AccountRegular.DoesNotExist:
+        ret['ret'] = 1
+        return ret
+
+    chars = Character.objects.filter(account_id=account.account.id)
+
+    result = []
+    for c in chars:
+        result.append({
+            'char_id': c.id,
+            'server_id': c.server_id,
+            'name': c.name
+        })
+
+    ret['data']['chars'] = result
+    return ret
