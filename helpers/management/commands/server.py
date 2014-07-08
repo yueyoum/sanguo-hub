@@ -24,5 +24,10 @@ class Command(BaseCommand):
     def _cmd_status(self):
         from core.server import make_servers
         servers = make_servers()
-        for sid, s in servers.iteritems():
-            self.stdout.write("{0}: {1}".format(sid, s))
+        self.stdout.write("Total {0} servers".format(len(servers)))
+        for s in servers:
+            text = "%3d: host: %s, port: %d, port_https: %d, status: %d, name: %s" % (
+                s['id'], s['host'], s['port'], s['port_https'], s['status'], s['name']
+            )
+
+            self.stdout.write(text)
