@@ -25,7 +25,7 @@ class Command(BaseCommand):
         from core.server import make_servers
         servers = make_servers()
         self.stdout.write("Total {0} servers".format(len(servers)))
-        for s in servers:
+        for s in servers.values():
             text = "%3d: host: %s, port: %d, port_https: %d, status: %d, name: %s" % (
                 s['id'], s['host'], s['port'], s['port_https'], s['status'], s['name']
             )
