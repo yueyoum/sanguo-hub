@@ -5,6 +5,7 @@ __date__ = '4/1/14'
 
 from apps.server.models import Server
 from apps.character.models import Character
+from utils.api import api_server_change_feedback
 
 def _make_server_dict(s):
     return {
@@ -41,7 +42,7 @@ def pong_from_server(server_id, status):
 
 
 
-def register_server(data):
+def server_register(data):
     try:
         server_id = int(data['id'])
         name = data['name']
@@ -105,4 +106,26 @@ def get_server_list(account_id=None):
         all_servers.append(this)
 
     return all_servers
+
+
+def server_change(data):
+    try:
+        server_id = int(data['server_id'])
+        status = int(data['status'])
+        assert status >= 1 and status <= 4
+    except:
+        return {'ret': 1}
+
+    try:
+        s = Server.objects.get(id=server_id)
+    except Server.DoesNotExist:
+        return {'ret': 2}
+
+    s.status = status
+    s.save()
+
+    _update_server(s)
+
+    api_server_change_feedback(server_id, status)
+    return {'ret': 0}
 

@@ -31,3 +31,8 @@ def api_check_server(server_id):
     s = SERVERS[server_id]
     url = u'https://{0}:{1}/api/ping/'.format(s['host'], s['port_https'])
     return apicall(data={}, cmd=url)
+
+def api_server_change_feedback(server_id, status):
+    s = SERVERS[server_id]
+    url = u'https://{0}:{1}/api/server/feedback/'.format(s['host'], s['port_https'])
+    apicall(data={'status': status}, cmd=url)
