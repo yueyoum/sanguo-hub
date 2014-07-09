@@ -27,10 +27,6 @@ TEMPLATE_DEBUG = False
 
 ENABLE_ADMIN = False
 
-ADMINS = (
-    ('Wang Chao', 'my_sting@163.com'),
-)
-
 ALLOWED_HOSTS = '*'
 
 
@@ -155,7 +151,21 @@ DATABASES = {
 }
 
 CRYPTO_KEY = tree.find('crypto/key').text
-CRYPTO_PREFIX = tree.find('crypto/prefix').text
 
+MAILGUN_ACCESS_KEY = tree.find('mailgun/key').text
+MAILGUN_SERVER_NAME = tree.find('mailgun/domain').text
+
+_CONFIG_ADMINS = tree.find('admins')
+ADMINS = ()
+for _admin in _CONFIG_ADMINS.getchildren():
+    attrib = _admin.attrib
+    ADMINS += ((attrib['name'], attrib['email']),)
+
+MANAGERS = ADMINS
+
+del _CONFIG_ADMINS
 del et
 del tree
+
+SERVER_EMAIL = 'hub <hub@sanguo.com>'
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
