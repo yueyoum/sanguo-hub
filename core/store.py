@@ -5,34 +5,23 @@ __date__ = '4/22/14'
 
 from django.db import transaction
 
-from apps.store.models import Store as ModelStore, StoreBuyLog
+from apps.production.models import StoreProduction
+from apps.store.models import StoreBuyLog
 from preset import errormsg
 
-STORE = None
 
-def _get_store_goods():
-    global STORE
-    if STORE:
-        return
-
-    STORE = {}
-    fields = ModelStore._meta.get_all_field_names()
-
-    for s in ModelStore.objects.all():
+def newest_store_goods():
+    store = {}
+    fields = [f.name for f in StoreProduction._meta.fields]
+    for s in StoreProduction.objects.all():
         data = {}
         for f in fields:
             data[f] = getattr(s, f)
             data['item_id'] = s.item_id
-        STORE[s.id] = data
 
-_get_store_goods()
+        store[s.id] = data
 
-
-def newest_store_goods():
-    goods = ModelStore.objects.filter(has_total_amount=True).only('total_amount_run_time').all()
-    for g in goods:
-        STORE[g.id]['total_amount_run_time'] = g.total_amount_run_time
-    return STORE
+    return store
 
 
 class Store(object):
@@ -44,16 +33,18 @@ class Store(object):
         except (KeyError, ValueError):
             return {'ret': errormsg.BAD_MESSAGE}
 
-        if goods_id not in STORE:
+        store = newest_store_goods()
+
+        if goods_id not in store:
             return {'ret': errormsg.STORE_GOODS_NOT_EXIST}
 
         data = {}
 
-        if STORE[goods_id]['has_total_amount']:
+        if store[goods_id]['has_total_amount']:
             with transaction.atomic():
                 try:
-                    g = ModelStore.objects.select_for_update().get(id=goods_id)
-                except ModelStore.DoesNotExist:
+                    g = StoreProduction.objects.select_for_update().get(id=goods_id)
+                except StoreProduction.DoesNotExist:
                     return {'ret': errormsg.STORE_GOODS_NOT_EXIST}
 
                 if g.total_amount_run_time < goods_amount:
@@ -63,12 +54,12 @@ class Store(object):
                 g.save()
                 data['total_amount_run_time'] = g.total_amount_run_time
 
-        self.save_log(char_id, goods_id, goods_amount)
+        self.save_log(char_id, goods_id, goods_amount, store)
         return {'ret': 0, 'data': data}
 
 
-    def save_log(self, char_id, goods_id, goods_amount):
-        goods = STORE[goods_id]
+    def save_log(self, char_id, goods_id, goods_amount, store):
+        goods = store[goods_id]
         StoreBuyLog.objects.create(
             sid=goods_id,
             tag=goods['tag'],

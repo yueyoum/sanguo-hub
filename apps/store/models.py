@@ -23,8 +23,7 @@ ITEM_TP = (
 )
 
 
-
-class Store(models.Model):
+class AbstractStore(models.Model):
     id = models.IntegerField(primary_key=True)
     tag = models.IntegerField("标签", choices=STORE_TAG)
     sell_type = models.IntegerField("售卖类型", choices=SELL_TYPE)
@@ -47,13 +46,8 @@ class Store(models.Model):
     gem = models.IntegerField('宝石', choices=GEMS, null=True, blank=True)
     stuff = models.IntegerField('道具', choices=STUFFS, null=True, blank=True)
 
-
     class Meta:
-        db_table = 'store'
-        ordering = ('id',)
-        verbose_name = '商城'
-        verbose_name_plural = '商城'
-
+        abstract = True
 
     @property
     def item_id(self):
@@ -65,6 +59,14 @@ class Store(models.Model):
             return self.gem
 
         return self.stuff
+
+
+class Store(AbstractStore):
+    class Meta:
+        db_table = 'store'
+        ordering = ('id',)
+        verbose_name = '商城'
+        verbose_name_plural = '商城'
 
 
 

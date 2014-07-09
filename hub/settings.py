@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'apps.store',
     'apps.activatecode',
     'apps.checkin',
+    'apps.production',
     'helpers',
 )
 
