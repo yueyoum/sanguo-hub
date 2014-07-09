@@ -47,7 +47,8 @@ class Command(BaseCommand):
         from apps.production.models import StoreProduction
         from apps.store.models import Store
 
-        StoreProduction.objects.delete()
+        StoreProduction.objects.all().delete()
+
         new_objs = make_new_objs(Store, StoreProduction)
         StoreProduction.objects.bulk_create(new_objs)
 
