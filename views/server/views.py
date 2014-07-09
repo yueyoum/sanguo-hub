@@ -19,7 +19,7 @@ def _msg_server(msg, s):
     msg.name = s['name']
     msg.status = s['status']
     msg.have_char = s['have_char']
-    msg.host = s['host']
+    msg.host = "http://%s" % s['host']
     msg.port = s['port']
 
 
