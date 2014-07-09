@@ -5,7 +5,6 @@ __date__ = '4/1/14'
 
 from apps.server.models import Server
 from apps.character.models import Character
-from utils.api import api_server_change_feedback
 
 def _make_server_dict(s):
     return {
@@ -109,6 +108,8 @@ def get_server_list(account_id=None):
 
 
 def server_change(data):
+    from utils.api import api_server_change_feedback
+
     try:
         server_id = int(data['server_id'])
         status = int(data['status'])
