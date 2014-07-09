@@ -16,7 +16,6 @@ class Server(models.Model):
     port = models.IntegerField()
     port_https = models.IntegerField()
 
-    players = models.IntegerField(default=0)
     active_players = models.IntegerField(default=0)
 
     class Meta:

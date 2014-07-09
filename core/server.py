@@ -33,9 +33,11 @@ def _update_server(s):
 
 
 
-def pong_from_server(server_id, status):
+def pong_from_server(server_id, status, active_amount=None):
     s = Server.objects.get(id=server_id)
     s.status = status
+    if active_amount is not None:
+        s.active_players = active_amount
     s.save()
     _update_server(s)
 

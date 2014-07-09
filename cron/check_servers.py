@@ -20,10 +20,12 @@ def run():
             logger.write('---- ERROR ----')
             logger.write(traceback.format_exc())
             status = 4
+            active_amount = None
         else:
             status = res['data']['status']
+            active_amount = res['data']['active_amount']
 
-        pong_from_server(s, status)
+        pong_from_server(s, status, active_amount)
         logger.write("server {0} status {1}".format(s, status))
 
     logger.write("server check complete!")
