@@ -19,4 +19,7 @@ class StoreProductionAdmin(admin.ModelAdmin):
     def Item(self, obj):
         return ADMIN_ITEM[obj.item_tp][obj.item_id]
 
+    def has_change_permission(self, request, obj=None):
+        return False
+
 admin.site.register(StoreProduction, StoreProductionAdmin)

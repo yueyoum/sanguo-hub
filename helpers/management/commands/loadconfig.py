@@ -35,9 +35,9 @@ class Command(BaseCommand):
             return
 
         if args[0] == 'store':
-            pass
+            self._cmd_load_store()
         elif args[0] == 'checkin':
-            pass
+            self._cmd_load_checkin()
         else:
             self.stdout.write(self.help)
             return
