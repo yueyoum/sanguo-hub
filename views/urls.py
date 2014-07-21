@@ -9,6 +9,7 @@ urlpatterns = patterns('',
                        # called from client directly
                        url(r'^world/server-list/$', 'views.server.views.server_list'),
                        url(r'^player/register/$', 'views.account.views.register'),
+                       url(r'^system/broadcast/$', 'views.broadcast.views.get_broadcast'),
 
                         # API called from server
                        url(r'^api/server-list/register/$', 'views.api.server.views.server_register_view'),
