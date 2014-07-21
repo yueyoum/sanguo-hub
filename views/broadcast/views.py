@@ -18,7 +18,7 @@ def get_broadcast(request):
             'image': cast.image,
             'content': cast.content,
             'link': cast.link,
-            'date': cast.create_at,
+            'date': cast.create_at.strftime('%Y-%m-%d'),
         })
 
     return HttpResponse(json.dumps(data), content_type='application/json')
