@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'apps.activatecode',
     'apps.checkin',
     'apps.production',
+    'apps.broadcast',
     'helpers',
 )
 
