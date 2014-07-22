@@ -28,7 +28,7 @@ class StoreAdmin(ImportExportModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('id', 'tag', 'sell_type', 'original_price', 'sell_price',)
+            'fields': ('id', 'tag', 'sell_type', 'original_price', 'sell_price', 'active')
         }),
 
         ('Item', {
