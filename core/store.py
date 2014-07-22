@@ -13,7 +13,7 @@ from preset import errormsg
 def newest_store_goods():
     store = {}
     fields = [f.name for f in StoreProduction._meta.fields]
-    for s in StoreProduction.objects.all():
+    for s in StoreProduction.objects.all().filter(active=True):
         data = {}
         for f in fields:
             data[f] = getattr(s, f)
@@ -34,10 +34,6 @@ class Store(object):
             return {'ret': errormsg.BAD_MESSAGE}
 
         store = newest_store_goods()
-
-        if goods_id not in store:
-            return {'ret': errormsg.STORE_GOODS_NOT_EXIST}
-
         data = {}
 
         if store[goods_id]['has_total_amount']:
@@ -46,6 +42,9 @@ class Store(object):
                     g = StoreProduction.objects.select_for_update().get(id=goods_id)
                 except StoreProduction.DoesNotExist:
                     return {'ret': errormsg.STORE_GOODS_NOT_EXIST}
+
+                if not g.active:
+                    return {'ret': errormsg.STORE_CAN_NOT_BUY}
 
                 if g.total_amount_run_time < goods_amount:
                     return {'ret': errormsg.STORE_GOODS_AMOUNT_NOT_ENOUGH}

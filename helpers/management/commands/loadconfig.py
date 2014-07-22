@@ -9,14 +9,22 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 
 
-def make_new_objs(old_model, new_model):
+def make_new_store_objs(old_model, new_model):
     fields = [f.name for f in old_model._meta.fields]
+
+    same_value_fields = [
+        ('total_amount_run_time', 'total_amount'),
+    ]
 
     def _make(obj):
         new_obj = new_model()
         for f in fields:
             value = getattr(obj, f)
             setattr(new_obj, f, value)
+
+        for a, b in same_value_fields:
+            value = getattr(obj, b)
+            setattr(new_obj, a, value)
         return new_obj
 
     return [_make(obj) for obj in old_model.objects.all()]
@@ -49,8 +57,9 @@ class Command(BaseCommand):
 
         StoreProduction.objects.all().delete()
 
-        new_objs = make_new_objs(Store, StoreProduction)
+        new_objs = make_new_store_objs(Store, StoreProduction)
         StoreProduction.objects.bulk_create(new_objs)
+        StoreProduction.make_random_tag_one()
 
 
     @transaction.atomic

@@ -19,7 +19,7 @@ class StoreResources(resources.ModelResource):
 
 class StoreAdmin(ImportExportModelAdmin):
     list_display = ('id', 'tag', 'sell_type', 'original_price', 'sell_price',
-    'has_total_amount', 'total_amount', 'total_amount_run_time',
+    'has_total_amount', 'total_amount',
     'has_limit_amount', 'limit_amount',
     'vip_condition', 'level_condition',
     'item_tp', 'Item',
@@ -36,7 +36,7 @@ class StoreAdmin(ImportExportModelAdmin):
 
         ('Condition', {
             'classes': ('collapse', ),
-            'fields': ('has_total_amount', 'total_amount', 'total_amount_run_time',
+            'fields': ('has_total_amount', 'total_amount',
                         'has_limit_amount', 'limit_amount', 'vip_condition', 'level_condition',
             )
         })

@@ -32,7 +32,6 @@ class AbstractStore(models.Model):
 
     has_total_amount = models.BooleanField("是否总量限制", default=False, db_index=True)
     total_amount = models.IntegerField("总量", default=0, help_text='如果没有总量限制，则此数值无意义')
-    total_amount_run_time = models.IntegerField("实时总量", default=0)
 
     has_limit_amount = models.BooleanField("是否每人每天限购", default=False)
     limit_amount = models.IntegerField("每人每天限购数量", default=0, help_text='如果没有限购，则此数无意义')
@@ -45,6 +44,8 @@ class AbstractStore(models.Model):
     equipment = models.IntegerField('装备', choices=EQUIPMENTS, null=True, blank=True)
     gem = models.IntegerField('宝石', choices=GEMS, null=True, blank=True)
     stuff = models.IntegerField('道具', choices=STUFFS, null=True, blank=True)
+
+    active = models.BooleanField('售卖中', default=True, db_index=True)
 
     class Meta:
         abstract = True

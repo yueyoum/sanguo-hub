@@ -4,3 +4,5 @@
 */10 * * * * /PATH/check_servers.sh
 # 每天通知各个server新的checkin data
 0 0 * * * /PATH/send_checkin_data.sh
+# 每天刷新商城中促销的物品
+0 0 * * * /PATH/store_refresh_tag_one_goods.sh
