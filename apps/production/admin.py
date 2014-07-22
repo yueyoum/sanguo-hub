@@ -10,6 +10,7 @@ class StoreProductionAdmin(admin.ModelAdmin):
     'has_limit_amount', 'limit_amount',
     'vip_condition', 'level_condition',
     'item_tp', 'Item',
+    'active',
     )
 
     ordering = ('id',)

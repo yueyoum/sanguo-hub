@@ -23,6 +23,7 @@ class StoreAdmin(ImportExportModelAdmin):
     'has_limit_amount', 'limit_amount',
     'vip_condition', 'level_condition',
     'item_tp', 'Item',
+    'active',
     )
 
     fieldsets = (
