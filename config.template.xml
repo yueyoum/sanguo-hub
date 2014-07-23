@@ -28,4 +28,10 @@
     <admins>
         <admin name="Wang Chao" email="my_sting@163.com" />
     </admins>
+
+    <third platform="91">
+        <verify>http://service.sj.91.com/usercenter/AP.aspx</verify>
+        <appid>xxx</appid>
+        <appkey>xxx</appkey>
+    </third>
 </config>

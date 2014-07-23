@@ -165,6 +165,16 @@ for _admin in _CONFIG_ADMINS.getchildren():
 
 MANAGERS = ADMINS
 
+
+THIRD_PLATFORM = {}
+_THIRDS = tree.findall('third')
+for _TH in _THIRDS:
+    _third_data = {}
+    for _th in _TH.getchildren():
+        _third_data[_th.tag] = _th.text
+    THIRD_PLATFORM[_TH.attrib['platform']] = _third_data
+
+del _THIRDS
 del _CONFIG_ADMINS
 del et
 del tree
