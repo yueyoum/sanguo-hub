@@ -3,6 +3,11 @@
 __author__ = 'Wang Chao'
 __date__ = '4/2/14'
 
+import traceback
+import hashlib
+import requests
+
+from django.conf import settings
 from django.db import transaction, IntegrityError
 
 from apps.account.models import AccountAnonymous, AccountRegular, AccountThird, Account
@@ -47,6 +52,11 @@ def get_bind_request_data(post):
 
 def get_login_request_data(post):
     method = post['method']
+    if method == 'noaccount':
+        return {
+            'method': method
+        }
+
     if method == 'anonymous':
         return {
             'method': method,
@@ -68,6 +78,7 @@ def get_login_request_data(post):
             'method': method,
             'platform': post['platform'],
             'uid': post['uid'],
+            'param': post['param'],
             'server_id': int(post['server_id']),
 
         }
@@ -135,28 +146,24 @@ def account_login(data):
         return {'ret': errormsg.SERVER_NOT_EXIST}
 
     new_token = 0
-    if data['method'] == 'anonymous':
-        # 匿名登录
-        if not data['token']:
-            # 建立新的游客帐号
-            try:
-                with transaction.atomic():
-                    account = AccountAnonymous.objects.create()
-                    new_token = account.id
-            except IntegrityError:
-                return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
-        else:
-            try:
-                new_token = int(data['token'])
-            except:
-                return {'ret': errormsg.BAD_MESSAGE}
+    if data['method'] == 'noaccount':
+        # 建立游客帐号
+        try:
+            with transaction.atomic():
+                account = AccountAnonymous.objects.create()
+                new_token = account.id
+        except IntegrityError:
+            return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
 
-            try:
-                account = AccountAnonymous.objects.select_related('account').get(id=new_token)
-            except AccountAnonymous.DoesNotExist:
-                return {'ret': errormsg.ACCOUNT_NOT_EXSIT}
+    if data['method'] == 'anonymous':
+        # 游客登录
+        try:
+            account = AccountAnonymous.objects.select_related('account').get(id=new_token)
+        except AccountAnonymous.DoesNotExist:
+            return {'ret': errormsg.ACCOUNT_NOT_EXSIT}
 
     elif data['method'] == 'regular':
+        # 自有帐号登录
         try:
             account = AccountRegular.objects.select_related('account').get(name=data['name'])
         except AccountRegular.DoesNotExist:
@@ -166,6 +173,17 @@ def account_login(data):
             return {'ret': errormsg.WRONG_PASSWORD}
 
     else:
+        # 第三方帐号登录
+        if data['platform'] != '91':
+            # 目前只支持91
+            return {'ret': errormsg.BAD_MESSAGE}
+
+        try:
+            verify_91(data['uid'], data['param'])
+        except:
+            traceback.print_exc()
+            return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
+
         try:
             account = AccountThird.objects.select_related('account').get(platform=data['platform'], uid=data['uid'])
         except AccountThird.DoesNotExist:
@@ -218,3 +236,34 @@ def account_find(name):
 
     ret['data']['chars'] = result
     return ret
+
+
+
+
+
+def verify_91(uid, sessionid):
+    settings_91 = settings.THIRD_PLATFORM['91']
+    url = settings_91['verify']
+    appid = settings_91['appid']
+    appkey = settings_91['appkey']
+
+    sign_original = "{0}{1}{2}{3}{4}".format(appid, 4, uid, sessionid, appkey)
+    sign = hashlib.md5(sign_original).hexdigest()
+
+    data = {
+        'Appid': appid,
+        'Act': 4,
+        'Uin': uid,
+        'SessionId': sessionid,
+        'Sign': sign
+    }
+
+    try:
+        res = requests.get(url, data=data)
+    except:
+        raise GateException(errormsg.ACCOUNT_LOGIN_FAILURE)
+
+    res = res.json()
+    print res
+    if res['ErrorCode'] != 1:
+        raise GateException(errormsg.ACCOUNT_LOGIN_FAILURE)

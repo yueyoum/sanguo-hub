@@ -4,11 +4,12 @@ __author__ = 'Wang Chao'
 __date__ = '4/2/14'
 
 
-from apps.account.models import AccountAnonymous, AccountRegular
+from apps.account.models import AccountAnonymous, AccountRegular, AccountThird
 
 from core.server import get_server_list
 from utils.decorate import proto_return
 from libs import pack_msg
+from libs.helpers import make_account_dict_from_message
 from preset import errormsg
 
 from protomsg import GetServerListResponse
@@ -27,28 +28,31 @@ def _msg_server(msg, s):
 def server_list(request):
     req = request._proto
 
-    token = req.anonymous.device_token
-    email = req.regular.email
-    password = req.regular.password
+    try:
+        account_data = make_account_dict_from_message(req.login)
+    except Exception as e:
+        print e
 
-    if token:
-        try:
-            token = int(token)
-        except:
-            x = GetServerListResponse()
-            x.ret = errormsg.BAD_MESSAGE
-            return pack_msg(x)
+        msg = GetServerListResponse()
+        msg.ret = errormsg.BAD_MESSAGE
+        return pack_msg(msg)
 
+    if account_data['method'] == 'anonymous':
         try:
-            acc = AccountAnonymous.objects.select_related('account').get(id=int(token))
+            acc = AccountAnonymous.objects.select_related('account').get(id=account_data['token'])
         except AccountAnonymous.DoesNotExist:
             acc = None
-    elif email:
+    elif account_data['method'] == 'regular':
         try:
-            acc = AccountRegular.objects.select_related('account').get(name=email)
-            if acc.passwd != password:
+            acc = AccountRegular.objects.select_related('account').get(name=account_data['name'])
+            if acc.passwd != account_data['password']:
                 acc = None
         except AccountRegular.DoesNotExist:
+            acc = None
+    elif account_data['method'] == 'third':
+        try:
+            acc = AccountThird.objects.select_related('account').get(platform=account_data['platform'], uid=account_data['uid'])
+        except AccountThird.DoesNotExist:
             acc = None
     else:
         acc = None
