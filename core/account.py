@@ -265,5 +265,5 @@ def verify_91(uid, sessionid):
 
     res = res.json()
     print res
-    if res['ErrorCode'] != 1:
+    if res['ErrorCode'] != '1':
         raise GateException(errormsg.ACCOUNT_LOGIN_FAILURE)
