@@ -29,5 +29,6 @@ urlpatterns = patterns('',
                        url(r'^api/purchase/done/$', 'views.api.purchase.views.set_done'),
 
                        url(r'^api/purchase91/orderid/$', 'views.api.purchase.views.get_purchase91_order_id'),
+                       url(r'^api/purchase91/success91/$', 'views.api.purchase.views.purchase91_success_to_91'),
                        url(r'^api/purchase91/confirm/$', 'views.api.purchase.views.purchase91_confirm'),
 )

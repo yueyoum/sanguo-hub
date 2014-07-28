@@ -60,6 +60,22 @@ def get_purchase91_order_id(request):
 
 
 @json_return
+def purchase91_success_to_91(request):
+    order_id = int(request.POST['order_id'])
+
+    try:
+        p = Purchase91Log.objects.get(order_id=order_id)
+    except Purchase91Log.DoesNotExist:
+        return {'ret': 0}
+
+    if p.pay_status == -2:
+        p.pay_status = -1
+        p.save()
+
+    return {'ret': 0}
+
+
+@json_return
 def purchase91_confirm(request):
     char_id = int(request.POST['char_id'])
 

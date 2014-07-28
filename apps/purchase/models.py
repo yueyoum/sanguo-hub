@@ -56,6 +56,13 @@ class PurchaseSuccessLog(PurchaseLog):
 
 # 91平台
 class Purchase91Log(models.Model):
+    PAY_STATUS = (
+        (-2, '创建订单'),
+        (-1, '等待确认'),
+        (0, '确认失败'),
+        (1, '确认成功'),
+    )
+
     order_id = models.CharField("订单号", max_length=255)
     order_time = models.DateTimeField("订单创建时间", auto_now_add=True, db_index=True)
     char_id = models.IntegerField("角色ID")
@@ -65,7 +72,7 @@ class Purchase91Log(models.Model):
     uid = models.CharField("91帐号ID", max_length=255)
     order_money = models.FloatField("实际总价")
     note = models.CharField("支付描述", max_length=255)
-    pay_status = models.IntegerField("支付状态")    # -1 没收到91确认，0 失败 1 成功
+    pay_status = models.IntegerField("支付状态", choices=PAY_STATUS)    # -2, -1，0 失败 1 成功
     create_time = models.CharField("支付时间", max_length=255)
 
     class Meta:
@@ -93,7 +100,7 @@ class Purchase91Log(models.Model):
             uid='',
             order_money=0,
             note='',
-            pay_stauts=-1,
+            pay_stauts=-2,
             create_time='',
         )
 
