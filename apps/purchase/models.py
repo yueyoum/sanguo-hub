@@ -100,7 +100,7 @@ class Purchase91Log(models.Model):
             uid='',
             order_money=0,
             note='',
-            pay_stauts=-2,
+            pay_status=-2,
             create_time='',
         )
 
