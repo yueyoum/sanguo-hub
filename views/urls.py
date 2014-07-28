@@ -21,10 +21,13 @@ urlpatterns = patterns('',
                        url(r'^api/store/get/$', 'views.api.store.views.get'),
                        url(r'^api/store/buy/$', 'views.api.store.views.buy'),
 
-                       url(r'api/activatecode/use/$', 'views.api.activatecode.views.use'),
-                       url(r'api/checkin/get/$', 'views.api.checkin.views.get_checkin_package'),
+                       url(r'^api/activatecode/use/$', 'views.api.activatecode.views.use'),
+                       url(r'^api/checkin/get/$', 'views.api.checkin.views.get_checkin_package'),
 
-                       url(r'api/purchase/products/$', 'views.api.purchase.views.products'),
-                       url(r'api/purchase/verify/$', 'views.api.purchase.views.verify'),
-                       url(r'api/purchase/done/$', 'views.api.purchase.views.set_done'),
+                       url(r'^api/purchase/products/$', 'views.api.purchase.views.products'),
+                       url(r'^api/purchase/verify/$', 'views.api.purchase.views.verify'),
+                       url(r'^api/purchase/done/$', 'views.api.purchase.views.set_done'),
+
+                       url(r'^api/purchase91/orderid/$', 'views.api.purchase.views.get_purchase91_order_id'),
+                       url(r'^api/purchase91/confirm/$', 'views.api.purchase.views.purchase91_confirm'),
 )

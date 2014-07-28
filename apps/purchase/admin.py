@@ -3,7 +3,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-from apps.purchase.models import Products, PurchaseFailureLog, PurchaseSuccessLog
+from apps.purchase.models import Products, PurchaseFailureLog, PurchaseSuccessLog, Purchase91Log
 
 class ProductsResources(resources.ModelResource):
     class Meta:
@@ -33,6 +33,15 @@ class PurchaseSuccessLogAdmin(admin.ModelAdmin):
     )
 
 
+class Purchase91LogAdmin(admin.ModelAdmin):
+    list_display = (
+        'id', 'order_id', 'order_time', 'char_id', 'goods_id',
+        'consume_stream_id', 'uid', 'order_money', 'note',
+        'pay_status', 'create_time'
+    )
+
+
 admin.site.register(Products, ProductsAdmin)
 admin.site.register(PurchaseFailureLog, PurchaseFailureLogAdmin)
 admin.site.register(PurchaseSuccessLog, PurchaseSuccessLogAdmin)
+admin.site.register(Purchase91Log, Purchase91LogAdmin)

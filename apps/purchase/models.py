@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import uuid
 from django.db import models
 
 
@@ -52,3 +53,48 @@ class PurchaseSuccessLog(PurchaseLog):
         verbose_name = '交易成功记录'
         verbose_name_plural = '交易成功记录'
 
+
+# 91平台
+class Purchase91Log(models.Model):
+    order_id = models.CharField("订单号", max_length=255)
+    order_time = models.DateTimeField("订单创建时间", auto_now_add=True, db_index=True)
+    char_id = models.IntegerField("角色ID")
+    goods_id = models.IntegerField("商品ID")
+
+    consume_stream_id = models.CharField("消费流水号", max_length=255)
+    uid = models.CharField("91帐号ID")
+    order_money = models.FloatField("实际总价")
+    note = models.CharField("支付描述", max_length=255)
+    pay_status = models.IntegerField("支付状态")    # -1 没收到91确认，0 失败 1 成功
+    create_time = models.CharField("支付时间", max_length=255)
+
+    class Meta:
+        db_table = 'purchase91_log'
+        verbose_name = '91充值记录'
+        verbose_name_plural = '91充值记录'
+
+        index_together = [
+            ['char_id', 'pay_status'],
+        ]
+
+
+    @classmethod
+    def make_order_id(cls, char_id, goods_id):
+        if cls.objects.filter(char_id=char_id, pay_status=-1).exists():
+            return None
+
+        order_id = str(uuid.uuid4())
+        cls.objects.create(
+            order_id=order_id,
+            char_id=char_id,
+            goods_id=goods_id,
+
+            consume_stream_id='',
+            uid='',
+            order_money=0,
+            note='',
+            pay_stauts=-1,
+            create_time='',
+        )
+
+        return order_id
