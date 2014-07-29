@@ -75,6 +75,8 @@ class Purchase91Log(models.Model):
     pay_status = models.IntegerField("支付状态", choices=PAY_STATUS)    # -2, -1，0 失败 1 成功
     create_time = models.CharField("支付时间", max_length=255)
 
+    has_confirmed = models.BooleanField("是否确认", default=False)
+
     class Meta:
         db_table = 'purchase91_log'
         verbose_name = '91充值记录'
@@ -102,6 +104,8 @@ class Purchase91Log(models.Model):
             note='',
             pay_status=-2,
             create_time='',
+
+            has_confirmed=False,
         )
 
         return order_id

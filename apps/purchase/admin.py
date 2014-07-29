@@ -37,7 +37,7 @@ class Purchase91LogAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'order_id', 'order_time', 'char_id', 'goods_id',
         'consume_stream_id', 'uid', 'order_money', 'note',
-        'pay_status', 'create_time'
+        'pay_status', 'create_time', 'has_confirmed',
     )
 
 

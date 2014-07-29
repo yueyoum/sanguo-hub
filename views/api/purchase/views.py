@@ -82,16 +82,21 @@ def purchase91_confirm(request):
     data = {
         'ret': 0,
         'data': {
+            'has_unconfirmed': False,
             'status': 0,
             'goods_id': 0,
         }
     }
 
-    p = Purchase91Log.objects.filter(char_id=char_id).order_by('-order_time')[0:1]
+    p = Purchase91Log.objects.filter(char_id=char_id, has_confirmed=False).order_by('-order_time')[0:1]
     if p.count() == 0:
         return data
 
     p = p[0]
+
+    if p.pay_status == 0 or p.pay_status == 1:
+        p.has_confirmed = True
+        p.save()
 
     data['data']['goods_id'] = p.goods_id
     if p.pay_status == 1:
@@ -103,6 +108,7 @@ def purchase91_confirm(request):
     if p.pay_status == -1:
         # WAITING
         data['data']['status'] = 1
+        data['data']['has_unconfirmed'] = True
     elif p.pay_status == 0:
         # FAUILURE
         data['data']['status'] = 2
