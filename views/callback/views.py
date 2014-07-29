@@ -99,7 +99,13 @@ def purchase_91_notify(request):
         }
         return HttpResponse(json.dumps(data), content_type='application/json')
 
+    p.consume_stream_id = consume_stream_id
+    p.uid = uid
+    p.original_money = float(original_money)
+    p.order_money = float(order_money)
+    p.note = note
     p.pay_status = int(pay_status)
+    p.create_time = create_time
     p.save()
 
     data = {

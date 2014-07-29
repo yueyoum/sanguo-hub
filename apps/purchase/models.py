@@ -70,6 +70,7 @@ class Purchase91Log(models.Model):
 
     consume_stream_id = models.CharField("消费流水号", max_length=255)
     uid = models.CharField("91帐号ID", max_length=255)
+    original_money = models.FloatField("原始总价")
     order_money = models.FloatField("实际总价")
     note = models.CharField("支付描述", max_length=255)
     pay_status = models.IntegerField("支付状态", choices=PAY_STATUS)    # -2, -1，0 失败 1 成功
@@ -100,6 +101,7 @@ class Purchase91Log(models.Model):
 
             consume_stream_id='',
             uid='',
+            original_money=0,
             order_money=0,
             note='',
             pay_status=-2,
