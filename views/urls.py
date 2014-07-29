@@ -11,6 +11,9 @@ urlpatterns = patterns('',
                        url(r'^player/register/$', 'views.account.views.register'),
                        url(r'^system/broadcast/$', 'views.broadcast.views.get_broadcast'),
 
+                       url(r'^callback/91/$', 'views.callback.views.purchase_91_notify'),
+                       url(r'^callback/test91/$', 'views.callback.views.purchase_91_notify'),
+
                         # API called from server
                        url(r'^api/server-list/register/$', 'views.api.server.views.server_register_view'),
                        url(r'^api/server/change/$', 'views.api.server.views.server_change_view'),
