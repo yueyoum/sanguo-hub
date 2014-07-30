@@ -1,0 +1,42 @@
+[
+{
+    "pk": 3, 
+    "model": "package.packagestuff", 
+    "fields": {
+        "amount": 1, 
+        "stuff": 7, 
+        "prob": 100000, 
+        "package": 6
+    }
+},
+{
+    "pk": 4, 
+    "model": "package.packagestuff", 
+    "fields": {
+        "amount": 1, 
+        "stuff": 31, 
+        "prob": 100000, 
+        "package": 5
+    }
+},
+{
+    "pk": 5, 
+    "model": "package.packagestuff", 
+    "fields": {
+        "amount": 1, 
+        "stuff": 27, 
+        "prob": 100000, 
+        "package": 4
+    }
+},
+{
+    "pk": 6, 
+    "model": "package.packagestuff", 
+    "fields": {
+        "amount": 1, 
+        "stuff": 4, 
+        "prob": 100000, 
+        "package": 2
+    }
+}
+]

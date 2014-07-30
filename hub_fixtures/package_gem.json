@@ -1,0 +1,12 @@
+[
+{
+    "pk": 5, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 1, 
+        "prob": 100000, 
+        "gem": 14, 
+        "package": 3
+    }
+}
+]

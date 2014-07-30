@@ -1,0 +1,98 @@
+[
+{
+    "pk": 1, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 50, 
+        "name": "\u6bcf\u65e5\u767b\u5f55\u5956\u52b11", 
+        "gold": 10000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 2, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 50, 
+        "name": "\u6bcf\u65e5\u767b\u5f55\u5956\u52b12", 
+        "gold": 10000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 3, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 100, 
+        "name": "\u6bcf\u65e5\u767b\u5f55\u5956\u52b13", 
+        "gold": 10000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 4, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 50, 
+        "name": "\u6bcf\u65e5\u767b\u5f55\u5956\u52b14", 
+        "gold": 10000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 5, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 50, 
+        "name": "\u6bcf\u65e5\u767b\u5f55\u5956\u52b15", 
+        "gold": 10000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 6, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 50, 
+        "name": "\u6bcf\u65e5\u767b\u5f55\u5956\u52b16", 
+        "gold": 10000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 7, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 100, 
+        "name": "\u6bcf\u65e5\u767b\u5f55\u5956\u52b17", 
+        "gold": 20000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 8, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 10000, 
+        "name": "\u6d4b\u8bd5\u4f7f\u7528\u5143\u5b9d10000", 
+        "gold": 0, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+}
+]

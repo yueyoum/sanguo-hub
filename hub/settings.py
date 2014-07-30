@@ -92,6 +92,9 @@ DATE_FORMAT = 'Y-m-d'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
+FIXTURE_DIRS = (
+    os.path.join(BASE_DIR, 'hub_fixtures'),
+)
 
 LOGGING = {
     'version': 1,

@@ -1,0 +1,9 @@
+[
+{
+    "pk": 1, 
+    "model": "checkin.checkindate", 
+    "fields": {
+        "checkin_date": "2014-06-12"
+    }
+}
+]
