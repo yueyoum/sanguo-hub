@@ -54,7 +54,8 @@ def get_login_request_data(post):
     method = post['method']
     if method == 'noaccount':
         return {
-            'method': method
+            'method': method,
+            'server_id': int(post['server_id']),
         }
 
     if method == 'anonymous':
@@ -155,7 +156,7 @@ def account_login(data):
         except IntegrityError:
             return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
 
-    if data['method'] == 'anonymous':
+    elif data['method'] == 'anonymous':
         # 游客登录
         try:
             account = AccountAnonymous.objects.select_related('account').get(id=new_token)
@@ -265,5 +266,5 @@ def verify_91(uid, sessionid):
 
     res = res.json()
     print res
-    if res['ErrorCode'] != 1:
+    if res['ErrorCode'] != '1':
         raise GateException(errormsg.ACCOUNT_LOGIN_FAILURE)
