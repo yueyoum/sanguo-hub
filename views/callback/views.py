@@ -93,13 +93,15 @@ def purchase_91_notify(request):
     try:
         p = Purchase91Log.objects.get(order_id=order_id)
     except Purchase91Log.DoesNotExist:
-        print "----Error----"
-        print "Order id {0} Does Not Exist".format(order_id)
+        print "----Warning----"
+        print "Order id {0} Does Not Exist. Ignore".format(order_id)
         data = {
-            'ErrorCode': 4,
-            'ErrorDesc': "订单号不存在"
+            'ErrorCode': 1,
+            'ErrorDesc': "接收成功",
         }
+
         return HttpResponse(json.dumps(data), content_type='application/json')
+
 
     p.consume_stream_id = consume_stream_id
     p.uid = uid

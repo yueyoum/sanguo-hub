@@ -6,7 +6,11 @@ def run():
     for line in lines:
         _, fixture = line.split(':')
         fixture = fixture.rstrip('\n')
-        call_command('loaddata', fixture)
+        try:
+            call_command('loaddata', fixture)
+        except Exception as e:
+            print "ERROR: ", e
+            continue
 
 if __name__ == '__main__':
     import os
