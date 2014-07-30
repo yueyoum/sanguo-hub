@@ -48,8 +48,8 @@ def get_purchase91_order_id(request):
     goods_id = int(request.POST['goods_id'])
 
     order_id = Purchase91Log.make_order_id(char_id, goods_id)
-    if not order_id:
-        return {'ret': errormsg.PURCHASE_91_NOT_CONFIRM}
+    # if not order_id:
+    #     return {'ret': errormsg.PURCHASE_91_NOT_CONFIRM}
 
     return {
         'ret': 0,
@@ -59,21 +59,6 @@ def get_purchase91_order_id(request):
     }
 
 
-@json_return
-def purchase91_success_to_91(request):
-    order_id = int(request.POST['order_id'])
-
-    try:
-        p = Purchase91Log.objects.get(order_id=order_id)
-    except Purchase91Log.DoesNotExist:
-        return {'ret': 0}
-
-    if p.pay_status == -2:
-        p.pay_status = -1
-        p.save()
-
-    return {'ret': 0}
-
 
 @json_return
 def purchase91_confirm(request):
@@ -82,21 +67,17 @@ def purchase91_confirm(request):
     data = {
         'ret': 0,
         'data': {
-            'has_unconfirmed': False,
             'status': 0,
             'goods_id': 0,
         }
     }
 
-    p = Purchase91Log.objects.filter(char_id=char_id, has_confirmed=False).order_by('-order_time')[0:1]
+    # 这里只取最后一个订单
+    p = Purchase91Log.objects.filter(char_id=char_id).order_by('-order_time')[0:1]
     if p.count() == 0:
         return data
 
     p = p[0]
-
-    if p.pay_status == 0 or p.pay_status == 1:
-        p.has_confirmed = True
-        p.save()
 
     data['data']['goods_id'] = p.goods_id
     if p.pay_status == 1:
@@ -108,9 +89,8 @@ def purchase91_confirm(request):
     if p.pay_status == -1:
         # WAITING
         data['data']['status'] = 1
-        data['data']['has_unconfirmed'] = True
     elif p.pay_status == 0:
-        # FAUILURE
+        # FAILURE
         data['data']['status'] = 2
 
     return data

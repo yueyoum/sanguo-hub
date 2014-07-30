@@ -12,6 +12,8 @@ from django.http import HttpResponse
 
 from apps.purchase.models import Purchase91Log
 
+from utils.api import api_purchase91_done
+
 def purchase_91_notify(request):
     try:
         appid = request.GET['AppId']
@@ -107,6 +109,8 @@ def purchase_91_notify(request):
     p.pay_status = int(pay_status)
     p.create_time = create_time
     p.save()
+
+    api_purchase91_done(p.server_id, p.char_id, p.goods_id)
 
     data = {
         'ErrorCode': 1,
