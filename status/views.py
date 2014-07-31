@@ -53,7 +53,7 @@ class StatusView(TemplateView):
         for p in Purchase91Log.objects.raw(
                 "select id, server_id, char_id, sum(order_money) as sum_order_money from %s group by char_id order by sum_order_money desc limit 10" % Purchase91Log._meta.db_table
         ):
-            purchase_server_info.append({
+            purchase_char_info.append({
                 'char_id': p.char_id,
                 'server_id': p.server_id,
                 'sum_order_money': p.sum_order_money
