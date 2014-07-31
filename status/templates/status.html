@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sanguo Status</title>
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+</head>
+<body>
+    <h2>
+        服务器
+    </h2>
+    <table class="pure-table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>host</th>
+            <th>status</th>
+            <th>players</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for s in servers %}
+            <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.host }}</td>
+            <td>{{ s.status }}</td>
+            <td>{{ s.players_amount }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>用户</h2>
+    <table class="pure-table">
+        <thead>
+        <tr>
+            <th>总数</th>
+            <th>24小时新增</th>
+            <th>24小时登录</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ player.total_amount }}</td>
+            <td>{{ player.new_24 }}</td>
+            <td>{{ player.login_24 }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>充值</h2>
+    <p>共{{ order_total }}订单，充值{{ purchase_total }}元</p>
+    <h4>各个服务器情况</h4>
+    <table class="pure-table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>充值</th>
+            <th>成功订单</th>
+            <th>失败订单</th>
+            <th>未确认订单</th>
+            <th>24小时新增订单</th>
+            <th>24小时新增充值</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in purchase_server_info %}
+            <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.purchase_total }}</td>
+            <td>{{ p.order_success_total }}</td>
+            <td>{{ p.order_failure_total }}</td>
+            <td>{{ p.order_unconfirmed_total }}</td>
+            <td>{{ p.order_new_24 }}</td>
+            <td>{{ p.purchase_new_24 }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h4>充值最多前10位角色</h4>
+    <table class="pure-table">
+        <thead>
+        <tr>
+            <th>角色ID</th>
+            <th>所在服ID</th>
+            <th>充值</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in purchase_char_info %}
+            <tr>
+            <td>{{ p.char_id }}</td>
+            <td>{{ p.server_id }}</td>
+            <td>{{ p.sum_order_money }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

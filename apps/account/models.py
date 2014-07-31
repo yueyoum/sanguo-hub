@@ -24,7 +24,7 @@ class ThirdManager(BaseAccountManager):
 class Account(models.Model):
     tp = models.CharField(db_index=True, max_length=32)
 
-    register_at = models.DateTimeField(auto_now_add=True)
+    register_at = models.DateTimeField(auto_now_add=True, db_index=True)
     last_login = models.DateTimeField(auto_now=True, db_index=True)
     last_server_id = models.IntegerField(default=0)
     all_server_ids = models.CharField(max_length=255, blank=True)
