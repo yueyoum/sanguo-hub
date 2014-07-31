@@ -44,10 +44,11 @@ def done(request):
 
 @json_return
 def get_purchase91_order_id(request):
+    server_id = int(request.POST['server_id'])
     char_id = int(request.POST['char_id'])
     goods_id = int(request.POST['goods_id'])
 
-    order_id = Purchase91Log.make_order_id(char_id, goods_id)
+    order_id = Purchase91Log.make_order_id(server_id, char_id, goods_id)
     # if not order_id:
     #     return {'ret': errormsg.PURCHASE_91_NOT_CONFIRM}
 
