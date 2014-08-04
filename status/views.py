@@ -62,8 +62,8 @@ class StatusView(TemplateView):
         return {
             'servers': servers,
             'player': player,
-            'order_total': Purchase91Log.objects.count(),
-            'purchase_total': Purchase91Log.objects.aggregate(Sum('order_money'))['order_money__sum'],
+            'order_total': Purchase91Log.objects.filter(is_test_mode=False).count(),
+            'purchase_total': Purchase91Log.objects.filter(is_test_mode=False).aggregate(Sum('order_money'))['order_money__sum'],
             'purchase_server_info': purchase_server_info,
             'purchase_char_info': purchase_char_info,
         }
