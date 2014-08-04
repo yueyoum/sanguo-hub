@@ -68,6 +68,7 @@ class Purchase91Log(models.Model):
     char_id = models.IntegerField("角色ID", db_index=True)
     goods_id = models.IntegerField("商品ID")
     # 这里server_id 和 char_id 其实是一一对应的，都记录仅仅是为了统计需要
+    is_test_mode = models.BooleanField("测试模式", db_index=True)
 
     consume_stream_id = models.CharField("消费流水号", max_length=255)
     uid = models.CharField("91帐号ID", max_length=255)
@@ -90,6 +91,7 @@ class Purchase91Log(models.Model):
             server_id=server_id,
             char_id=char_id,
             goods_id=goods_id,
+            is_test_mode=False,
 
             consume_stream_id='',
             uid='',

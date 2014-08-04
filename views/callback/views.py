@@ -102,7 +102,7 @@ def purchase_91_notify(request):
 
         return HttpResponse(json.dumps(data), content_type='application/json')
 
-
+    p.is_test_mode = request.path == '/callback/test91/'
     p.consume_stream_id = consume_stream_id
     p.uid = uid
     p.original_money = float(original_money)
