@@ -77,7 +77,7 @@ def generate_codes(amount, length=16):
     for i in range(amount):
         codes = hashlib.md5(os.urandom(32)).hexdigest()
         codes = codes[:length]
-        return codes.translate(_table)
+        yield codes.translate(_table)
 
 def _generate_and_save_codes(sender, instance, created, **kwargs):
     if not created:
