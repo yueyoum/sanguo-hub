@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import hashlib
+import string
 
 
 from django.db import models
@@ -71,11 +72,12 @@ class ActivateCodeUseLog(models.Model):
         verbose_name = '激活码使用记录'
         verbose_name_plural = '激活码使用记录'
 
-
+_table = string.maketrans('0123456789', 'abcdefghij')
 def generate_codes(amount, length=16):
     for i in range(amount):
         codes = hashlib.md5(os.urandom(32)).hexdigest()
-        yield codes[:length]
+        codes = codes[:length]
+        return codes.translate(_table)
 
 def _generate_and_save_codes(sender, instance, created, **kwargs):
     if not created:
