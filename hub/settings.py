@@ -177,6 +177,10 @@ for _TH in _THIRDS:
         _third_data[_th.tag] = _th.text
     THIRD_PLATFORM[_TH.attrib['platform']] = _third_data
 
+ALLOWED_ACCOUNTS = set()
+for _ACC in tree.findall('account'):
+    ALLOWED_ACCOUNTS.add(_ACC.text)
+
 del _THIRDS
 del _CONFIG_ADMINS
 del et

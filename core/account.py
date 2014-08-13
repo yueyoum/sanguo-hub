@@ -16,6 +16,19 @@ from core.exception import GateException
 from core.server import make_servers
 from preset import errormsg
 
+def check_allowd_account(data):
+    allowed_accounts = settings.ALLOWED_ACCOUNTS
+    method = data['method']
+
+    if method == 'noaccount' or method == 'anonymous' or method == 'regular':
+        if 'self' not in allowed_accounts:
+            raise GateException(1)
+
+    if method == 'third':
+        if data['platform'] == '91':
+            if '91' not in allowed_accounts:
+                raise GateException(1)
+
 
 def get_register_request_data(post):
     method = post['method']
@@ -95,6 +108,11 @@ def account_register(data):
         return {'ret': errormsg.BAD_MESSAGE}
 
     try:
+        check_allowd_account(data)
+    except GateException:
+        return {'ret': errormsg.INVALID_OPERATE}
+
+    try:
         with transaction.atomic():
             if data['method'] == 'regular':
                 account = AccountRegular.objects.create(name=data['name'], passwd=data['password'])
@@ -141,6 +159,11 @@ def account_login(data):
         data = get_login_request_data(data)
     except (KeyError, ValueError, GateException):
         return {'ret': errormsg.BAD_MESSAGE}
+
+    try:
+        check_allowd_account(data)
+    except GateException:
+        return {'ret': errormsg.INVALID_OPERATE}
 
     servers = make_servers()
     if data['server_id'] not in servers:

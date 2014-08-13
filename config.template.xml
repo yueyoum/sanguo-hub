@@ -29,6 +29,10 @@
         <admin name="Wang Chao" email="my_sting@163.com" />
     </admins>
 
+    <!-- 允许的帐号类型. self 为自有帐号 -->
+    <account>self</account>
+    <account>91</account>
+
     <third platform="91">
         <verify>http://service.sj.91.com/usercenter/AP.aspx</verify>
         <appid>xxx</appid>
