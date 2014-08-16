@@ -51,6 +51,11 @@ def make_payload(mail):
         'send_at': mail.send_at.strftime('%Y-%m-%m %H:%M:%S'),
         'attachment': mail.attachment.export_data()
     }
+
+    if mail.attachment:
+        data['mail']['attachment'] = mail.attachment.export_data()
+    else:
+        data['mail']['attachment'] = ''
     return data
 
 
