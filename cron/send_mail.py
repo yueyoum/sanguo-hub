@@ -49,7 +49,6 @@ def make_payload(mail):
         'name': mail.name,
         'content': mail.content,
         'send_at': mail.send_at.strftime('%Y-%m-%m %H:%M:%S'),
-        'attachment': mail.attachment.export_data()
     }
 
     if mail.attachment:
