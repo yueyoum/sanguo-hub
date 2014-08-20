@@ -58,6 +58,8 @@ class StoreBuyLogAdmin(admin.ModelAdmin):
         'item_tp', 'Item', 'buyer', 'amount', 'buy_at',
     )
 
+    list_filter = ('item_tp', 'item_id', 'buyer',)
+
     def Item(self, obj):
         return ADMIN_ITEM[obj.item_tp][obj.item_id]
 
