@@ -77,7 +77,7 @@ class StoreBuyLog(models.Model):
     sell_type = models.IntegerField("售卖类型", choices=SELL_TYPE)
     sell_price = models.IntegerField("售价")
 
-    item_tp = models.IntegerField("物品类型", choices=ITEM_TP)
+    item_tp = models.IntegerField("物品类型", choices=ITEM_TP, db_index=True)
     item_id = models.IntegerField("物品ID", db_index=True)
 
     buyer = models.IntegerField("购买者ID", db_index=True)
