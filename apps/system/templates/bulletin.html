@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>公告</title>
+
+    <style type="text/css">
+        body {
+        margin: 0;
+        padding: 0;
+        {% if width %}
+            width: {{ width }}px;
+        {% endif %}
+
+        {% if window_bg_image %}
+            background-image: url('{{ window_bg_image }}');
+        {% else %}
+            background-color: #{{ window_bg_color }};
+        {% endif %}
+        }
+
+        .bulletin {
+            margin: {{ margin }}px;
+        }
+        .bulletin .head {
+            font-size: {{ title_size }}em;
+            font-weight: bold;
+            border-radius: {{ radius }}px {{ radius }}px 0 0;
+            padding: 6px 0;
+            text-align: center;
+        }
+
+        .bulletin .content_image img {
+            display: block;
+        }
+
+        .bulletin .content {
+            font-size: {{ content_size }}em;
+            border-radius: 0 0 {{ radius }}px {{ radius }}px;
+            padding: 0 10px 10px 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+{% for bulletin in bulletins %}
+    <div class="bulletin">
+        <div class="head" style="
+            color: #{{ bulletin.title_color }};
+            {% if bulletin.title_bg_image %}
+                background-image: url('{{ bulletin.title_bg_image }}');
+            {% else %}
+                background-color: #{{ bulletin.title_bg_color }};
+            {% endif %}
+        ">
+            {{ bulletin.title }}
+        </div>
+
+        {% if bulletin.content_image %}
+            <div class="content_image">
+            <img src="{{ bulletin.content_image }}"  {% if image_width %}width="{{ image_width }}px"{% endif %}/>
+            </div>
+        {% endif %}
+
+        <div class="content" style="
+            color: #{{ bulletin.content_color }};
+            {% if bulletin.content_bg_image %}
+                background-image: url('{{ bulletin.content_bg_image }}');
+            {% else %}
+                background-color: #{{ bulletin.content_bg_color }};
+            {% endif %}
+        ">
+            {{ bulletin.content|safe }}
+        </div>
+    </div>
+{% endfor %}
+
+</body>
+</html>
+
