@@ -9,7 +9,7 @@ urlpatterns = patterns('',
                        # called from client directly
                        url(r'^world/server-list/$', 'views.server.views.server_list'),
                        url(r'^player/register/$', 'views.account.views.register'),
-                       url(r'^system/broadcast/$', 'views.broadcast.views.get_broadcast'),
+                       url(r'^system/bulletin/$', 'views.system.views.get_bulletins'),
 
                        url(r'^callback/91/$', 'views.callback.views.purchase_91_notify'),
                        url(r'^callback/test91/$', 'views.callback.views.purchase_91_notify'),

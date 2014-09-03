@@ -50,9 +50,21 @@ INSTALLED_APPS = (
     'apps.activatecode',
     'apps.checkin',
     'apps.production',
-    'apps.broadcast',
+    'apps.system',
     'helpers',
 )
+
+TEMPLATE_LOADERS = (
+     (
+        'django.template.loaders.cached.Loader',
+        (
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        )
+    ),
+)
+
+
 
 MIDDLEWARE_CLASSES = (
     # 'django.contrib.sessions.middleware.SessionMiddleware',
@@ -91,6 +103,10 @@ DATE_FORMAT = 'Y-m-d'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/sysmedia/'
+
 
 FIXTURE_DIRS = (
     os.path.join(BASE_DIR, 'hub_fixtures'),
