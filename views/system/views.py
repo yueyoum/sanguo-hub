@@ -8,7 +8,7 @@ import json
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 
-from apps.system.models import BulletinConfig, Bulletin
+from apps.system.models import BulletinConfig, Bulletin, Broadcast
 
 
 def get_bulletins(request):
@@ -68,3 +68,12 @@ def get_bulletins(request):
         return HttpResponse(json.dumps(context), content_type='application/json')
 
     return render_to_response('bulletin.html', context)
+
+
+def get_broadcast(request):
+    try:
+        content = Broadcast.objects.all()[0].content
+    except Broadcast.DoesNotExist:
+        content = ""
+
+    return HttpResponse(content, content_type='text/plain')

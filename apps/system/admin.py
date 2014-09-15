@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from apps.system.models import Bulletin, BulletinConfig
+from apps.system.models import Bulletin, BulletinConfig, Broadcast
 
 
 class BulletinConfigAdmin(admin.ModelAdmin):
@@ -96,5 +96,11 @@ class BulletinAdmin(admin.ModelAdmin):
     ContentBgImage.short_description = "内容背景图片"
 
 
+class BroadcastAdmin(admin.ModelAdmin):
+    list_display = ('content', )
+
+
 admin.site.register(BulletinConfig, BulletinConfigAdmin)
 admin.site.register(Bulletin, BulletinAdmin)
+admin.site.register(Broadcast, BroadcastAdmin)
+
