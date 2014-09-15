@@ -71,9 +71,10 @@ def get_bulletins(request):
 
 
 def get_broadcast(request):
-    try:
-        content = Broadcast.objects.all()[0].content
-    except Broadcast.DoesNotExist:
+    b = Broadcast.objects.all()
+    if b.count() > 0:
+        content = b[0].content
+    else:
         content = ""
 
     return HttpResponse(content, content_type='text/plain')
