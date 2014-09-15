@@ -75,6 +75,6 @@ def get_broadcast(request):
     if b.count() > 0:
         content = b[0].content
     else:
-        content = ""
+        content = u""
 
-    return HttpResponse(content, content_type='text/plain')
+    return HttpResponse(content.encode('utf-8'), content_type='text/plain;charset=utf8')
