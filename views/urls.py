@@ -10,7 +10,6 @@ urlpatterns = patterns('',
                        url(r'^world/server-list/$', 'views.server.views.server_list'),
                        url(r'^player/register/$', 'views.account.views.register'),
                        url(r'^system/bulletin/$', 'views.system.views.get_bulletins'),
-                       url(r'^system/broadcast/$', 'views.system.views.get_broadcast'),
 
                        url(r'^callback/91/$', 'views.callback.views.purchase_91_notify'),
                        url(r'^callback/test91/$', 'views.callback.views.purchase_91_notify'),
@@ -34,4 +33,6 @@ urlpatterns = patterns('',
 
                        url(r'^api/purchase91/orderid/$', 'views.api.purchase.views.get_purchase91_order_id'),
                        url(r'^api/purchase91/confirm/$', 'views.api.purchase.views.purchase91_confirm'),
+
+                       url(r'^api/system/broadcast/$', 'views.system.views.get_broadcast'),
 )
