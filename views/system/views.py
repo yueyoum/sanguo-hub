@@ -77,4 +77,9 @@ def get_broadcast(request):
     else:
         content = u""
 
-    return HttpResponse(content.encode('utf-8'), content_type='text/plain;charset=utf8')
+    data = {
+        'ret': 0,
+        'data': content
+    }
+
+    return HttpResponse(json.dumps(data), content_type='application/json')
