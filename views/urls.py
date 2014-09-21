@@ -33,6 +33,4 @@ urlpatterns = patterns('',
 
                        url(r'^api/purchase91/orderid/$', 'views.api.purchase.views.get_purchase91_order_id'),
                        url(r'^api/purchase91/confirm/$', 'views.api.purchase.views.purchase91_confirm'),
-
-                       url(r'^api/system/broadcast/$', 'views.system.views.get_broadcast'),
 )

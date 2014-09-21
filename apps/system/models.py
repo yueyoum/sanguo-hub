@@ -65,11 +65,3 @@ class Bulletin(models.Model):
         verbose_name_plural = "系统公告"
 
 
-class Broadcast(models.Model):
-    content = models.TextField("内容")
-
-    class Meta:
-        db_table = 'broadcast'
-        verbose_name = "滚动通知"
-        verbose_name_plural = "滚动通知"
-
