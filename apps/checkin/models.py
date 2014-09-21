@@ -5,7 +5,7 @@ from django.db import models
 from core.fixtures import RESOURCE_TYPE
 
 class CheckInDate(models.Model):
-    checkin_date = models.DateField("日期")
+    checkin_date = models.DateField("日期", db_index=True)
 
     class Meta:
         db_table = 'checkin_date'
