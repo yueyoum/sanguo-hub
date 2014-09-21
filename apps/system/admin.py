@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from apps.system.models import Bulletin, BulletinConfig
+from apps.system.models import Bulletin, BulletinConfig, Broadcast
 
 
 class BulletinConfigAdmin(admin.ModelAdmin):
@@ -97,6 +97,13 @@ class BulletinAdmin(admin.ModelAdmin):
 
 
 
+class BroadcastAdmin(admin.ModelAdmin):
+    list_display = (
+        'id', 'content', 'play_times', 'active', 'start_at', 'end_at'
+    )
+
+
 admin.site.register(BulletinConfig, BulletinConfigAdmin)
 admin.site.register(Bulletin, BulletinAdmin)
+admin.site.register(Broadcast, BroadcastAdmin)
 

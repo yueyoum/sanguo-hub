@@ -65,3 +65,16 @@ class Bulletin(models.Model):
         verbose_name_plural = "系统公告"
 
 
+
+class Broadcast(models.Model):
+    content = models.TextField("内容")
+    play_times = models.IntegerField("播放次数", default=0)
+    active = models.BooleanField("显示", default=False, db_index=True)
+    start_at = models.DateField("开始于", db_index=True)
+    end_at = models.DateField("结束于", db_index=True)
+
+    class Meta:
+        db_table = 'broadcast'
+        verbose_name = "广播"
+        verbose_name_plural = "广播"
+
