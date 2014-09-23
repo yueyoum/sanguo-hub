@@ -18,6 +18,11 @@
         <prefix>ok</prefix>
     </crypto>
 
+    <!--发送邮件的发件人-->
+    <email>
+        <name>hub.production</name>
+    </email>
+
     <mailgun>
         <key>key-9jmdddog2rhqf8j-no9fq-mpiqcdo851</key>
         <domain>sandbox0bcd8cad030d405f863c68bf70fa83f9.mailgun.org</domain>

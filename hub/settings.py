@@ -173,6 +173,8 @@ DATABASES = {
 
 CRYPTO_KEY = tree.find('crypto/key').text
 
+EMAIL_NAME = tree.find('email/name').text
+
 MAILGUN_ACCESS_KEY = tree.find('mailgun/key').text
 MAILGUN_SERVER_NAME = tree.find('mailgun/domain').text
 
@@ -202,5 +204,5 @@ del _CONFIG_ADMINS
 del et
 del tree
 
-SERVER_EMAIL = 'hub <hub@sanguo.com>'
+SERVER_EMAIL = '{0} <{0}@sanguo.com>'.format(EMAIL_NAME)
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
