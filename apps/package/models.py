@@ -23,6 +23,7 @@ class Package(models.Model):
 
     class Meta:
         db_table = 'package'
+        ordering = ('-id',)
         verbose_name = "物品包"
         verbose_name_plural = "物品包"
 
