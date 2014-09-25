@@ -1,16 +1,19 @@
 
-# import arrow
 
 import datetime
 
 from django.views.generic import TemplateView
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.utils import timezone
 
 from apps.server.models import Server
 from apps.account.models import Account
 from apps.character.models import Character
 from apps.purchase.models import Purchase91Log
+
+
+SHOW_PURCHASE_CHARS_AMOUNT = 20
+
 
 class StatusView(TemplateView):
     template_name = 'status.html'
@@ -36,6 +39,7 @@ class StatusView(TemplateView):
                 'id': s.id,
                 'name': s.name,
                 'purchase_total': this_purchase_obj.aggregate(Sum('order_money'))['order_money__sum'],
+                'purchase_char_amount': this_purchase_obj.aggregate(Count('char_id', distinct=True))['char_id__count'],
                 'order_success_total': this_purchase_obj.filter(pay_status=1).count(),
                 'order_failure_total': this_purchase_obj.filter(pay_status=0).count(),
                 'order_unconfirmed_total': this_purchase_obj.filter(pay_status=-1).count(),
@@ -51,7 +55,10 @@ class StatusView(TemplateView):
 
         purchase_char_info = []
         for p in Purchase91Log.objects.raw(
-                "select id, server_id, char_id, sum(order_money) as sum_order_money from %s where is_test_mode = 0 group by char_id order by sum_order_money desc limit 10" % Purchase91Log._meta.db_table
+                "select id, server_id, char_id, sum(order_money) as sum_order_money from %s where is_test_mode = 0 group by char_id order by sum_order_money desc limit %d" % (
+                        Purchase91Log._meta.db_table,
+                        SHOW_PURCHASE_CHARS_AMOUNT,
+                )
         ):
             purchase_char_info.append({
                 'char_id': p.char_id,
@@ -62,8 +69,10 @@ class StatusView(TemplateView):
         return {
             'servers': servers,
             'player': player,
+            'purchase_chars_amount_total': Purchase91Log.objects.filter(is_test_mode=False).aggregate(Count('char_id', distinct=True))['char_id__count'],
             'order_total': Purchase91Log.objects.filter(is_test_mode=False).count(),
             'purchase_total': Purchase91Log.objects.filter(is_test_mode=False).aggregate(Sum('order_money'))['order_money__sum'],
             'purchase_server_info': purchase_server_info,
             'purchase_char_info': purchase_char_info,
+            'show_chars_amount': SHOW_PURCHASE_CHARS_AMOUNT,
         }
