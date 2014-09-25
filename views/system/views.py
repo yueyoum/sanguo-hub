@@ -13,6 +13,7 @@ from apps.system.models import BulletinConfig, Bulletin
 
 def get_bulletins(request):
     ret_json = request.GET.get('format', '') == 'json'
+    debug_mode = request.GET.get('debug', 0) != 0
     config = BulletinConfig.objects.all()[0]
 
     width = request.GET.get('width', '')
@@ -45,7 +46,12 @@ def get_bulletins(request):
 
     bulletins = []
 
-    for b in Bulletin.objects.filter(display=True).order_by('-order_seq', '-create_time'):
+    if debug_mode:
+        bulletin_objs = Bulletin.objects.all()
+    else:
+        bulletin_objs = Bulletin.objects.filter(display=True)
+
+    for b in bulletin_objs.order_by('-order_seq', '-create_time'):
         data = {
             'title': b.title,
             'title_color': _get_real_value(b, 'title_color', 'bulletin_title_color'),
