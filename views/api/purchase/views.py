@@ -4,42 +4,23 @@ __author__ = 'Wang Chao'
 __date__ = '14-6-30'
 
 from utils.decorate import json_return
-from core.purchase import Purchase, get_product_list, set_done
+from core.purchase import purchase_ios_verify
 
 from apps.purchase.models import Purchase91Log
 from preset import errormsg
 
-@json_return
-def products(request):
-    data = get_product_list()
-    return {
-        'ret': 0,
-        'data': {
-            'products': data
-        }
-    }
 
 @json_return
-def verify(request):
+def ios_verify(request):
     try:
+        server_id = int(request.POST['server_id'])
         char_id = int(request.POST['char_id'])
         receipt = request.POST['receipt']
     except:
-        return {'ret': 1}
+        return {'ret': errormsg.BAD_MESSAGE}
 
-    p = Purchase(char_id)
-    return p.verify(receipt)
+    return purchase_ios_verify(server_id, char_id, receipt)
 
-
-@json_return
-def done(request):
-    try:
-        log_id = request.POST['log_id']
-    except:
-        return {'ret': 1}
-
-    set_done(log_id)
-    return {'ret': 0}
 
 
 @json_return

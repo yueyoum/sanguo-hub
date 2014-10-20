@@ -1,35 +1,20 @@
 from django.contrib import admin
 
-from import_export import resources
-from import_export.admin import ImportExportModelAdmin
 
-from apps.purchase.models import Products, PurchaseFailureLog, PurchaseSuccessLog, Purchase91Log
-
-class ProductsResources(resources.ModelResource):
-    class Meta:
-        model = Products
+from apps.purchase.models import PurchaseIOSSuccessLog, PurchaseIOSErrorLog, Purchase91Log
 
 
-class ProductsAdmin(ImportExportModelAdmin):
+class PurchaseIOSSuccessLogAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'name', 'des', 'sycee', 'actual_sycee'
-    )
-
-    resource_class = ProductsResources
-
-
-class PurchaseFailureLogAdmin(admin.ModelAdmin):
-    list_display = (
-        'id', 'char_id', 'buy_date',
-        'inner_error', 'apple_error'
+        'id', 'unique_identifier', 'server_id', 'char_id',
+        'product_id', 'quantity', 'bvrs', 'order_money', 'buy_time'
     )
 
 
 
-class PurchaseSuccessLogAdmin(admin.ModelAdmin):
+class PurchaseIOSErrorLogAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'char_id', 'buy_date', 'product_id', 'actual_sycee',
-        'quantity', 'bvrs', 'send_done'
+        'id', 'server_id', 'char_id', 'error_code', 'buy_time',
     )
 
 
@@ -42,7 +27,6 @@ class Purchase91LogAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(Products, ProductsAdmin)
-admin.site.register(PurchaseFailureLog, PurchaseFailureLogAdmin)
-admin.site.register(PurchaseSuccessLog, PurchaseSuccessLogAdmin)
+admin.site.register(PurchaseIOSSuccessLog, PurchaseIOSSuccessLogAdmin)
+admin.site.register(PurchaseIOSErrorLog, PurchaseIOSErrorLogAdmin)
 admin.site.register(Purchase91Log, Purchase91LogAdmin)

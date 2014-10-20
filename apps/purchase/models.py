@@ -4,54 +4,40 @@ import uuid
 from django.db import models
 
 
-class Products(models.Model):
-    id = models.CharField(max_length=255, primary_key=True)
-    name = models.CharField(max_length=32)
-    des = models.CharField(max_length=255)
+# IOS平台
+class PurchaseIOSErrorLog(models.Model):
+    server_id = models.IntegerField("服务器ID")
+    char_id = models.IntegerField("角色ID")
+    error_code = models.IntegerField("错误码")
 
-    sycee = models.IntegerField("元宝")
-    actual_sycee = models.IntegerField("实际元宝")
-
-    def __unicode__(self):
-        return self.id
+    receipt = models.TextField()
+    buy_time = models.DateTimeField("购买时间", auto_now_add=True)
 
     class Meta:
-        db_table = 'products'
-        verbose_name = '商品'
-        verbose_name_plural = '商品'
+        db_table = 'purchase_ios_error_log'
+        verbose_name = "IOS充值失败记录"
+        verbose_name_plural = "IOS充值失败记录"
 
 
-class PurchaseLog(models.Model):
-    char_id = models.IntegerField("购买者ID")
-    buy_date = models.DateTimeField("购买时间", auto_now_add=True)
+class PurchaseIOSSuccessLog(models.Model):
+    unique_identifier = models.CharField(max_length=255, unique=True)
+
+    server_id = models.IntegerField("服务器ID", db_index=True)
+    char_id = models.IntegerField("角色ID", db_index=True)
+
+    product_id = models.CharField("商品ID", max_length=255)
+    quantity = models.IntegerField("数量")
+    bvrs = models.CharField("版本号", max_length=255)
 
     receipt = models.TextField()
 
-    class Meta:
-        abstract = True
-
-
-class PurchaseFailureLog(PurchaseLog):
-    inner_error = models.IntegerField("内部错误代码", default=0)
-    apple_error = models.IntegerField("苹果错误代码", default=0)
+    order_money = models.FloatField("支付价格")
+    buy_time = models.DateTimeField("购买时间", auto_now_add=True)
 
     class Meta:
-        db_table = 'purchase_log_failure'
-        verbose_name = '交易失败记录'
-        verbose_name_plural = '交易失败记录'
-
-
-class PurchaseSuccessLog(PurchaseLog):
-    product_id = models.CharField(max_length=255)
-    actual_sycee = models.IntegerField("实际元宝")
-    quantity = models.IntegerField("数量")
-    bvrs = models.CharField("版本号", max_length=255)
-    send_done = models.BooleanField("成功给出物品", default=False)
-
-    class Meta:
-        db_table = 'purchase_log_success'
-        verbose_name = '交易成功记录'
-        verbose_name_plural = '交易成功记录'
+        db_table = 'purchase_ios_success_log'
+        verbose_name = "IOS充值成功记录"
+        verbose_name_plural = "IOS充值成功记录"
 
 
 # 91平台
