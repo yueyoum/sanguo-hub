@@ -3,6 +3,7 @@
 __author__ = 'Wang Chao'
 __date__ = '4/1/14'
 
+from django.conf import settings
 from apps.server.models import Server
 from apps.character.models import Character
 
@@ -80,7 +81,12 @@ def server_register(data):
     s.save()
 
     _update_server(s)
-    return {'ret': 0}
+    return {
+        'ret': 0,
+        'data': {
+            'version': settings.SERVER_VERSION,
+        }
+    }
 
 
 def get_server_list(account_id=None):

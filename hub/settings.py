@@ -186,6 +186,7 @@ for _admin in _CONFIG_ADMINS.getchildren():
 
 MANAGERS = ADMINS
 
+VERSION_URL = tree.find('version').text
 
 THIRD_PLATFORM = {}
 _THIRDS = tree.findall('third')
@@ -206,3 +207,5 @@ del tree
 
 SERVER_EMAIL = '{0} <{0}@sanguo.com>'.format(EMAIL_NAME)
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+
+SERVER_VERSION = "0.0.0.0"

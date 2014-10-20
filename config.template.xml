@@ -34,6 +34,9 @@
         <admin name="Wang Chao" email="my_sting@163.com" />
     </admins>
 
+    <!--取version的地址-->
+    <version>http://192.168.1.100:11000/config/version.txt</version>
+
     <!-- 允许的帐号类型. self 为自有帐号 -->
     <account>self</account>
     <account>91</account>
