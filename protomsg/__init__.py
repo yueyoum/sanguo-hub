@@ -14,6 +14,7 @@ from store_pb2 import *
 from character_pb2 import *
 from item_pb2 import *
 from levy_pb2 import *
+from vip_pb2 import *
 from formation_pb2 import *
 from friend_pb2 import *
 from battle_pb2 import *
@@ -140,8 +141,7 @@ RESPONSE_NOTIFY_TYPE = {
     "GuideFinishResponse": 4002,
     "LevyNotify": 4100,
     "LevyResponse": 4102,
-    "GetProductsResponse": 4201,
-    "BuyVerityResponse": 4203,
+    "PurchaseIOSVerifyResponse": 4203,
     "Purchase91GetOrderIdResponse": 4211,
     "Purchase91ConfirmResponse": 4213,
     "PurchaseStatusNotify": 4220,
@@ -150,6 +150,8 @@ RESPONSE_NOTIFY_TYPE = {
     "HangSyncResponse": 5003,
     "HangGetRewardResponse": 5005,
     "HangStartResponse": 5007,
+    "VIPNotify": 5100,
+    "VIPGetRewardResponse": 5102,
 }
 
 REQUEST_TYPE = {
@@ -210,13 +212,13 @@ REQUEST_TYPE = {
     3401: "ChatSendRequest",
     4001: "GuideFinishRequest",
     4101: "LevyRequest",
-    4200: "GetProductsRequest",
-    4202: "BuyVerityRequest",
+    4202: "PurchaseIOSVerifyRequest",
     4210: "Purchase91GetOrderIdRequest",
     4212: "Purchase91ConfirmRequest",
     5002: "HangSyncRequest",
     5004: "HangGetRewardRequest",
     5006: "HangStartRequest",
+    5101: "VIPGetRewardRequest",
 }
 
 REQUEST_TYPE_REV = {
@@ -277,13 +279,13 @@ REQUEST_TYPE_REV = {
     "ChatSendRequest": 3401,
     "GuideFinishRequest": 4001,
     "LevyRequest": 4101,
-    "GetProductsRequest": 4200,
-    "BuyVerityRequest": 4202,
+    "PurchaseIOSVerifyRequest": 4202,
     "Purchase91GetOrderIdRequest": 4210,
     "Purchase91ConfirmRequest": 4212,
     "HangSyncRequest": 5002,
     "HangGetRewardRequest": 5004,
     "HangStartRequest": 5006,
+    "VIPGetRewardRequest": 5101,
 }
 
 TYPE_COMMAND = {
@@ -343,13 +345,13 @@ TYPE_COMMAND = {
    3401: "/chat/send/",
    4001: "/guide/finish/",
    4101: "/levy/",
-   4200: "/purchase/products/",
    4202: "/purchase/verify/",
    4210: "/purchase91/orderid/",
    4212: "/purchase91/confirm/",
    5002: "/hang/sync/",
    5004: "/hang/getreward/",
    5006: "/hang/start/",
+   5101: "/vip/getreward/",
 }
 
 COMMAND_TYPE = {v: k for k, v in TYPE_COMMAND.iteritems()}
