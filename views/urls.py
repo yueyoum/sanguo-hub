@@ -33,4 +33,6 @@ urlpatterns = patterns('',
                        url(r'^api/purchase91/confirm/$', 'views.api.purchase.views.purchase91_confirm'),
 
                        url(r'^api/system/broadcast/$', 'views.api.system.views.get_system_broadcast'),
+
+                       url(r'^api/version/back/$', 'views.api.server.views.version_back'),
 )
