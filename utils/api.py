@@ -49,6 +49,10 @@ def api_purchase91_done(server_id, char_id, goods_id):
     apicall(data=data, cmd=url)
 
 def api_server_version_change(version):
-    for s in SERVERS.values():
+    for index, s in enumerate(SERVERS.values()):
+        data = {
+            'version': version,
+            'index': index
+        }
         url = u'https://{0}:{1}/api/server/version/'.format(s['host'], s['port_https'])
-        apicall(data={'version': version}, cmd=url)
+        apicall(data=data, cmd=url)
