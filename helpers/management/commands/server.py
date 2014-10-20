@@ -4,7 +4,6 @@ __author__ = 'Wang Chao'
 __date__ = '14-7-8'
 
 
-from django.conf import settings
 from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
@@ -38,12 +37,13 @@ class Command(BaseCommand):
             self.stdout.write(text)
 
     def _cmd_version(self):
+        from core.version import version
         from startup import main
         from utils.api import api_server_version_change
 
         main()
 
-        version = settings.SERVER_VERSION
-        self.stdout.write("Version: {0}".format(version))
-        api_server_version_change(version)
+        version_text = version.version
+        self.stdout.write("Version: {0}".format(version_text))
+        api_server_version_change(version_text)
 

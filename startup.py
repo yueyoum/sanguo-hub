@@ -6,8 +6,9 @@ __date__ = '14-10-20'
 from django.conf import settings
 
 import requests
+from core.version import version
 
 
 def main():
-    version = requests.get(settings.VERSION_URL).content.rstrip('\n')
-    settings.SERVER_VERSION = version
+    version_text = requests.get(settings.VERSION_URL).content.rstrip('\n')
+    version.set_version(version_text)

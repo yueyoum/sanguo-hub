@@ -4,8 +4,8 @@ __author__ = 'Wang Chao'
 __date__ = '4/1/14'
 
 
-from django.conf import settings
 from core.server import server_register, server_change
+from core.version import version
 from utils.decorate import json_return
 
 @json_return
@@ -18,6 +18,6 @@ def server_change_view(request):
 
 @json_return
 def version_back(request):
-    version = request.POST['version']
-    settings.SERVER_VERSION = version
+    version_text = request.POST['version']
+    version.set_version(version_text)
     return {'ret': 0}

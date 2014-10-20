@@ -3,7 +3,7 @@
 __author__ = 'Wang Chao'
 __date__ = '4/1/14'
 
-from django.conf import settings
+from core.version import version
 from apps.server.models import Server
 from apps.character.models import Character
 
@@ -84,7 +84,7 @@ def server_register(data):
     return {
         'ret': 0,
         'data': {
-            'version': settings.SERVER_VERSION,
+            'version': version.version,
         }
     }
 
