@@ -182,7 +182,7 @@ def account_login(data):
     elif data['method'] == 'anonymous':
         # 游客登录
         try:
-            account = AccountAnonymous.objects.select_related('account').get(id=new_token)
+            account = AccountAnonymous.objects.select_related('account').get(id=data['token'])
         except AccountAnonymous.DoesNotExist:
             return {'ret': errormsg.ACCOUNT_NOT_EXSIT}
 
