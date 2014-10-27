@@ -6,8 +6,8 @@ from apps.purchase.models import PurchaseIOSSuccessLog, PurchaseIOSErrorLog, Pur
 
 class PurchaseIOSSuccessLogAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'unique_identifier', 'server_id', 'char_id',
-        'product_id', 'quantity', 'bvrs', 'order_money', 'buy_time'
+        'id', 'transaction_id', 'server_id', 'char_id',
+        'product_id', 'quantity', 'order_money', 'buy_time'
     )
 
 

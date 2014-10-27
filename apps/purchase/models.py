@@ -27,7 +27,6 @@ class PurchaseIOSSuccessLog(models.Model):
 
     product_id = models.CharField("商品ID", max_length=255)
     quantity = models.IntegerField("数量")
-    bvrs = models.CharField("版本号", max_length=255)
 
     receipt = models.TextField()
 

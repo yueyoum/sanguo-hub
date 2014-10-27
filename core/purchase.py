@@ -70,10 +70,11 @@ def purchase_ios_verify(server_id, char_id, receipt):
         )
         return {'ret': err_code}
 
-    product_id = res['receipt']['product_id']
-    quantity = int(res['receipt']['quantity'])
-    bvrs = res['receipt']['bvrs']
-    transaction_id = res['receipt']['transaction_id']
+    info = res['receipt']['in_app'][0]
+
+    product_id = info['product_id']
+    quantity = int(info['quantity'])
+    transaction_id = info['transaction_id']
 
     if PurchaseIOSSuccessLog.objects.filter(transaction_id=transaction_id).exists():
         return {'ret': errormsg.PURCHASE_ALREADY_VERIFIED}
@@ -86,7 +87,6 @@ def purchase_ios_verify(server_id, char_id, receipt):
         char_id=char_id,
         product_id=product_id,
         quantity=quantity,
-        bvrs=bvrs,
         receipt=receipt,
         order_money=order_money
     )
