@@ -8,5 +8,45 @@
         "gem": 14, 
         "package": 3
     }
+},
+{
+    "pk": 6, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 1, 
+        "prob": 100000, 
+        "gem": 6, 
+        "package": 12
+    }
+},
+{
+    "pk": 7, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 1, 
+        "prob": 100000, 
+        "gem": 16, 
+        "package": 12
+    }
+},
+{
+    "pk": 8, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 1, 
+        "prob": 100000, 
+        "gem": 26, 
+        "package": 12
+    }
+},
+{
+    "pk": 9, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 1, 
+        "prob": 100000, 
+        "gem": 36, 
+        "package": 12
+    }
 }
 ]

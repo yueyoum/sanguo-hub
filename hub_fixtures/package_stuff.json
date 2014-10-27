@@ -38,5 +38,65 @@
         "prob": 100000, 
         "package": 2
     }
+},
+{
+    "pk": 7, 
+    "model": "package.packagestuff", 
+    "fields": {
+        "amount": 1, 
+        "stuff": 28, 
+        "prob": 100000, 
+        "package": 12
+    }
+},
+{
+    "pk": 8, 
+    "model": "package.packagestuff", 
+    "fields": {
+        "amount": 10, 
+        "stuff": 33, 
+        "prob": 100000, 
+        "package": 12
+    }
+},
+{
+    "pk": 9, 
+    "model": "package.packagestuff", 
+    "fields": {
+        "amount": 5, 
+        "stuff": 7, 
+        "prob": 100000, 
+        "package": 20
+    }
+},
+{
+    "pk": 10, 
+    "model": "package.packagestuff", 
+    "fields": {
+        "amount": 2, 
+        "stuff": 26, 
+        "prob": 100000, 
+        "package": 22
+    }
+},
+{
+    "pk": 11, 
+    "model": "package.packagestuff", 
+    "fields": {
+        "amount": 2, 
+        "stuff": 33, 
+        "prob": 100000, 
+        "package": 23
+    }
+},
+{
+    "pk": 12, 
+    "model": "package.packagestuff", 
+    "fields": {
+        "amount": 2, 
+        "stuff": 8, 
+        "prob": 100000, 
+        "package": 24
+    }
 }
 ]
