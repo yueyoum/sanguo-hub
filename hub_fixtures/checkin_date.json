@@ -3,7 +3,14 @@
     "pk": 1, 
     "model": "checkin.checkindate", 
     "fields": {
-        "checkin_date": "2014-06-12"
+        "checkin_date": "2014-10-08"
+    }
+},
+{
+    "pk": 2, 
+    "model": "checkin.checkindate", 
+    "fields": {
+        "checkin_date": "2014-10-01"
     }
 }
 ]
