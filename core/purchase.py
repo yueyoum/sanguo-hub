@@ -70,7 +70,7 @@ def purchase_ios_verify(server_id, char_id, receipt):
         )
         return {'ret': err_code}
 
-    info = res['receipt']['in_app'][0]
+    info = res['receipt']['in_app'][-1]
 
     product_id = info['product_id']
     quantity = int(info['quantity'])
