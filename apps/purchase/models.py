@@ -20,7 +20,7 @@ class PurchaseIOSErrorLog(models.Model):
 
 
 class PurchaseIOSSuccessLog(models.Model):
-    unique_identifier = models.CharField(max_length=255, unique=True)
+    transaction_id = models.CharField(max_length=255, unique=True)
 
     server_id = models.IntegerField("服务器ID", db_index=True)
     char_id = models.IntegerField("角色ID", db_index=True)
