@@ -29,7 +29,7 @@ def _do_verify(receipt):
     :rtype : (int, dict)
     """
     data = json.dumps({
-        'receipt-data': b64encode(receipt)
+        'receipt-data': receipt
     })
 
     def _do(url):
