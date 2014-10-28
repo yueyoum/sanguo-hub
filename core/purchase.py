@@ -33,25 +33,31 @@ def _do_verify(receipt):
     })
 
     def _do(url):
-        req = requests.post(url, data=data, timeout=8)
-        if not req.ok:
-            raise RequestsNotOK("requests not ok")
+        try:
+            req = requests.post(url, data=data, timeout=10)
+            if not req.ok:
+                raise RequestsNotOK("requests not ok")
+        except Exception as e:
+            print "==== VERIFY_ERROR ===="
+            print e
+            raise e
+
         return req.json()
 
     try:
         res = _do(VERITY_URL)
     except:
-        return (errormsg.PURCHASE_VERIFY_ERROR, "")
+        return (errormsg.PURCHASE_VERIFY_TIMEOUT, "")
 
     if res['status'] == 21007:
         # 测试的交易凭证，却发到了正式服务器去验证
         try:
             res = _do(VERITY_URL_TEST)
         except:
-            return (errormsg.PURCHASE_VERIFY_ERROR, "")
+            return (errormsg.PURCHASE_VERIFY_TIMEOUT, "")
 
     if res['status'] != 0:
-        print "==== VERIFY ERROR ===="
+        print "==== VERIFY_RETURN_ERROR ===="
         print res
         return (errormsg.PURCHASE_VERIFY_ERROR, "")
 
