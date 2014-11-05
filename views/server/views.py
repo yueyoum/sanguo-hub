@@ -81,7 +81,7 @@ def server_list(request):
                 break
 
     if not top:
-        top = all_servers[0]
+        top = all_servers[-1]
 
     response = GetServerListResponse()
     response.ret = 0
