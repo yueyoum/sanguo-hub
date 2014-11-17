@@ -49,13 +49,13 @@
 
 {% for bulletin in bulletins %}
     <div class="bulletin">
-        <div class="head" style="
-            color: #{{ bulletin.title_color }};
+        <div class="head" style="color: #{{ bulletin.title_color }};">
             {% if bulletin.title_bg_image %}
-                background-image: url('{{ bulletin.title_bg_image }}');
+                <div><img src="{{ bulletin.title_bg_image }}"/></div>
             {% endif %}
-        ">
-            {{ bulletin.title }}
+            {% if bulletin.title %}
+                {{ bulletin.title }}
+            {% endif %}
         </div>
 
         {% if bulletin.content_image %}
