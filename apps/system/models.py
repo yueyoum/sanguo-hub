@@ -40,7 +40,7 @@ class BulletinConfig(models.Model):
 
 
 class Bulletin(models.Model):
-    title = models.CharField("标题", max_length=64)
+    title = models.CharField("标题", max_length=64, blank=True)
     content = models.TextField("内容", blank=True)
     content_image = models.FileField("内容图片", blank=True, upload_to=_bulletin_upload_to)
 
