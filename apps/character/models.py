@@ -4,6 +4,7 @@ class Character(models.Model):
     account_id = models.IntegerField()
     server_id = models.IntegerField()
     name = models.CharField(max_length=20, db_index=True)
+    create_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     class Meta:
         db_table = 'char_'
