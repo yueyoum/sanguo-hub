@@ -76,7 +76,14 @@ def purchase_ios_verify(server_id, char_id, receipt):
         )
         return {'ret': err_code}
 
-    info = res['receipt']['in_app'][-1]
+    try:
+        info = res['receipt']['in_app'][-1]
+    except Exception as e:
+        import pprint
+        print "==== UNPACK VERIFY RESPONSE ERROR ===="
+        print e
+        pprint.pprint(res)
+        return {'ret': errormsg.PURCHASE_VERIFY_ERROR}
 
     product_id = info['product_id']
     quantity = int(info['quantity'])
