@@ -37,7 +37,8 @@ from utils.api import api_send_mail, APIFailure
 #             'souls': [],
 #             'equipments': [],
 #             'gems': [],
-#             'stuffs': []
+#             'stuffs': [],
+#             'horses': [],
 #         }
 #     }
 # }

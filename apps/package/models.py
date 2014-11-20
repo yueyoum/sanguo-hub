@@ -3,7 +3,7 @@
 
 from django.db import models
 
-from core.fixtures import HEROS, EQUIPMENTS, GEMS, STUFFS
+from core.fixtures import HEROS, EQUIPMENTS, GEMS, STUFFS, HORSES
 
 
 class Package(models.Model):
@@ -83,11 +83,21 @@ class Package(models.Model):
                 'prob': s.prob,
             })
 
+        horses = self.package_horse.all()
+        horses_data = []
+        for s in horses:
+            horses_data.append({
+                'id': s.horse,
+                'amount': s.amount,
+                'prob': s.prob,
+            })
+
         data['heros'] = heros_data
         data['souls'] = souls_data
         data['equipments'] = equips_data
         data['gems'] = gems_data
         data['stuffs'] = stuffs_data
+        data['horses'] = horses_data
         return data
 
 
@@ -142,3 +152,9 @@ class PackageStuff(models.Model):
     class Meta:
         db_table = 'package_stuff'
 
+
+class PackageHorse(models.Model):
+    package = models.ForeignKey(Package, related_name='package_horse')
+    horse = models.IntegerField(choices=HORSES)
+    amount = models.IntegerField(default=1, verbose_name='数量')
+    prob = models.IntegerField(default=100000, verbose_name='概率')
