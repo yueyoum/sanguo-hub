@@ -9,17 +9,20 @@ from apps.package.models import (
     PackageEquipment,
     PackageGem,
     PackageStuff,
+    PackageHorse,
 
     HEROS,
     EQUIPMENTS,
     GEMS,
     STUFFS,
+    HORSES,
 )
 
 HEROS_DICT = dict(HEROS)
 EQUIPMENTS_DICT = dict(EQUIPMENTS)
 GEMS_DICT = dict(GEMS)
 STUFFS_DICT = dict(STUFFS)
+HORSES_DICT = dict(HORSES)
 
 class HeroInfoInline(admin.TabularInline):
     model = PackageHero
@@ -41,13 +44,17 @@ class StuffInfoInline(admin.TabularInline):
     model = PackageStuff
     extra = 1
 
+class HorseInfoInline(admin.TabularInline):
+    model = PackageHero
+    extra = 1
+
 class PackageAdmin(admin.ModelAdmin):
     inlines = (
         HeroInfoInline, SoulInfoInline, EquipInfoInline,
-        GemInfoInline, StuffInfoInline
+        GemInfoInline, StuffInfoInline, PackageHorse
     )
 
-    list_display = ('id', 'name', 'mode', 'gold', 'sycee', 'exp', 'official_exp', 'Heros', 'Souls', 'Equips', 'Gems', 'Stuffs')
+    list_display = ('id', 'name', 'mode', 'gold', 'sycee', 'exp', 'official_exp', 'Heros', 'Souls', 'Equips', 'Gems', 'Stuffs', 'Horses')
 
 
     def Heros(self, obj):
@@ -107,6 +114,18 @@ class PackageAdmin(admin.ModelAdmin):
         texts = [_make_text(x) for x in data]
         return '<br />'.join(texts)
     Stuffs.allow_tags = True
+
+    def Horses(self, obj):
+        data = obj.package_horse.all()
+        def _make_text(x):
+            text = u'{0}, 数量: {1}, 概率: {2}'.format(
+                HORSES_DICT[x.stuff], x.amount, x.prob
+            )
+            return text
+        texts = [_make_text(x) for x in data]
+        return '<br />'.join(texts)
+    Horses.allow_tags = True
+
 
 
 admin.site.register(Package, PackageAdmin)
