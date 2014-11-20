@@ -119,7 +119,7 @@ class PackageAdmin(admin.ModelAdmin):
         data = obj.package_horse.all()
         def _make_text(x):
             text = u'{0}, 数量: {1}, 概率: {2}'.format(
-                HORSES_DICT[x.stuff], x.amount, x.prob
+                HORSES_DICT[x.horse], x.amount, x.prob
             )
             return text
         texts = [_make_text(x) for x in data]
