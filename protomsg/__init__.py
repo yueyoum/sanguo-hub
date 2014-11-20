@@ -9,16 +9,20 @@ from purchase_pb2 import *
 from daily_pb2 import *
 from chat_pb2 import *
 from task_pb2 import *
+from horse_pb2 import *
 from achievement_pb2 import *
 from store_pb2 import *
 from character_pb2 import *
 from item_pb2 import *
 from levy_pb2 import *
 from vip_pb2 import *
+from common_pb2 import *
 from formation_pb2 import *
 from friend_pb2 import *
 from battle_pb2 import *
 from prize_pb2 import *
+from activity_pb2 import *
+from plunder_pb2 import *
 
 RESPONSE_NOTIFY_TYPE = {
     "CommandResponse": 50,
@@ -54,8 +58,7 @@ RESPONSE_NOTIFY_TYPE = {
     "AddSocketNotify": 403,
     "SocketNotify": 404,
     "UpdateSocketNotify": 407,
-    "SetSocketHeroResponse": 411,
-    "SetSocketEquipmentResponse": 413,
+    "SetSocketResponse": 413,
     "AlreadyStageNotify": 500,
     "CurrentStageNotify": 501,
     "NewStageNotify": 502,
@@ -64,7 +67,7 @@ RESPONSE_NOTIFY_TYPE = {
     "NewEliteStageNotify": 651,
     "UpdateEliteStageNotify": 652,
     "ElitePVEResponse": 654,
-    "EliteStageRemainedTimesNotify": 655,
+    "EliteStageTimesNotify": 655,
     "EliteStageResetResponse": 657,
     "EliteStageResetTotalResponse": 659,
     "ActivityStageRemainedTimesNotify": 660,
@@ -92,7 +95,6 @@ RESPONSE_NOTIFY_TYPE = {
     "UpdateEquipNotify": 1703,
     "StrengthEquipResponse": 1705,
     "StepUpEquipResponse": 1771,
-    "SpecialEquipmentBuyResponse": 1709,
     "GemNotify": 1750,
     "AddGemNotify": 1751,
     "UpdateGemNotify": 1752,
@@ -152,6 +154,18 @@ RESPONSE_NOTIFY_TYPE = {
     "HangStartResponse": 5007,
     "VIPNotify": 5100,
     "VIPGetRewardResponse": 5102,
+    "ActivityNotify": 5200,
+    "ActivityUpdateNotify": 5201,
+    "ActivityGetRewardResponse": 5203,
+    "GetPlunderLeaderboardResponse": 5302,
+    "HorsesNotify": 5400,
+    "HorsesUpdateNotify": 5401,
+    "HorsesAddNotify": 5402,
+    "HorsesRemoveNotify": 5403,
+    "HorseStrengthResponse": 5405,
+    "HorseEvolutionResponse": 5407,
+    "HorseStrengthConfirmResponse": 5409,
+    "HorseFreeStrengthTimesNotify": 5410,
 }
 
 REQUEST_TYPE = {
@@ -171,8 +185,7 @@ REQUEST_TYPE = {
     334: "HeroStepUpRequest",
     355: "HeroRecruitRequest",
     400: "SetFormationRequest",
-    410: "SetSocketHeroRequest",
-    412: "SetSocketEquipmentRequest",
+    412: "SetSocketRequest",
     600: "PVERequest",
     653: "ElitePVERequest",
     656: "EliteStageResetRequest",
@@ -188,7 +201,6 @@ REQUEST_TYPE = {
     903: "TeamBattleStartRequest",
     1704: "StrengthEquipRequest",
     1770: "StepUpEquipRequest",
-    1708: "SpecialEquipmentBuyRequest",
     1754: "MergeGemRequest",
     1756: "EmbedGemRequest",
     1758: "UnEmbedGemRequest",
@@ -219,6 +231,11 @@ REQUEST_TYPE = {
     5004: "HangGetRewardRequest",
     5006: "HangStartRequest",
     5101: "VIPGetRewardRequest",
+    5202: "ActivityGetRewardRequest",
+    5301: "GetPlunderLeaderboardRequest",
+    5404: "HorseStrengthRequest",
+    5406: "HorseEvolutionRequest",
+    5408: "HorseStrengthConfirmRequest",
 }
 
 REQUEST_TYPE_REV = {
@@ -238,8 +255,7 @@ REQUEST_TYPE_REV = {
     "HeroStepUpRequest": 334,
     "HeroRecruitRequest": 355,
     "SetFormationRequest": 400,
-    "SetSocketHeroRequest": 410,
-    "SetSocketEquipmentRequest": 412,
+    "SetSocketRequest": 412,
     "PVERequest": 600,
     "ElitePVERequest": 653,
     "EliteStageResetRequest": 656,
@@ -255,7 +271,6 @@ REQUEST_TYPE_REV = {
     "TeamBattleStartRequest": 903,
     "StrengthEquipRequest": 1704,
     "StepUpEquipRequest": 1770,
-    "SpecialEquipmentBuyRequest": 1708,
     "MergeGemRequest": 1754,
     "EmbedGemRequest": 1756,
     "UnEmbedGemRequest": 1758,
@@ -286,6 +301,11 @@ REQUEST_TYPE_REV = {
     "HangGetRewardRequest": 5004,
     "HangStartRequest": 5006,
     "VIPGetRewardRequest": 5101,
+    "ActivityGetRewardRequest": 5202,
+    "GetPlunderLeaderboardRequest": 5301,
+    "HorseStrengthRequest": 5404,
+    "HorseEvolutionRequest": 5406,
+    "HorseStrengthConfirmRequest": 5408,
 }
 
 TYPE_COMMAND = {
@@ -304,8 +324,7 @@ TYPE_COMMAND = {
    334: "/hero/stepup/",
    355: "/hero/recruit/",
    400: "/formation/set/",
-   410: "/socket/set/hero/",
-   412: "/socket/set/equipment/",
+   412: "/socket/set/",
    600: "/pve/",
    653: "/elitepve/",
    656: "/elite/reset/",
@@ -321,7 +340,6 @@ TYPE_COMMAND = {
    903: "/teambattle/start/",
    1704: "/equip/strengthen/",
    1770: "/equip/stepup/",
-   1708: "/equip/specialbuy/",
    1754: "/gem/merge/",
    1756: "/equip/embed/",
    1758: "/equip/unembed/",
@@ -352,6 +370,11 @@ TYPE_COMMAND = {
    5004: "/hang/getreward/",
    5006: "/hang/start/",
    5101: "/vip/getreward/",
+   5202: "/activity/getreward/",
+   5301: "/plunder/leaderboard/",
+   5404: "/horse/strength/",
+   5406: "/horse/evolution/",
+   5408: "/horse/strength/confirm/",
 }
 
 COMMAND_TYPE = {v: k for k, v in TYPE_COMMAND.iteritems()}
