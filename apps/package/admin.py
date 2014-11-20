@@ -51,7 +51,7 @@ class HorseInfoInline(admin.TabularInline):
 class PackageAdmin(admin.ModelAdmin):
     inlines = (
         HeroInfoInline, SoulInfoInline, EquipInfoInline,
-        GemInfoInline, StuffInfoInline, PackageHorse
+        GemInfoInline, StuffInfoInline, HorseInfoInline,
     )
 
     list_display = ('id', 'name', 'mode', 'gold', 'sycee', 'exp', 'official_exp', 'Heros', 'Souls', 'Equips', 'Gems', 'Stuffs', 'Horses')
