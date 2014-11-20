@@ -45,7 +45,7 @@ class StuffInfoInline(admin.TabularInline):
     extra = 1
 
 class HorseInfoInline(admin.TabularInline):
-    model = PackageHero
+    model = PackageHorse
     extra = 1
 
 class PackageAdmin(admin.ModelAdmin):
