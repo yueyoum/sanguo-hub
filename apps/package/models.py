@@ -158,3 +158,6 @@ class PackageHorse(models.Model):
     horse = models.IntegerField(choices=HORSES)
     amount = models.IntegerField(default=1, verbose_name='数量')
     prob = models.IntegerField(default=100000, verbose_name='概率')
+
+    class Meta:
+        db_table = 'package_horse'
