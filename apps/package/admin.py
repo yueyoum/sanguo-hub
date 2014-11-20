@@ -66,7 +66,7 @@ class PackageAdmin(admin.ModelAdmin):
         data = obj.package_soul.all()
         def _make_text(x):
             text = u'{0}, 数量: {1}, 概率: {2}'.format(
-                HEROS_DICT[x.hero], x.amount, x.prob
+                HEROS_DICT[x.soul], x.amount, x.prob
             )
             return text
         texts = [_make_text(x) for x in data]
