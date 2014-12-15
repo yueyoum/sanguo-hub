@@ -6,12 +6,14 @@ __date__ = '14-6-12'
 import json
 import traceback
 
-from _base import Logger
+import uwsgidecorators
+
+from cron.log import Logger
 from core.checkin import get_checkin_obj
 from utils.api import api_send_checkin_data
 
-
-def run():
+@uwsgidecorators.cron(0, 0, -1, -1, -1)
+def run(signum):
     logger = Logger('send_checkin_data.log')
     logger.write("Send CheckIn Data Start.")
 
@@ -28,6 +30,3 @@ def run():
         logger.write(traceback.format_exc())
 
     logger.close()
-
-if __name__ == '__main__':
-    run()

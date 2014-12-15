@@ -7,3 +7,4 @@ requests==2.2.1
 arrow==0.4.2
 django-import-export==0.1.5
 django-mailgun==0.2.2
+uwsgidecorators==1.1.0

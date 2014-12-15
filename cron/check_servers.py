@@ -3,12 +3,14 @@
 __author__ = 'Wang Chao'
 __date__ = '14-6-12'
 
-from _base import Logger
+import uwsgidecorators
+
+from cron.log import Logger
 from utils.api import api_check_server
 from core.server import make_servers, pong_from_server
 
-
-def run():
+@uwsgidecorators.cron(-10, -1, -1, -1, -1)
+def run(signum):
     logger = Logger('check_server.log')
     servers = make_servers()
 
@@ -30,7 +32,3 @@ def run():
 
     logger.write("server check complete!")
     logger.close()
-
-
-if __name__ == '__main__':
-    run()

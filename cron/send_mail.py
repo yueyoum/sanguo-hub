@@ -3,7 +3,9 @@
 __author__ = 'Wang Chao'
 __date__ = '2/26/14'
 
-from _base import Logger
+import uwsgidecorators
+
+from cron.log import Logger
 
 import json
 import traceback
@@ -110,8 +112,8 @@ def send_one_mail(mail, server_ids):
             mail.has_send_to = mail.has_send_to + ',' + str(sid)
             mail.save()
 
-
-def run():
+@uwsgidecorators.cron(-10, -1, -1, -1, -1)
+def run(signum):
     mails = ModelMail.objects.filter(Q(status=1) & Q(send_at__lte=timezone.now()))
     logger = Logger('send_mail.log')
     logger.write('Send Mail Start. mails amount: {0}'.format(mails.count()))
@@ -137,7 +139,3 @@ def run():
 
     logger.write("Send Mail Complete")
     logger.close()
-
-
-if __name__ == '__main__':
-    run()
