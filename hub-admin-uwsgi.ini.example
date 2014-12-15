@@ -2,7 +2,7 @@
 chdir = /PATH
 virtualenv = env
 env = DJANGO_SETTINGS_MODULE=hub.settings_admin
-module = hub.wsgi:application
+module = hub.wsgi_admin:application
 socket = 127.0.0.1:9021
 listen = 1024
 max-requests = 10000
