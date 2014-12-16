@@ -1,0 +1,122 @@
+[
+{
+    "pk": 1, 
+    "model": "union.unionlevel", 
+    "fields": {
+        "union_battle_open": true, 
+        "member_limits": 15, 
+        "union_store_open": true, 
+        "union_boss_open": false, 
+        "contributes_needs": 1000, 
+        "buff_max_buy_times": 15
+    }
+},
+{
+    "pk": 2, 
+    "model": "union.unionlevel", 
+    "fields": {
+        "union_battle_open": true, 
+        "member_limits": 20, 
+        "union_store_open": true, 
+        "union_boss_open": false, 
+        "contributes_needs": 5000, 
+        "buff_max_buy_times": 20
+    }
+},
+{
+    "pk": 3, 
+    "model": "union.unionlevel", 
+    "fields": {
+        "union_battle_open": true, 
+        "member_limits": 25, 
+        "union_store_open": true, 
+        "union_boss_open": true, 
+        "contributes_needs": 15000, 
+        "buff_max_buy_times": 25
+    }
+},
+{
+    "pk": 4, 
+    "model": "union.unionlevel", 
+    "fields": {
+        "union_battle_open": true, 
+        "member_limits": 35, 
+        "union_store_open": true, 
+        "union_boss_open": true, 
+        "contributes_needs": 32000, 
+        "buff_max_buy_times": 25
+    }
+},
+{
+    "pk": 5, 
+    "model": "union.unionlevel", 
+    "fields": {
+        "union_battle_open": true, 
+        "member_limits": 40, 
+        "union_store_open": true, 
+        "union_boss_open": true, 
+        "contributes_needs": 60000, 
+        "buff_max_buy_times": 30
+    }
+},
+{
+    "pk": 6, 
+    "model": "union.unionlevel", 
+    "fields": {
+        "union_battle_open": true, 
+        "member_limits": 45, 
+        "union_store_open": true, 
+        "union_boss_open": true, 
+        "contributes_needs": 100000, 
+        "buff_max_buy_times": 35
+    }
+},
+{
+    "pk": 7, 
+    "model": "union.unionlevel", 
+    "fields": {
+        "union_battle_open": true, 
+        "member_limits": 50, 
+        "union_store_open": true, 
+        "union_boss_open": true, 
+        "contributes_needs": 180000, 
+        "buff_max_buy_times": 40
+    }
+},
+{
+    "pk": 8, 
+    "model": "union.unionlevel", 
+    "fields": {
+        "union_battle_open": true, 
+        "member_limits": 55, 
+        "union_store_open": true, 
+        "union_boss_open": true, 
+        "contributes_needs": 350000, 
+        "buff_max_buy_times": 45
+    }
+},
+{
+    "pk": 9, 
+    "model": "union.unionlevel", 
+    "fields": {
+        "union_battle_open": true, 
+        "member_limits": 60, 
+        "union_store_open": true, 
+        "union_boss_open": true, 
+        "contributes_needs": 500000, 
+        "buff_max_buy_times": 50
+    }
+},
+{
+    "pk": 10, 
+    "model": "union.unionlevel", 
+    "fields": {
+        "union_battle_open": true, 
+        "member_limits": 65, 
+        "union_store_open": true, 
+        "union_boss_open": true, 
+        "contributes_needs": 1000000, 
+        "buff_max_buy_times": 55
+    }
+}
+]

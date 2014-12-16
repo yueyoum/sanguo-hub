@@ -1,16 +1,5 @@
 [
 {
-    "pk": 0, 
-    "model": "errormsg.errormsg", 
-    "fields": {
-        "error_index": "NETWORK_DOWN", 
-        "text_zh": "\u7f51\u7edc\u4e0d\u7545\u901a\uff0c\u8bf7\u786e\u4fdd\u7f51\u7edc\u94fe\u63a5", 
-        "link_to": null, 
-        "des": "", 
-        "area": ""
-    }
-},
-{
     "pk": 99, 
     "model": "errormsg.errormsg", 
     "fields": {
@@ -1567,6 +1556,259 @@
     "fields": {
         "error_index": "ACTIVITY_GET_REWARD_TP_ERROR", 
         "text_zh": "\u9886\u53d6\u9519\u8bef", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5700, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_NOT_EXIST", 
+        "text_zh": "\u516c\u4f1a\u4e0d\u5b58\u5728", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5701, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_NAME_TOO_LONG", 
+        "text_zh": "\u516c\u4f1a\u540d\u5b57\u592a\u957f", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5702, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_DES_TOO_LONG", 
+        "text_zh": "\u63cf\u8ff0\u592a\u957f", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5703, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_NAME_ALREADY_EXIST", 
+        "text_zh": "\u6b64\u516c\u4f1a\u540d\u5df2\u88ab\u5360\u7528", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5704, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_CANNOT_CREATE_ALREADY_IN", 
+        "text_zh": "\u5df2\u7ecf\u5728\u516c\u4f1a\u4e2d\uff0c\u65e0\u6cd5\u521b\u5efa\u516c\u4f1a", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5705, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_CANNOT_JOIN_ALREADY_IN", 
+        "text_zh": "\u5df2\u7ecf\u5728\u516c\u4f1a\u4e2d\uff0c\u65e0\u6cd5\u52a0\u5165\u5176\u4ed6\u516c\u4f1a", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5706, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_CANNOT_JOIN_FULL", 
+        "text_zh": "\u516c\u4f1a\u6210\u5458\u5df2\u6ee1\uff0c\u65e0\u6cd5\u52a0\u5165", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5707, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_CANNOT_AGREE_JOIN", 
+        "text_zh": "\u5bf9\u65b9\u5df2\u52a0\u5165\u5176\u4ed6\u516c\u4f1a\uff0c\u65e0\u6cd5\u52a0\u5165", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5708, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_CANNOT_AGREE_NOT_APPLIED", 
+        "text_zh": "\u5bf9\u65b9\u6ca1\u6709\u63d0\u51fa\u7533\u8bf7\uff0c\u65e0\u6cd5\u52a0\u5165", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5709, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_COIN_NOT_ENOUGH", 
+        "text_zh": "\u516c\u4f1a\u5e01\u4e0d\u8db3", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5710, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_STORE_BUY_REACH_MAX_TIMES", 
+        "text_zh": "\u6b64\u7269\u54c1\u5df2\u7ecf\u5230\u6700\u5927\u8d2d\u4e70\u6b21\u6570\uff0c\u8bf7\u660e\u5929\u518d\u4e70", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5711, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_CHECKIN_REACH_MAX_TIMES", 
+        "text_zh": "\u516c\u4f1a\u7b7e\u5230\u6b21\u6570\u5df2\u7528\u5b8c", 
+        "link_to": 1, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5712, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_BATTLE_NO_RIVAL", 
+        "text_zh": "\u516c\u4f1a\u6218\u627e\u4e0d\u5230\u5bf9\u624b", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5713, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_BATTLE_SELF_HAS_NO_BATTLE_MEMBERS", 
+        "text_zh": "\u81ea\u5df1\u6ca1\u6709\u53c2\u6218\u6210\u5458", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5720, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_BOSS_NOT_STARTED", 
+        "text_zh": "BOSS\u672a\u6fc0\u6d3b\u4e0d\u80fd\u8ba8\u4f10", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5721, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_BOSS_DEAD", 
+        "text_zh": "\u516c\u4f1aBOSS\u5df2\u7ecf\u6b7b\u4ea1", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5722, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_BOSS_LEVEL_NOT_ENOUGH", 
+        "text_zh": "\u516c\u4f1a\u7b49\u7ea7\u4e0d\u8db3\uff0c\u65e0\u6cd5\u6d3b\u52a8\u6b64BOSS", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5723, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_CANNOT_APPLY_ALREADY_IN", 
+        "text_zh": "\u60a8\u5df2\u7ecf\u5728\u516c\u4f1a\u4e2d\uff0c\u65e0\u6cd5\u7533\u8bf7", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5724, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_CANNOT_APPLY_FULL", 
+        "text_zh": "\u7533\u8bf7\u6570\u91cf\u5230\u8fbe\u9650\u5236\uff0c\u65e0\u6cd5\u7533\u8bf7", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5725, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_BOSS_ONLY_OPENED_BY_OWNER", 
+        "text_zh": "\u53ea\u6709\u4f1a\u957f\u624d\u80fd\u6fc0\u6d3bBOSS", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5726, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_BOSS_NO_TIMES", 
+        "text_zh": "\u6253BOSS\u6b21\u6570\u5df2\u7528\u5b8c", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5727, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_BATTLE_ONLY_STARTED_BY_OWNER", 
+        "text_zh": "\u53ea\u6709\u4f1a\u957f\u624d\u80fd\u53d1\u8d77\u5de5\u4f1a\u6218", 
+        "link_to": null, 
+        "des": "", 
+        "area": ""
+    }
+},
+{
+    "pk": 5728, 
+    "model": "errormsg.errormsg", 
+    "fields": {
+        "error_index": "UNION_BATTLE_NO_TIMES", 
+        "text_zh": "\u516c\u4f1a\u6218\u6b21\u6570\u5df2\u7ecf\u7528\u5b8c", 
         "link_to": null, 
         "des": "", 
         "area": ""

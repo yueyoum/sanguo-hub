@@ -17,6 +17,7 @@ from item_pb2 import *
 from levy_pb2 import *
 from vip_pb2 import *
 from common_pb2 import *
+from union_pb2 import *
 from formation_pb2 import *
 from friend_pb2 import *
 from battle_pb2 import *
@@ -166,6 +167,29 @@ RESPONSE_NOTIFY_TYPE = {
     "HorseEvolutionResponse": 5407,
     "HorseStrengthConfirmResponse": 5409,
     "HorseFreeStrengthTimesNotify": 5410,
+    "UnionNotify": 5500,
+    "UnionPersonalInformationNotify": 5501,
+    "UnionCreateResponse": 5503,
+    "UnionListNotify": 5504,
+    "UnionApplyResponse": 5506,
+    "UnionModifyResponse": 5508,
+    "UnionListResponse": 5510,
+    "UnionAgreeResponse": 5512,
+    "UnionRefuseResponse": 5514,
+    "UnionApplyListNotify": 5515,
+    "UnionQuitResponse": 5517,
+    "UnionMemberManageResponse": 5619,
+    "UnionStoreNotify": 5620,
+    "UnionStoreBuyResponse": 5622,
+    "UnionCheckinResponse": 5624,
+    "UnionBattleNotify": 5625,
+    "UnionBattleBoardResponse": 5627,
+    "UnionBattleStartResponse": 5629,
+    "UnionBattleRecordGetResponse": 5631,
+    "UnionBossResponse": 5633,
+    "UnionBossGetLogResponse": 5635,
+    "UnionBossStartResponse": 5637,
+    "UnionBossBattleResponse": 5639,
 }
 
 REQUEST_TYPE = {
@@ -236,6 +260,23 @@ REQUEST_TYPE = {
     5404: "HorseStrengthRequest",
     5406: "HorseEvolutionRequest",
     5408: "HorseStrengthConfirmRequest",
+    5502: "UnionCreateRequest",
+    5505: "UnionApplyRequest",
+    5507: "UnionModifyRequest",
+    5509: "UnionListRequest",
+    5511: "UnionAgreeRequest",
+    5513: "UnionRefuseRequest",
+    5516: "UnionQuitRequest",
+    5618: "UnionMemberManageRequest",
+    5621: "UnionStoreBuyRequest",
+    5623: "UnionCheckinRequest",
+    5626: "UnionBattleBoardRequest",
+    5628: "UnionBattleStartRequest",
+    5630: "UnionBattleRecordGetRequest",
+    5632: "UnionBossRequest",
+    5634: "UnionBossGetLogRequest",
+    5636: "UnionBossStartRequest",
+    5638: "UnionBossBattleRequest",
 }
 
 REQUEST_TYPE_REV = {
@@ -306,6 +347,23 @@ REQUEST_TYPE_REV = {
     "HorseStrengthRequest": 5404,
     "HorseEvolutionRequest": 5406,
     "HorseStrengthConfirmRequest": 5408,
+    "UnionCreateRequest": 5502,
+    "UnionApplyRequest": 5505,
+    "UnionModifyRequest": 5507,
+    "UnionListRequest": 5509,
+    "UnionAgreeRequest": 5511,
+    "UnionRefuseRequest": 5513,
+    "UnionQuitRequest": 5516,
+    "UnionMemberManageRequest": 5618,
+    "UnionStoreBuyRequest": 5621,
+    "UnionCheckinRequest": 5623,
+    "UnionBattleBoardRequest": 5626,
+    "UnionBattleStartRequest": 5628,
+    "UnionBattleRecordGetRequest": 5630,
+    "UnionBossRequest": 5632,
+    "UnionBossGetLogRequest": 5634,
+    "UnionBossStartRequest": 5636,
+    "UnionBossBattleRequest": 5638,
 }
 
 TYPE_COMMAND = {
@@ -375,6 +433,23 @@ TYPE_COMMAND = {
    5404: "/horse/strength/",
    5406: "/horse/evolution/",
    5408: "/horse/strength/confirm/",
+   5502: "/union/create/",
+   5505: "/union/apply/",
+   5507: "/union/modify/",
+   5509: "/union/list/",
+   5511: "/union/agree/",
+   5513: "/union/refuse/",
+   5516: "/union/quit/",
+   5618: "/union/manage/",
+   5621: "/union/buy/",
+   5623: "/union/checkin/",
+   5626: "/union/battle/board/",
+   5628: "/union/battle/start/",
+   5630: "/union/battle/record/",
+   5632: "/union/boss/",
+   5634: "/union/boss/log/",
+   5636: "/union/boss/start/",
+   5638: "/union/boss/battle/",
 }
 
 COMMAND_TYPE = {v: k for k, v in TYPE_COMMAND.iteritems()}
