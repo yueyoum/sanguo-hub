@@ -4,6 +4,7 @@ __author__ = 'Wang Chao'
 __date__ = '14-6-12'
 
 import uwsgidecorators
+from django.db import connection
 
 from cron.log import Logger
 from utils.api import api_check_server
@@ -11,6 +12,7 @@ from core.server import make_servers, pong_from_server
 
 @uwsgidecorators.cron(-30, -1, -1, -1, -1)
 def run(signum):
+    connection.close()
     logger = Logger('check_server.log')
     servers = make_servers()
 

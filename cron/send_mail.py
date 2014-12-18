@@ -11,6 +11,7 @@ import json
 import traceback
 from itertools import groupby
 
+from django.db import connection
 from django.db.models import Q
 from django.utils import timezone
 
@@ -114,6 +115,7 @@ def send_one_mail(mail, server_ids):
 
 @uwsgidecorators.cron(-10, -1, -1, -1, -1)
 def run(signum):
+    connection.close()
     mails = ModelMail.objects.filter(Q(status=1) & Q(send_at__lte=timezone.now()))
     logger = Logger('send_mail.log')
     logger.write('Send Mail Start. mails amount: {0}'.format(mails.count()))
