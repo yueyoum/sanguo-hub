@@ -16,7 +16,6 @@ urlpatterns = patterns('',
 
                         # API called from server
                        url(r'^api/server-list/register/$', 'views.api.server.views.server_register_view'),
-                       url(r'^api/server/change/$', 'views.api.server.views.server_change_view'),
 
                        url(r'^api/account/login/$', 'views.api.account.views.login'),
                        url(r'^api/account/bind/$', 'views.api.account.views.bind'),

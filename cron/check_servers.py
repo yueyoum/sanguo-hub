@@ -9,7 +9,7 @@ from cron.log import Logger
 from utils.api import api_check_server
 from core.server import make_servers, pong_from_server
 
-@uwsgidecorators.cron(-10, -1, -1, -1, -1)
+@uwsgidecorators.cron(-30, -1, -1, -1, -1)
 def run(signum):
     logger = Logger('check_server.log')
     servers = make_servers()
@@ -21,14 +21,12 @@ def run(signum):
             import traceback
             logger.write('---- ERROR ----')
             logger.write(traceback.format_exc())
-            status = 4
-            active_amount = None
+            active_amount = 0
         else:
-            status = res['data']['status']
             active_amount = res['data']['active_amount']
 
-        pong_from_server(s, status, active_amount)
-        logger.write("server {0} status {1}".format(s, status))
+        pong_from_server(s, active_amount)
+        logger.write("server {0} active amount {1}".format(s, active_amount))
 
     logger.write("server check complete!")
     logger.close()

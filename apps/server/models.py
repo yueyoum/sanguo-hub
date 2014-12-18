@@ -4,7 +4,7 @@ from django.db.models.signals import post_save, post_delete
 
 class Server(models.Model):
     STATUS = (
-        (1, 'GOOD'), (2, 'BUSY'), (3, 'FULL'), (4, 'DOWN')
+        (1, 'GOOD'), (2, 'BUSY'), (3, 'NEW'), (4, 'DOWN')
     )
 
     id = models.IntegerField(primary_key=True)

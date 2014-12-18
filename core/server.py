@@ -34,9 +34,8 @@ def _update_server(s):
 
 
 
-def pong_from_server(server_id, status, active_amount=None):
+def pong_from_server(server_id, active_amount=None):
     s = Server.objects.get(id=server_id)
-    s.status = status
     if active_amount is not None:
         s.active_players = active_amount
     s.save()
@@ -48,7 +47,6 @@ def server_register(data):
     try:
         server_id = int(data['id'])
         name = data['name']
-        status = int(data['status'])
         host = data['host']
         port = int(data['port'])
         port_https = int(data['port_https'])
@@ -75,7 +73,6 @@ def server_register(data):
         return {'ret': 2}
 
     s.name = name
-    s.status = status
     s.port = port
     s.port_https = port_https
     s.save()
@@ -103,7 +100,7 @@ def get_server_list(account_id=None):
         this = {
             'id': sid,
             'name': s['name'],
-            'status': s['status'],  # FIXME, update server status
+            'status': s['status'],
             'host': s['host'],
             'port': s['port'],
             'port_https': s['port_https'],
@@ -113,28 +110,4 @@ def get_server_list(account_id=None):
         all_servers.append(this)
 
     return all_servers
-
-
-def server_change(data):
-    from utils.api import api_server_change_feedback
-
-    try:
-        server_id = int(data['server_id'])
-        status = int(data['status'])
-        assert status >= 1 and status <= 4
-    except:
-        return {'ret': 1}
-
-    try:
-        s = Server.objects.get(id=server_id)
-    except Server.DoesNotExist:
-        return {'ret': 2}
-
-    s.status = status
-    s.save()
-
-    _update_server(s)
-
-    api_server_change_feedback(server_id, status)
-    return {'ret': 0}
 
