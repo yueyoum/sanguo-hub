@@ -29,7 +29,7 @@ class Purchase91LogAdmin(admin.ModelAdmin):
 
 class PurchaseAiyingyongLogAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'order_id', 'order_time', 'server_id', 'char_id', 'goods_id', 'uid', 'order_money'
+        'id', 'order_id', 'order_time', 'server_id', 'char_id', 'goods_id', 'order_money'
     )
 
 admin.site.register(PurchaseIOSSuccessLog, PurchaseIOSSuccessLogAdmin)
