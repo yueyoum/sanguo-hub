@@ -16,7 +16,7 @@ from core.exception import GateException
 from core.server import make_servers
 from preset import errormsg
 
-def check_allowd_account(data):
+def check_allowed_account(data):
     allowed_accounts = settings.ALLOWED_ACCOUNTS
     method = data['method']
 
@@ -25,8 +25,7 @@ def check_allowd_account(data):
             raise GateException(1)
 
     if method == 'third':
-        if data['platform'] == '91':
-            if '91' not in allowed_accounts:
+        if data['platform'] not in allowed_accounts:
                 raise GateException(1)
 
 
@@ -108,7 +107,7 @@ def account_register(data):
         return {'ret': errormsg.BAD_MESSAGE}
 
     try:
-        check_allowd_account(data)
+        check_allowed_account(data)
     except GateException:
         return {'ret': errormsg.INVALID_OPERATE}
 
@@ -161,7 +160,7 @@ def account_login(data):
         return {'ret': errormsg.BAD_MESSAGE}
 
     try:
-        check_allowd_account(data)
+        check_allowed_account(data)
     except GateException:
         return {'ret': errormsg.INVALID_OPERATE}
 
@@ -198,15 +197,12 @@ def account_login(data):
 
     else:
         # 第三方帐号登录
-        if data['platform'] != '91':
-            # 目前只支持91
-            return {'ret': errormsg.BAD_MESSAGE}
-
-        try:
-            verify_91(data['uid'], data['param'])
-        except:
-            traceback.print_exc()
-            return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
+        if data['platform'] == '91':
+            try:
+                verify_91(data['uid'], data['param'])
+            except:
+                traceback.print_exc()
+                return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
 
         try:
             account = AccountThird.objects.select_related('account').get(platform=data['platform'], uid=data['uid'])

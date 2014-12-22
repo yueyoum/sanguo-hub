@@ -7,7 +7,7 @@ __date__ = '4/2/14'
 from apps.account.models import AccountAnonymous, AccountRegular, AccountThird
 
 from core.server import get_server_list
-from core.account import check_allowd_account
+from core.account import check_allowed_account
 from core.exception import GateException
 from utils.decorate import proto_return
 from libs import pack_msg
@@ -40,7 +40,7 @@ def server_list(request):
         return pack_msg(msg)
 
     try:
-        check_allowd_account(account_data)
+        check_allowed_account(account_data)
     except GateException:
         msg = GetServerListResponse()
         msg.ret = errormsg.INVALID_OPERATE
