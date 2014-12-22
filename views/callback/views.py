@@ -10,9 +10,10 @@ import traceback
 from django.conf import settings
 from django.http import HttpResponse
 
-from apps.purchase.models import Purchase91Log
+from apps.purchase.models import Purchase91Log, PurchaseAiyingyongLog
+from apps.character.models import Character
 
-from utils.api import api_purchase91_done
+from utils.api import api_purchase91_done, api_purchase_aiyingyong_done
 
 def purchase_91_notify(request):
     try:
@@ -120,3 +121,41 @@ def purchase_91_notify(request):
     }
 
     return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+def purchase_aiyingyong_notify(request):
+    print request.GET
+    try:
+        order_id = request.GET['orderNo']
+        goods_name = request.GET['propName']
+        goods_id = int(request.GET['propId'])
+        char_id = int(request.GET['player'])
+        order_money = float(request.GET['fee'])
+        pay_status = int(request.GET['status'])
+        md5_string = request.GET['md5String']
+    except:
+        print "----Error----"
+        traceback.print_exc()
+        return HttpResponse('Error', content_type='plain/text')
+
+    if pay_status != 1:
+        return HttpResponse('Error', content_type='plain/text')
+
+
+    # settings_aiyingyong = settings.THIRD_PLATFORM['aiyingyong']
+    # settings_appid = settings_aiyingyong['appid']
+
+    char = Character.objects.get(id=char_id)
+
+    PurchaseAiyingyongLog.objects.create(
+        order_id = order_id,
+        server_id=char.server_id,
+        char_id=char_id,
+        goods_id=goods_id,
+        order_money=order_money,
+        pay_status=pay_status,
+    )
+
+    api_purchase_aiyingyong_done(char.server_id, char_id, goods_id)
+    return HttpResponse('ok', content_type='plain/text')
+

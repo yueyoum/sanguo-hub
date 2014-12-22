@@ -39,6 +39,7 @@ class PurchaseIOSSuccessLog(models.Model):
         verbose_name_plural = "IOS充值成功记录"
 
 
+
 # 91平台
 class Purchase91Log(models.Model):
     PAY_STATUS = (
@@ -88,3 +89,27 @@ class Purchase91Log(models.Model):
         )
 
         return order_id
+
+
+# aiyingyong
+class PurchaseAiyingyongLog(models.Model):
+    PAY_STATUS = (
+        (1, '成功'),
+        (2, '失败')
+    )
+
+    order_id = models.CharField("订单ID", max_length=255)
+    order_time = models.DateTimeField("支付时间", auto_now_add=True)
+    server_id = models.IntegerField("服务器ID", db_index=True)
+    char_id = models.IntegerField("角色ID")
+    goods_id = models.IntegerField("商品ID")
+
+    order_money = models.FloatField("支付价格")
+    pay_status = models.IntegerField("状态", choices=PAY_STATUS)
+
+    class Meta:
+        db_table = 'purchase_aiyingyong'
+        verbose_name = '爱应用充值记录'
+        verbose_name_plural = '爱应用充值记录'
+
+

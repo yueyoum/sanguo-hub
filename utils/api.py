@@ -45,7 +45,17 @@ def api_purchase91_done(server_id, char_id, goods_id):
         'goods_id': goods_id,
     }
 
-    url = u'https://{0}:{1}/api/purchase91/done/'.format(s['host'], s['port_https'])
+    url = u'https://{0}:{1}/api/purchase/91/done/'.format(s['host'], s['port_https'])
+    apicall(data=data, cmd=url)
+
+def api_purchase_aiyingyong_done(server_id, char_id, goods_id):
+    s = SERVERS[server_id]
+    data = {
+        'char_id': char_id,
+        'goods_id': goods_id
+    }
+
+    url = u'https://{0}:{1}/api/purchase/aiyingyong/done/'.format(s['host'], s['port_https'])
     apicall(data=data, cmd=url)
 
 def api_server_version_change(version):
