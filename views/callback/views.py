@@ -136,10 +136,10 @@ def purchase_aiyingyong_notify(request):
     except:
         print "----Error----"
         traceback.print_exc()
-        return HttpResponse('Error', content_type='plain/text')
+        return HttpResponse('Error', content_type='text/plain')
 
     if pay_status != 1:
-        return HttpResponse('Error', content_type='plain/text')
+        return HttpResponse('Error', content_type='text/plain')
 
 
     # settings_aiyingyong = settings.THIRD_PLATFORM['aiyingyong']
@@ -157,5 +157,5 @@ def purchase_aiyingyong_notify(request):
     )
 
     api_purchase_aiyingyong_done(char.server_id, char_id, goods_id)
-    return HttpResponse('ok', content_type='plain/text')
+    return HttpResponse('ok', content_type='text/plain')
 
