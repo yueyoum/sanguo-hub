@@ -101,11 +101,12 @@ class PurchaseAiyingyongLog(models.Model):
     order_id = models.CharField("订单ID", max_length=255)
     order_time = models.DateTimeField("支付时间", auto_now_add=True)
     server_id = models.IntegerField("服务器ID", db_index=True)
-    char_id = models.IntegerField("角色ID")
+    char_id = models.IntegerField("角色ID", db_index=True)
     goods_id = models.IntegerField("商品ID")
 
     order_money = models.FloatField("支付价格")
     pay_status = models.IntegerField("状态", choices=PAY_STATUS)
+    confirmed = models.BooleanField("确认", default=False)
 
     class Meta:
         db_table = 'purchase_aiyingyong'

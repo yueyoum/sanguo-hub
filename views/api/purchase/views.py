@@ -6,7 +6,7 @@ __date__ = '14-6-30'
 from utils.decorate import json_return
 from core.purchase import purchase_ios_verify
 
-from apps.purchase.models import Purchase91Log
+from apps.purchase.models import Purchase91Log, PurchaseAiyingyongLog
 from preset import errormsg
 
 
@@ -75,4 +75,39 @@ def purchase91_confirm(request):
         # FAILURE
         data['data']['status'] = 2
 
+    return data
+
+
+@json_return
+def purchase_aiyingyong_confirm(request):
+    char_id = int(request.POST['char_id'])
+
+    data = {
+        'ret': 0,
+        'data': {
+            'status': 0,
+            'goods_id': 0,
+        }
+    }
+
+    p = PurchaseAiyingyongLog.objects.filter(char_id=char_id).filter(confimed=False).order_by('-order_time')[0:1]
+    if p.count() == 0:
+        # WAITING
+        data['ret'] == errormsg.PURCHASE_91_FAILURE
+        data['data']['status'] = 1
+        return data
+
+    p = p[0]
+    data['data']['goods_id'] = p.goods_id
+
+    if p.pay_status == 1:
+        # SUCCESS
+        pass
+    else:
+        # FAILURE
+        data['ret'] = errormsg.PURCHASE_91_FAILURE
+        data['data']['status'] = 2
+
+    p.confirmed = True
+    p.save()
     return data

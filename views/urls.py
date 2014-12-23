@@ -30,8 +30,9 @@ urlpatterns = patterns('',
 
                        url(r'^api/purchase/verify/$', 'views.api.purchase.views.ios_verify'),
 
-                       url(r'^api/purchase91/orderid/$', 'views.api.purchase.views.get_purchase91_order_id'),
-                       url(r'^api/purchase91/confirm/$', 'views.api.purchase.views.purchase91_confirm'),
+                       url(r'^api/purchase/91/orderid/$', 'views.api.purchase.views.get_purchase91_order_id'),
+                       url(r'^api/purchase/91/confirm/$', 'views.api.purchase.views.purchase91_confirm'),
+                       url(r'^api/purchase/aiyingyong/confirm/$', 'views.api.purchase.views.purchase_aiyingyong_confirm'),
 
                        url(r'^api/system/broadcast/$', 'views.api.system.views.get_system_broadcast'),
 
