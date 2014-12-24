@@ -1,9 +1,11 @@
 # -*- coding:utf-8 -*-
 
+from django.http import HttpResponse
 from django.contrib import admin
+from django.core import serializers
 
 from apps.character.models import Character
-from utils.api import api_character_information
+from utils.api import api_character_information, api_character_union
 
 class CharacterAdmin(admin.ModelAdmin):
     readonly_fields = ('id', 'account_id', 'server_id', 'name')
@@ -13,6 +15,8 @@ class CharacterAdmin(admin.ModelAdmin):
     )
     search_fields = ['name',]
     list_per_page = 50
+
+    actions = ['query_joined_union',]
 
     def has_add_permission(self, request):
         return False
@@ -47,6 +51,24 @@ class CharacterAdmin(admin.ModelAdmin):
 
     def Vip(self, obj):
         return self._get_char_info(obj)['vip']
+
+
+    # custom actions
+    def query_joined_union(self, request, queryset):
+        char_ids = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
+        print char_ids
+
+        result = []
+        for q in queryset:
+            data = api_character_union(q.server_id, q.char_id)
+            result.append(data['data'])
+
+        response = HttpResponse(content_type='application/json')
+        serializers.serialize("json", result, stream=response)
+        return response
+
+    query_joined_union.short_description = "查看加入的工会"
+
 
 
 admin.site.register(Character, CharacterAdmin)

@@ -17,11 +17,18 @@ def api_character_initialize(server_id, data):
     return apicall(data=data, cmd=url)
 
 def api_character_information(server_id, char_id):
+    # 获取角色基本信息
     s = SERVERS[server_id]
     data = {'char_id': char_id}
     url = u'https://{0}:{1}/api/character/information/'.format(s['host'], s['port_https'])
     return apicall(data=data, cmd=url)
 
+def api_character_union(server_id, char_id):
+    # 获取角色工会信息
+    s = SERVERS[server_id]
+    data = {'char_id': char_id}
+    url = u'https://{0}:{1}/api/character/union/'.format(s['host'], s['port_https'])
+    return apicall(data=data, cmd=url)
 
 def api_send_mail(server_id, data):
     s = SERVERS[server_id]
