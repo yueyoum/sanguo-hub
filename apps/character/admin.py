@@ -18,7 +18,7 @@ class CharacterAdmin(admin.ModelAdmin):
         return False
 
     def _get_char_info(self, obj):
-        info = getattr(self, '__char_info')
+        info = getattr(self, '__char_info', None)
         if not info:
             info = api_character_information(obj.server_id, obj.id)
             self.__char_info = info
