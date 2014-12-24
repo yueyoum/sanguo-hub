@@ -4,7 +4,7 @@ from apps.account.models import Account
 from apps.character.models import Character
 
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ('id', 'tp', 'Name', 'Password', 'Token', 'Platform', 'Puid', 'CharId',
+    list_display = ('id', 'tp', 'Name', 'Password', 'Token', 'Platform', 'Puid', 'CharIds',
         'register_at', 'last_login', 'last_server_id', 'all_server_ids', 'login_times'
     )
 
@@ -38,12 +38,15 @@ class AccountAdmin(admin.ModelAdmin):
             return obj.info_third.uid
         return ''
 
-    def CharId(self, obj):
-        try:
-            char_id = Character.objects.get(account_id=obj.id).id
-        except Character.DoesNotExist:
-            char_id = ""
-        return char_id
+    def CharIds(self, obj):
+        chars = Character.objects.filter(account_id=obj.id)
+        texts = []
+        for c in chars:
+            texts.append("{0}: {1}".format(c.server_id, c.id))
+
+        return "<br/>".join(texts)
+    CharIds.allow_tags = True
+
 
     def has_add_permission(self, request):
         return False
