@@ -6,10 +6,13 @@ from apps.character.models import Character
 from utils.api import api_character_information
 
 class CharacterAdmin(admin.ModelAdmin):
+    readonly_fields = ('id', 'account_id', 'server_id', 'name')
+
     list_display = ('id', 'account_id', 'server_id', 'name', 'create_at',
     'Sycee', 'Gold', 'Level', 'Exp', 'Vip'
     )
     search_fields = ['name',]
+    list_per_page = 50
 
     def has_add_permission(self, request):
         return False
@@ -42,7 +45,6 @@ class CharacterAdmin(admin.ModelAdmin):
 
     def Vip(self, obj):
         return self._get_char_info(obj)['vip']
-
 
 
 admin.site.register(Character, CharacterAdmin)
