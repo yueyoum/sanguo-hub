@@ -6,7 +6,6 @@
         <db>sanguo_hub</db>
         <user>root</user>
         <password>root</password>
-        <age>120</age>
     </mysql>
 
 

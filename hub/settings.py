@@ -156,7 +156,6 @@ MYSQL_PORT = int( tree.find('mysql/port').text )
 MYSQL_DB = tree.find('mysql/db').text
 MYSQL_USER = tree.find('mysql/user').text
 MYSQL_PASSWORD = tree.find('mysql/password').text
-MYSQL_AGE = int( tree.find('mysql/age').text )
 
 DATABASES = {
     'default': {
@@ -167,7 +166,6 @@ DATABASES = {
         'PASSWORD': MYSQL_PASSWORD,
         'HOST': MYSQL_HOST, # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': MYSQL_PORT, # Set to empty string for default.
-        'CONN_MAX_AGE': MYSQL_AGE,
     }
 }
 
