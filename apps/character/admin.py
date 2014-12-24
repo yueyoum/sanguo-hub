@@ -21,10 +21,12 @@ class CharacterAdmin(admin.ModelAdmin):
         return False
 
     def _get_char_info(self, obj):
-        info = getattr(self, '__char_info', None)
+        all_info = getattr(self, '__char_info', {})
+        info = all_info.get(obj.id, None)
         if not info:
             info = api_character_information(obj.server_id, obj.id)
-            self.__char_info = info
+            all_info[obj.id] = info
+            setattr(self, '__char_info', all_info)
         return info
 
     def Gold(self, obj):
