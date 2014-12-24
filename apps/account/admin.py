@@ -39,7 +39,8 @@ class AccountAdmin(admin.ModelAdmin):
         return ''
 
     def CharId(self, obj):
-        return Character.objects.get(account_id=obj.id)
+        char_id = Character.objects.get(account_id=obj.id).id
+        return char_id
 
     def has_add_permission(self, request):
         return False
