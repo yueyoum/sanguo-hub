@@ -39,7 +39,10 @@ class AccountAdmin(admin.ModelAdmin):
         return ''
 
     def CharId(self, obj):
-        char_id = Character.objects.get(account_id=obj.id).id
+        try:
+            char_id = Character.objects.get(account_id=obj.id).id
+        except Character.DoesNotExist:
+            char_id = ""
         return char_id
 
     def has_add_permission(self, request):
