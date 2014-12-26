@@ -71,7 +71,7 @@ def server_list(request):
     else:
         account_id = None
 
-    is_test = request.environ['NEW_GAME_VERSION'] == '1'
+    is_test = request.environ.get('NEW_GAME_VERSION', 0) == '1'
     all_servers = get_server_list(account_id=account_id, is_test=is_test)
 
     top = None
