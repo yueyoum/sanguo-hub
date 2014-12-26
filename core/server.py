@@ -47,6 +47,7 @@ def server_register(data):
         host = data['host']
         port = int(data['port'])
         port_https = int(data['port_https'])
+        is_test = data['is_test'] == '1'
     except (KeyError, ValueError):
         return {'ret': 1}
 
@@ -58,7 +59,8 @@ def server_register(data):
             name=name,
             host=host,
             port=port,
-            port_https=port_https
+            port_https=port_https,
+            is_test=is_test
         )
         return {'ret': 0}
 
@@ -71,6 +73,7 @@ def server_register(data):
     s.name = name
     s.port = port
     s.port_https = port_https
+    s.is_test = is_test
     s.save()
 
     return {
