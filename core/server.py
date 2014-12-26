@@ -41,6 +41,13 @@ def pong_from_server(server_id, active_amount=None):
 
 
 def server_register(data):
+    return_data = {
+        'ret': 0,
+        'data': {
+            'version': version.version,
+        }
+    }
+
     try:
         server_id = int(data['id'])
         name = data['name']
@@ -62,7 +69,7 @@ def server_register(data):
             port_https=port_https,
             is_test=is_test
         )
-        return {'ret': 0}
+        return return_data
 
     if s.host != host:
         print "server {0} try to register. but {0} already exists, and the host {1} not equal the try register host {2}".format(
@@ -76,12 +83,7 @@ def server_register(data):
     s.is_test = is_test
     s.save()
 
-    return {
-        'ret': 0,
-        'data': {
-            'version': version.version,
-        }
-    }
+    return return_data
 
 
 def get_server_list(account_id=None, is_test=False):
