@@ -5,7 +5,9 @@ from apps.character.models import Character
 
 
 class ServerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'status', 'host', 'port', 'port_https', 'Players', 'active_players')
+    list_display = ('id', 'name', 'status', 'host', 'port', 'port_https', 'Players', 'active_players',
+    'is_test',
+    )
 
     def Players(self, obj):
         return Character.objects.filter(server_id=obj.id).count()

@@ -9,7 +9,6 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
     help = """Server stuffs. args:
     status   output servers status.
-    version  output the server version, and send it to all servers
     """
 
     def handle(self, *args, **options):
@@ -19,8 +18,6 @@ class Command(BaseCommand):
 
         if args[0] == 'status':
             self._cmd_status()
-        elif args[0] == 'version':
-            self._cmd_version()
         else:
             self.stdout.write(self.help)
             return
@@ -35,15 +32,3 @@ class Command(BaseCommand):
             )
 
             self.stdout.write(text)
-
-    def _cmd_version(self):
-        from core.version import version
-        from startup import main
-        from utils.api import api_server_version_change
-
-        main()
-
-        version_text = version.version
-        self.stdout.write("Version: {0}".format(version_text))
-        api_server_version_change(version_text)
-

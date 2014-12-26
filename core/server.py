@@ -17,20 +17,18 @@ def _make_server_dict(s):
         'port_https': s.port_https,
     }
 
-SERVERS = {}
 
-def make_servers():
-    global SERVERS
-    SERVERS = {}
-    for s in Server.objects.all():
-        SERVERS[s.id] = _make_server_dict(s)
+def make_servers(is_test=None):
+    servers = {}
+    if is_test is None:
+        queryset = Server.objects.all()
+    else:
+        queryset = Server.objects.filter(is_test=is_test)
 
-    return SERVERS
+    for s in queryset:
+        servers[s.id] = _make_server_dict(s)
 
-make_servers()
-
-def _update_server(s):
-    SERVERS[s.id] = _make_server_dict(s)
+    return servers
 
 
 
@@ -39,7 +37,6 @@ def pong_from_server(server_id, active_amount=None):
     if active_amount is not None:
         s.active_players = active_amount
     s.save()
-    _update_server(s)
 
 
 
@@ -63,7 +60,6 @@ def server_register(data):
             port=port,
             port_https=port_https
         )
-        _update_server(s)
         return {'ret': 0}
 
     if s.host != host:
@@ -77,7 +73,6 @@ def server_register(data):
     s.port_https = port_https
     s.save()
 
-    _update_server(s)
     return {
         'ret': 0,
         'data': {
@@ -86,14 +81,14 @@ def server_register(data):
     }
 
 
-def get_server_list(account_id=None):
+def get_server_list(account_id=None, is_test=False):
     user_servers = []
     if account_id:
         user_servers = Character.objects.only('server_id').filter(
             account_id=account_id).values_list('server_id', flat=True)
 
     all_servers = []
-    servers = make_servers().items()
+    servers = make_servers(is_test=is_test).items()
     servers.sort(key=lambda item: item[0])
 
     for sid, s in servers:

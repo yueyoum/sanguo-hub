@@ -6,54 +6,54 @@ __date__ = '5/29/14'
 # Keep APIFailure here
 from libs.apiclient import HTTPSAPIClient, APIFailure
 
-from core.server import SERVERS
+from core.server import make_servers
 
 HTTPSAPIClient.install_pem('/opt/ca/client.pem')
 apicall = HTTPSAPIClient()
 
 def api_character_initialize(server_id, data):
-    s = SERVERS[server_id]
+    s = make_servers()[server_id]
     url = u'https://{0}:{1}/api/character/initialize/'.format(s['host'], s['port_https'])
     return apicall(data=data, cmd=url)
 
 def api_character_information(server_id, char_id):
     # 获取角色基本信息
-    s = SERVERS[server_id]
+    s = make_servers()[server_id]
     data = {'char_id': char_id}
     url = u'https://{0}:{1}/api/character/information/'.format(s['host'], s['port_https'])
     return apicall(data=data, cmd=url)
 
 def api_character_union(server_id, char_id):
     # 获取角色工会信息
-    s = SERVERS[server_id]
+    s = make_servers()[server_id]
     data = {'char_id': char_id}
     url = u'https://{0}:{1}/api/character/union/'.format(s['host'], s['port_https'])
     return apicall(data=data, cmd=url)
 
 def api_send_mail(server_id, data):
-    s = SERVERS[server_id]
+    s = make_servers()[server_id]
     url = u'https://{0}:{1}/api/mail/send/'.format(s['host'], s['port_https'])
     return apicall(data=data, cmd=url)
 
 def api_send_checkin_data(data):
-    for s in SERVERS.values():
+    for s in make_servers().values():
         url = u'https://{0}:{1}/api/checkin/send/'.format(s['host'], s['port_https'])
         apicall(data=data, cmd=url)
 
 
 def api_check_server(server_id):
-    s = SERVERS[server_id]
+    s = make_servers()[server_id]
     url = u'https://{0}:{1}/api/ping/'.format(s['host'], s['port_https'])
     return apicall(data={}, cmd=url)
 
 def api_server_change_feedback(server_id, status):
-    s = SERVERS[server_id]
+    s = make_servers()[server_id]
     url = u'https://{0}:{1}/api/server/feedback/'.format(s['host'], s['port_https'])
     apicall(data={'status': status}, cmd=url)
 
 
 def api_purchase91_done(server_id, char_id, goods_id):
-    s = SERVERS[server_id]
+    s = make_servers()[server_id]
     data = {
         'char_id': char_id,
         'goods_id': goods_id,
@@ -63,7 +63,7 @@ def api_purchase91_done(server_id, char_id, goods_id):
     apicall(data=data, cmd=url)
 
 def api_purchase_aiyingyong_done(server_id, char_id, goods_id):
-    s = SERVERS[server_id]
+    s = make_servers()[server_id]
     data = {
         'char_id': char_id,
         'goods_id': goods_id
@@ -71,12 +71,3 @@ def api_purchase_aiyingyong_done(server_id, char_id, goods_id):
 
     url = u'https://{0}:{1}/api/purchase/aiyingyong/done/'.format(s['host'], s['port_https'])
     apicall(data=data, cmd=url)
-
-def api_server_version_change(version):
-    for index, s in enumerate(SERVERS.values()):
-        data = {
-            'version': version,
-            'index': index
-        }
-        url = u'https://{0}:{1}/api/server/version/'.format(s['host'], s['port_https'])
-        apicall(data=data, cmd=url)
