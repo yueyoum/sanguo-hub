@@ -93,7 +93,7 @@ def purchase_aiyingyong_confirm(request):
     p = PurchaseAiyingyongLog.objects.filter(char_id=char_id).filter(confirmed=False).order_by('-order_time')[0:1]
     if p.count() == 0:
         # WAITING
-        data['ret'] == errormsg.PURCHASE_91_FAILURE
+        data['ret'] = errormsg.PURCHASE_91_FAILURE
         data['data']['status'] = 1
         return data
 

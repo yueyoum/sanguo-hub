@@ -145,6 +145,9 @@ def purchase_aiyingyong_notify(request):
     # settings_aiyingyong = settings.THIRD_PLATFORM['aiyingyong']
     # settings_appid = settings_aiyingyong['appid']
 
+    if PurchaseAiyingyongLog.objects.filter(order_id=order_id).exists():
+        return HttpResponse('ok', content_type='text/plain')
+
     char = Character.objects.get(id=char_id)
 
     PurchaseAiyingyongLog.objects.create(

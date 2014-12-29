@@ -98,7 +98,7 @@ class PurchaseAiyingyongLog(models.Model):
         (2, '失败')
     )
 
-    order_id = models.CharField("订单ID", max_length=255)
+    order_id = models.CharField("订单ID", max_length=255, db_index=True)
     order_time = models.DateTimeField("支付时间", auto_now_add=True)
     server_id = models.IntegerField("服务器ID", db_index=True)
     char_id = models.IntegerField("角色ID", db_index=True)
