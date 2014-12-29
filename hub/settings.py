@@ -65,7 +65,6 @@ TEMPLATE_LOADERS = (
 )
 
 
-
 MIDDLEWARE_CLASSES = (
     # 'django.contrib.sessions.middleware.SessionMiddleware',
     # 'django.middleware.common.CommonMiddleware',
@@ -73,6 +72,7 @@ MIDDLEWARE_CLASSES = (
     # 'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.messages.middleware.MessageMiddleware',
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'libs.middleware.ContentMD5',
     'libs.middleware.RequestFilterWrapperForVersionCheck',
 )
 
