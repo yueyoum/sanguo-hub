@@ -124,15 +124,15 @@ def purchase_91_notify(request):
 
 
 def purchase_aiyingyong_notify(request):
-    print request.GET
     try:
-        order_id = request.GET['orderNo']
-        goods_name = request.GET['propName']
-        goods_id = int(request.GET['propId'])
-        char_id = int(request.GET['player'])
-        order_money = float(request.GET['fee'])
-        pay_status = int(request.GET['status'])
-        md5_string = request.GET['md5String']
+        order_id = request.POST['orderNo']
+        goods_name = request.POST['propName']
+        goods_id = int(request.POST['propId'])
+        char_id = int(request.POST['player'])
+        order_money = float(request.POST['fee'])
+        pay_status = int(request.POST['status'])
+        md5_string = request.POST['md5String']
+        # game_id = request.POST['gameId']
     except:
         print "----Error----"
         traceback.print_exc()
