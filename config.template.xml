@@ -45,4 +45,8 @@
         <appid>xxx</appid>
         <appkey>xxx</appkey>
     </third>
+
+    <third platform="aiyingyong">
+        <gameid>xxx</gameid>
+    </third>
 </config>

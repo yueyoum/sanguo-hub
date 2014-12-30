@@ -141,15 +141,30 @@ def purchase_aiyingyong_notify(request):
         traceback.print_exc()
         return HttpResponse('Error', content_type='text/plain')
 
+    settings_aiyingyong = settings.THIRD_PLATFORM['aiyingyong']
+    settings_gameid = settings_aiyingyong['gameid']
+
+    my_md5_text = u'{0}{1}{2}{3}{4}{5}{6}'.format(
+        order_id,
+        goods_name,
+        goods_id,
+        char_id,
+        order_money,
+        pay_status,
+        settings_gameid,
+    )
+
+    my_md5 = hashlib.md5(my_md5_text.encode('utf-8')).hexdigest()
+    if my_md5 != md5_string:
+        print '==== Error: MD5 NOT EQUAL===='
+        return HttpResponse('Error', content_type='text/plain')
+
+
     if PurchaseAiyingyongLog.objects.filter(order_id=order_id).exists():
         return HttpResponse('ok', content_type='text/plain')
 
     if pay_status != 1:
         return HttpResponse('Error', content_type='text/plain')
-
-
-    # settings_aiyingyong = settings.THIRD_PLATFORM['aiyingyong']
-    # settings_appid = settings_aiyingyong['appid']
 
     if PurchaseAiyingyongLog.objects.filter(order_id=order_id).exists():
         return HttpResponse('ok', content_type='text/plain')
