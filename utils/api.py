@@ -23,6 +23,23 @@ def api_character_information(server_id, char_id):
     url = u'https://{0}:{1}/api/character/information/'.format(s['host'], s['port_https'])
     return apicall(data=data, cmd=url)
 
+def api_character_modify(server_id, char_id, name, value):
+    # 获取角色基本信息
+    s = make_servers()[server_id]
+    data = {
+        'char_id': char_id,
+        'gold': 0,
+        'sycee': 0,
+        'level': 0,
+        'vip': 0,
+    }
+
+    data[name] = value
+
+    url = u'https://{0}:{1}/api/character/modify/'.format(s['host'], s['port_https'])
+    return apicall(data=data, cmd=url)
+
+
 def api_character_union(server_id, char_id):
     # 获取角色工会信息
     s = make_servers()[server_id]
