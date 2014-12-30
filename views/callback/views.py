@@ -6,6 +6,7 @@ __date__ = '14-7-24'
 import json
 import hashlib
 import traceback
+import pprint
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -124,6 +125,8 @@ def purchase_91_notify(request):
 
 
 def purchase_aiyingyong_notify(request):
+    pprint.pprint(request.POST)
+
     try:
         order_id = request.POST['orderNo']
         goods_name = request.POST['propName']
@@ -137,6 +140,9 @@ def purchase_aiyingyong_notify(request):
         print "----Error----"
         traceback.print_exc()
         return HttpResponse('Error', content_type='text/plain')
+
+    if PurchaseAiyingyongLog.objects.filter(order_id=order_id).exists():
+        return HttpResponse('ok', content_type='text/plain')
 
     if pay_status != 1:
         return HttpResponse('Error', content_type='text/plain')
