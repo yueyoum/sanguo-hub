@@ -36,6 +36,14 @@ def use(char_id, code_id):
     if ActivateCodeUseLog.objects.filter(Q(code_id=code_id) & Q(char_id=char_id)).exists():
         return {'ret': errormsg.ACTIVATE_CODE_ALREADY_USED}
 
+    # 同类也不能多次使用
+    used_codes = ActivateCodeUseLog.objects.filter(char_id=char_id).values_list('code_id', flat=True)
+    used_codes = list(used_codes)
+    used_bucket_ids = ActivateCode.objects.filter(code_id__in=used_codes).values_list('bucket', flat=True)
+    this_code_bucket_id = ac.bucket.id
+    if this_code_bucket_id in used_bucket_ids:
+        return {'ret': errormsg.ACTIVATE_CODE_ALREADY_USED}
+
     # USED TIMES LIMITS ?
     if ac.bucket.use_times_limit > 0:
         used_times = ActivateCodeUseLog.objects.filter(code_id=code_id).count()
