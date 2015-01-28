@@ -134,29 +134,11 @@ def purchase_aiyingyong_notify(request):
         char_id = int(request.POST['player'])
         order_money = float(request.POST['fee'])
         pay_status = int(request.POST['status'])
-        md5_string = request.POST['md5String']
+        # md5_string = request.POST['md5String']
         # game_id = request.POST['gameId']
     except:
         print "----Error----"
         traceback.print_exc()
-        return HttpResponse('Error', content_type='text/plain')
-
-    settings_aiyingyong = settings.THIRD_PLATFORM['aiyingyong']
-    settings_gameid = settings_aiyingyong['gameid']
-
-    my_md5_text = u'{0}{1}{2}{3}{4}{5}{6}'.format(
-        order_id,
-        goods_name,
-        goods_id,
-        char_id,
-        order_money,
-        pay_status,
-        settings_gameid,
-    )
-
-    my_md5 = hashlib.md5(my_md5_text.encode('utf-8')).hexdigest()
-    if my_md5 != md5_string:
-        print '==== Error: MD5 NOT EQUAL===='
         return HttpResponse('Error', content_type='text/plain')
 
 
