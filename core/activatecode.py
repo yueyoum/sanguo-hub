@@ -8,6 +8,7 @@ from django.db.models import Q
 import arrow
 
 from apps.activatecode.models import ActivateCode, ActivateCodeUseLog
+from apps.character.models import Character
 from preset import errormsg
 
 def use(char_id, code_id):
@@ -45,10 +46,22 @@ def use(char_id, code_id):
         return {'ret': errormsg.ACTIVATE_CODE_ALREADY_USED}
 
     # USED TIMES LIMITS ?
+    # 使用次数是按照帐号来限制的，不是角色
+    # 也就是一个帐号在不同服务器中的不同角色也可以使用
     if ac.bucket.use_times_limit > 0:
-        used_times = ActivateCodeUseLog.objects.filter(code_id=code_id).count()
-        if used_times >= ac.bucket.use_times_limit:
-            return {'ret': errormsg.ACTIVATE_CODE_USED_TIMES_OUT}
+        code_used = ActivateCodeUseLog.objects.filter(code_id=code_id)
+        if code_used.count() > 0:
+            # 有人用过了
+            used_chars = [c.char_id for c in code_used]
+            used_accounts = Character.objects.filter(id__in=used_chars).values_list('account_id', flat=True)
+            used_accounts = list(used_accounts)
+
+            new_use_account = Character.objects.get(id=char_id).account_id
+            used_accounts.append(new_use_account)
+            if len(set(used_accounts)) > ac.bucket.use_times_limit:
+                # 新用帐号+已用帐号已经超过限制了
+                return {'ret': errormsg.ACTIVATE_CODE_USED_TIMES_OUT}
+
 
     # ALL OK
     package = ac.bucket.package.export_data()
