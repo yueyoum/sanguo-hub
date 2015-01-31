@@ -10,7 +10,7 @@ from cron.log import Logger
 from utils.api import api_check_server
 from core.server import make_servers, pong_from_server
 
-@uwsgidecorators.cron(-30, -1, -1, -1, -1)
+@uwsgidecorators.timer(300)
 def run(signum):
     connection.close()
     logger = Logger('check_server.log')
