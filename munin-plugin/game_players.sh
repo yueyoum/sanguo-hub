@@ -5,7 +5,7 @@ then
     echo "yes"
     exit 0
 fi
-    
+
 if [ "$1" = "config" ]
 then
     echo "graph_title Players Amount of Game"
@@ -17,10 +17,10 @@ then
     echo "graph_order accounts characters"
 
     echo "accounts.label players"
-    echo "accounts.draw AREA"
+    echo "accounts.draw AREASTACK"
     echo "accounts.info Amount of Accounts"
     echo "characters.label characters"
-    echo "characters.draw STACK"
+    echo "characters.draw AREASTACK"
     echo "characters.info Amount of Characters"
 
     exit 0

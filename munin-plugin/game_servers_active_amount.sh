@@ -13,10 +13,10 @@ fi
 
 if [ "$1" = "config" ]
 then
-    "$PYTHON" "$DIR/game_servers.py" config
+    "$PYTHON" "$DIR/game_servers_active_amount.py" config
     exit 0
 fi
 
 
-"$PYTHON" "$DIR/game_servers.py"
+"$PYTHON" "$DIR/game_servers_active_amount.py"
 
