@@ -3,6 +3,7 @@
 SELF=`readlink -f $0`
 DIR=`dirname "$SELF"`
 PYTHON="$DIR/../env/bin/python"
+SCRIPT="$DIR/game_servers_char_amount.py"
 
 if [ "$1" == "autoconf" ]
 then
@@ -11,12 +12,12 @@ then
 fi
 
 
-if [ "$1" = "config" ]
+if [ "$1" == "config" ]
 then
-    "$PYTHON" "$DIR/game_servers_char_amount.py" config
+    "$PYTHON" "$SCRIPT" config
     exit 0
 fi
 
 
-"$PYTHON" "$DIR/game_servers_char_amount.py"
+"$PYTHON" "$SCRIPT"
 

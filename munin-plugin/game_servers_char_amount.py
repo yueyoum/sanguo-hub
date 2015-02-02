@@ -34,12 +34,14 @@ if arg == 'config':
     print "graph_info This graph shows the Servers Chars Amount"
     print "graph_order",
 
-    for s in Server.objects.filter(is_test=False).all():
+    servers = Server.objects.filter(is_test=False).all()
+
+    for s in servers:
         print "server{0}".format(s.id),
 
     print
 
-    for s in Server.objects.filter(is_test=False).all():
+    for s in servers:
         print "server{0}.label server{0}".format(s.id)
         print "server{0}.draw LINE1".format(s.id)
         print "server{0}.info All Characters amount of server{0}".format(s.id)
