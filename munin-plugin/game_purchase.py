@@ -33,22 +33,23 @@ if arg == 'config':
     print "graph_vlabel Purchase"
     print "graph_category game"
     print "graph_info This graph shows the Purchase status of game"
-    print "graph_order sum",
+    print "graph_order",
 
     servers = Server.objects.filter(is_test=False).all()
 
     for s in servers:
         print "server{0}".format(s.id),
-    print
+    print "sum"
 
-    print "sum.label sum"
-    print "sum.draw LINE0"
-    print "sum.info total purchase money"
 
     for s in servers:
         print "server{0}.label server{0}".format(s.id)
         print "server{0}.draw AREASTACK".format(s.id)
         print "server{0}.info purchase money of server {0}".format(s.id)
+
+    print "sum.label sum"
+    print "sum.draw LINE0"
+    print "sum.info total purchase money"
 
     sys.exit(0)
 
