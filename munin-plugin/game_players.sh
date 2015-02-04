@@ -17,10 +17,10 @@ then
     echo "graph_order accounts characters"
 
     echo "accounts.label players"
-    echo "accounts.draw AREASTACK"
+    echo "accounts.draw LINE1"
     echo "accounts.info Amount of Accounts"
     echo "characters.label characters"
-    echo "characters.draw AREASTACK"
+    echo "characters.draw LINE1"
     echo "characters.info Amount of Characters"
 
     exit 0
