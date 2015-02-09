@@ -169,6 +169,11 @@ DATABASES = {
     }
 }
 
+
+NEWDEFAULT_SERVER = tree.find('newdefault')
+if NEWDEFAULT_SERVER is not None:
+    NEWDEFAULT_SERVER = int(NEWDEFAULT_SERVER.text)
+
 CRYPTO_KEY = tree.find('crypto/key').text
 
 EMAIL_NAME = tree.find('email/name').text

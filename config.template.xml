@@ -8,6 +8,8 @@
         <password>root</password>
     </mysql>
 
+    <!--新用户默认服务器，没有这个配置，或者none/null表示最新服务器，否则就是ID的服务器-->
+    <!--<newdefault>1</newdefault>-->
 
     <!-- below are common settings for all nodes -->
     <!-- which means all nodes must keep the same settings -->

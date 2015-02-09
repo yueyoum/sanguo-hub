@@ -3,6 +3,7 @@
 __author__ = 'Wang Chao'
 __date__ = '4/2/14'
 
+from django.conf import settings
 
 from apps.account.models import AccountAnonymous, AccountRegular, AccountThird
 
@@ -24,6 +25,18 @@ def _msg_server(msg, s):
     msg.have_char = s['have_char']
     msg.host = "http://%s" % s['host']
     msg.port = s['port']
+
+
+def find_new_top_server(servers):
+    # 新用户的默认服务器
+    if not settings.NEWDEFAULT_SERVER:
+        return servers[-1]
+
+    for s in servers:
+        if s['id'] == settings.NEWDEFAULT_SERVER:
+            return s
+
+    return servers[-1]
 
 
 @proto_return
@@ -82,7 +95,7 @@ def server_list(request):
                 break
 
     if not top:
-        top = all_servers[-1]
+        top = find_new_top_server(all_servers)
 
     response = GetServerListResponse()
     response.ret = 0
