@@ -55,7 +55,8 @@ class Bulletin(models.Model):
     content_bg_color = models.CharField("背景颜色", blank=True, max_length=6)
     content_bg_image = models.FileField("背景图片", blank=True, upload_to=_bulletin_upload_to)
 
-    display = models.BooleanField("是否显示", default=False, db_index=True)
+    show_for_old_version = models.BooleanField("对旧版本显示", default=True, db_index=True)
+    show_for_new_version = models.BooleanField("对新版本显示", default=True, db_index=True)
 
 
     class Meta:
