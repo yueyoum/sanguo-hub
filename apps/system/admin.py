@@ -60,7 +60,7 @@ class BulletinAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('title', 'content', 'content_image', 'order_seq', 'display')
+            'fields': ('title', 'content', 'content_image', 'order_seq')
         }),
         ('高级', {
             'classes': ('collapse',),
