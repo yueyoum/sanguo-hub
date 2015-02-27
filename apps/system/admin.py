@@ -55,7 +55,6 @@ class BulletinAdmin(admin.ModelAdmin):
 
     )
 
-    list_filter = ('display',)
     ordering = ('-order_seq', '-create_time')
 
     fieldsets = (
