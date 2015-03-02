@@ -13,7 +13,6 @@ from apps.system.models import BulletinConfig, Bulletin
 
 def get_bulletins(request):
     ret_json = request.GET.get('format', '') == 'json'
-    debug_mode = request.GET.get('debug', 0) != 0
     config = BulletinConfig.objects.all()[0]
 
     width = request.GET.get('width', '')
@@ -44,12 +43,14 @@ def get_bulletins(request):
             return ""
         return value
 
+    is_new_version = request.environ.get('NEW_GAME_VERSION', 0) == '1'
+
     bulletins = []
 
-    if debug_mode:
-        bulletin_objs = Bulletin.objects.all()
+    if is_new_version:
+        bulletin_objs = Bulletin.objects.filter(show_for_new_version=True)
     else:
-        bulletin_objs = Bulletin.objects.filter(display=True)
+        bulletin_objs = Bulletin.objects.filter(show_for_old_version=True)
 
     for b in bulletin_objs.order_by('-order_seq', '-create_time'):
         data = {

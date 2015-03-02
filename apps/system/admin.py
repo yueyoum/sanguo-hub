@@ -51,16 +51,17 @@ class BulletinAdmin(admin.ModelAdmin):
                     'title_color', 'title_bg_color', 'TitleBgImage',
                     'content_color', 'content_bg_color', 'ContentBgImage',
 
-                    'display',
+                    'show_for_old_version', 'show_for_new_version',
 
     )
 
-    list_filter = ('display',)
     ordering = ('-order_seq', '-create_time')
 
     fieldsets = (
         (None, {
-            'fields': ('title', 'content', 'content_image', 'order_seq', 'display')
+            'fields': ('title', 'content', 'content_image', 'order_seq',
+                        'show_for_old_version', 'show_for_new_version',
+                        )
         }),
         ('高级', {
             'classes': ('collapse',),
