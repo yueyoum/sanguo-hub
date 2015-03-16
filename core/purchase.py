@@ -4,11 +4,13 @@ __author__ = 'Wang Chao'
 __date__ = '4/21/14'
 
 import json
-from base64 import b64encode
+import hashlib
+
+from django.conf import settings
 
 import requests
-from core.fixtures import PURCHASES_BY_IOS_ID
-from apps.purchase.models import PurchaseIOSErrorLog, PurchaseIOSSuccessLog
+from core.fixtures import PURCHASES_BY_IOS_ID, PURCHASES
+from apps.purchase.models import PurchaseIOSErrorLog, PurchaseIOSSuccessLog, PurchaseAllSdkLog
 from preset import errormsg
 
 
@@ -108,5 +110,64 @@ def purchase_ios_verify(server_id, char_id, receipt):
         'ret': 0,
         'data': {
             'goods_id': PURCHASES_BY_IOS_ID[product_id].id
+        }
+    }
+
+def purchase_allsdk_verify(server_id, char_id, sn, goods_id):
+    platform = 'friday'
+
+    settings_allsdk = settings.THIRD_PLATFORM['allsdk']
+
+    settings_url = settings_allsdk['verify']
+    settings_appid = settings_allsdk['appid']
+    settings_appkey = settings_allsdk['appkey']
+
+    token_text = "{0}{1}{2}{3}{4}".format(
+        sn,
+        platform,
+        settings_appid,
+        settings_appkey,
+        goods_id,
+    )
+
+    token = hashlib.md5(token_text).hexdigest()
+    data = {
+        'Sn': sn,
+        'platform': platform,
+        'token': token
+    }
+
+    req = requests.post(settings_url, data=data)
+
+    return_data = req.json()
+    print return_data
+
+    order_money = PURCHASES[goods_id].rmb
+
+    log = PurchaseAllSdkLog.objects.create(
+        sn=return_data['Sn'],
+        return_code=return_data['code'],
+        server_id=server_id,
+        char_id=char_id,
+        goods_id=goods_id,
+        order_money=order_money,
+        verify_ok=False
+    )
+
+
+    if return_data['code'] != '0000':
+        return {'ret': errormsg.PURCHASE_VERIFY_ERROR}
+
+    if return_data['token'] != hashlib.md5("{0}{1}{2}{3}".format(token, return_data['buyTime'], settings_appid, settings_appkey)):
+        return {'ret': errormsg.PURCHASE_VERIFY_ERROR}
+
+    # OK
+    log.verify_ok = True
+    log.save()
+
+    return {
+        'ret': 0,
+        'data': {
+            'goods_id': goods_id
         }
     }

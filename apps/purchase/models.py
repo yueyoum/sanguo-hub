@@ -114,3 +114,21 @@ class PurchaseAiyingyongLog(models.Model):
         verbose_name_plural = '爱应用充值记录'
 
 
+# allsdk
+class PurchaseAllSdkLog(models.Model):
+    sn = models.CharField("交易序号", max_length=255, db_index=True)
+    return_code = models.CharField("交易结果")
+
+    order_time = models.DateTimeField("支付时间", auto_now_add=True)
+    server_id = models.IntegerField("服务器ID", db_index=True)
+    char_id = models.IntegerField("角色ID", db_index=True)
+    goods_id = models.IntegerField("商品ID")
+
+    order_money = models.FloatField("支付价格")
+
+    verify_ok = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'purchase_allsdk'
+        verbose_name = "AllSDK充值记录"
+        verbose_name_plural = "AllSDK充值记录"

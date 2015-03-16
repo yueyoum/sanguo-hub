@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 
-from apps.purchase.models import PurchaseIOSSuccessLog, PurchaseIOSErrorLog, Purchase91Log, PurchaseAiyingyongLog
+from apps.purchase.models import PurchaseIOSSuccessLog, PurchaseIOSErrorLog, Purchase91Log, PurchaseAiyingyongLog, PurchaseAllSdkLog
 
 
 class PurchaseIOSSuccessLogAdmin(admin.ModelAdmin):
@@ -32,7 +32,13 @@ class PurchaseAiyingyongLogAdmin(admin.ModelAdmin):
         'id', 'order_id', 'order_time', 'server_id', 'char_id', 'goods_id', 'order_money', 'confirmed'
     )
 
+class PurchaseAllSDKLogAdmin(admin.ModelAdmin):
+    list_display = (
+        'id', 'sn', 'return_code', 'order_time', 'server_id', 'char_id', 'goods_id', 'order_money', 'verify_ok'
+    )
+
 admin.site.register(PurchaseIOSSuccessLog, PurchaseIOSSuccessLogAdmin)
 admin.site.register(PurchaseIOSErrorLog, PurchaseIOSErrorLogAdmin)
 admin.site.register(Purchase91Log, Purchase91LogAdmin)
 admin.site.register(PurchaseAiyingyongLog, PurchaseAiyingyongLogAdmin)
+admin.site.register(PurchaseAllSdkLog, PurchaseAllSDKLogAdmin)

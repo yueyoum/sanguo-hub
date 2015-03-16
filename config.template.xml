@@ -48,7 +48,14 @@
         <appkey>xxx</appkey>
     </third>
 
+
     <third platform="aiyingyong">
         <gameid>xxx</gameid>
+    </third>
+
+    <third platform="allsdk">
+        <verify>http://113.196.57.113/verifyOrder.do</verify>
+        <appid>xxx</appid>
+        <appkey>xxx</appkey>
     </third>
 </config>
