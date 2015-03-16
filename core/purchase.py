@@ -114,6 +114,9 @@ def purchase_ios_verify(server_id, char_id, receipt):
     }
 
 def purchase_allsdk_verify(server_id, char_id, sn, goods_id):
+    if PurchaseAllSdkLog.objects.filter(sn=sn).exists():
+        return {'ret': errormsg.PURCHASE_ALREADY_VERIFIED}
+
     platform = 'friday'
 
     settings_allsdk = settings.THIRD_PLATFORM['allsdk']
