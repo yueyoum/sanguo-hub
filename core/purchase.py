@@ -157,7 +157,6 @@ def purchase_allsdk_verify(server_id, char_id, sn, goods_id):
         verify_ok=False
     )
 
-
     if return_data['code'] != '0000':
         return {'ret': errormsg.PURCHASE_VERIFY_ERROR}
 

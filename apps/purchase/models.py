@@ -116,7 +116,7 @@ class PurchaseAiyingyongLog(models.Model):
 
 # allsdk
 class PurchaseAllSdkLog(models.Model):
-    sn = models.CharField("交易序号", max_length=255, db_index=True)
+    sn = models.CharField("交易序号", max_length=255, primary_key=True)
     return_code = models.CharField("交易结果", max_length=255)
 
     order_time = models.DateTimeField("支付时间", auto_now_add=True)
