@@ -34,7 +34,7 @@ class PurchaseAiyingyongLogAdmin(admin.ModelAdmin):
 
 class PurchaseAllSDKLogAdmin(admin.ModelAdmin):
     list_display = (
-        'sn', 'return_code', 'order_time', 'server_id', 'char_id', 'goods_id', 'order_money', 'verify_ok'
+        'sn', 'return_code', 'order_time', 'server_id', 'char_id', 'goods_id', 'order_money', 'verify_time', 'verify_ok'
     )
 
 admin.site.register(PurchaseIOSSuccessLog, PurchaseIOSSuccessLogAdmin)

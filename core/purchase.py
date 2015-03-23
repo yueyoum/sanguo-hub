@@ -8,6 +8,7 @@ import hashlib
 
 from django.conf import settings
 
+import arrow
 import requests
 from core.fixtures import PURCHASES_BY_IOS_ID, PURCHASES
 from apps.purchase.models import PurchaseIOSErrorLog, PurchaseIOSSuccessLog, PurchaseAllSdkLog
@@ -154,10 +155,12 @@ def purchase_allsdk_verify(server_id, char_id, sn, goods_id, platform):
         return {'ret': errormsg.PURCHASE_VERIFY_ERROR}
 
     order_money = PURCHASES[goods_id].rmb
+    order_time = arrow.get(return_data['buyTime'] / 1000).format('YYYY-MM-DD HH:mm:ss')
 
     log = PurchaseAllSdkLog.objects.create(
         sn=return_data['sn'],
         return_code=return_data['code'],
+        order_time=order_time,
         server_id=server_id,
         char_id=char_id,
         goods_id=goods_id,

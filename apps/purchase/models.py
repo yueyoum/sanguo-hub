@@ -119,13 +119,14 @@ class PurchaseAllSdkLog(models.Model):
     sn = models.CharField("交易序号", max_length=255, primary_key=True)
     return_code = models.CharField("交易结果", max_length=255)
 
-    order_time = models.DateTimeField("支付时间", auto_now_add=True)
+    order_time = models.DateTimeField("支付时间")
     server_id = models.IntegerField("服务器ID", db_index=True)
     char_id = models.IntegerField("角色ID", db_index=True)
     goods_id = models.IntegerField("商品ID")
 
     order_money = models.FloatField("支付价格")
 
+    verify_time = models.DateTimeField(auto_now_add=True)
     verify_ok = models.BooleanField(default=False)
 
     class Meta:
