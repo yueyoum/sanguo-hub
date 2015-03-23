@@ -113,11 +113,9 @@ def purchase_ios_verify(server_id, char_id, receipt):
         }
     }
 
-def purchase_allsdk_verify(server_id, char_id, sn, goods_id):
+def purchase_allsdk_verify(server_id, char_id, sn, goods_id, platform):
     if PurchaseAllSdkLog.objects.filter(sn=sn).exists():
         return {'ret': errormsg.PURCHASE_ALREADY_VERIFIED}
-
-    platform = 'friday'
 
     settings_allsdk = settings.THIRD_PLATFORM['allsdk']
 
@@ -135,20 +133,30 @@ def purchase_allsdk_verify(server_id, char_id, sn, goods_id):
 
     token = hashlib.md5(token_text).hexdigest()
     data = {
-        'Sn': sn,
+        'sn': sn,
         'platform': platform,
         'token': token
     }
 
+    print data
+
     req = requests.post(settings_url, data=data)
+    if not req.ok:
+        print "==== ERROR ===="
+        print req
+        print req.content
+        return {'ret': errormsg.PURCHASE_VERIFY_ERROR}
 
     return_data = req.json()
     print return_data
 
+    if return_data['code'] != '0000':
+        return {'ret': errormsg.PURCHASE_VERIFY_ERROR}
+
     order_money = PURCHASES[goods_id].rmb
 
     log = PurchaseAllSdkLog.objects.create(
-        sn=return_data['Sn'],
+        sn=return_data['sn'],
         return_code=return_data['code'],
         server_id=server_id,
         char_id=char_id,
@@ -157,10 +165,9 @@ def purchase_allsdk_verify(server_id, char_id, sn, goods_id):
         verify_ok=False
     )
 
-    if return_data['code'] != '0000':
-        return {'ret': errormsg.PURCHASE_VERIFY_ERROR}
-
-    if return_data['token'] != hashlib.md5("{0}{1}{2}{3}".format(token, return_data['buyTime'], settings_appid, settings_appkey)):
+    if return_data['token'] != hashlib.md5("{0}{1}{2}{3}".format(token, return_data['buyTime'], settings_appid, settings_appkey)).hexdigest():
+        print "==== ERROR ===="
+        print "return token not match"
         return {'ret': errormsg.PURCHASE_VERIFY_ERROR}
 
     # OK

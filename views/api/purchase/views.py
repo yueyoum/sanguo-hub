@@ -29,10 +29,11 @@ def allsdk_verify(request):
         char_id = int(request.POST['char_id'])
         sn = request.POST['sn']
         goods_id = int(request.POST['goods_id'])
+        platform = request.POST['platform']
     except:
         return {'ret': errormsg.BAD_MESSAGE}
 
-    return purchase_allsdk_verify(server_id, char_id, sn, goods_id)
+    return purchase_allsdk_verify(server_id, char_id, sn, goods_id, platform)
 
 
 @json_return
