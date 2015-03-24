@@ -12,10 +12,10 @@ PROJECT_PATH = os.path.dirname(CURRENT_PATH)
 sys.path.append(PROJECT_PATH)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'hub.settings'
 
+PLATFORM = os.environ.get('PLATFORM', None)
 
 from django.db.models import Sum
 from apps.server.models import Server
-from apps.purchase.models import PurchaseAiyingyongLog
 
 try:
     arg = sys.argv[1]
@@ -53,8 +53,30 @@ if arg == 'config':
 
     sys.exit(0)
 
-# value
-print "sum.value", PurchaseAiyingyongLog.objects.aggregate(Sum('order_money'))['order_money__sum']
-for s in Server.objects.filter(is_test=False).all():
-    print "server{0}.value".format(s.id), PurchaseAiyingyongLog.objects.filter(server_id=s.id).aggregate(Sum('order_money'))['order_money__sum']
 
+# value
+if PLATFORM == 'aiyingyong':
+    from apps.purchase.models import PurchaseAiyingyongLog
+
+    values = 0
+    for s in Server.objects.filter(is_test=False).all():
+        this_value = PurchaseAiyingyongLog.objects.filter(server_id=s.id).aggregate(Sum('order_money'))['order_money__sum']
+        values += this_value
+        print "server{0}.value".format(s.id), this_value
+
+    print "sum.value", values
+
+    sys.exit(0)
+
+if PLATFORM == 'allsdk':
+    from apps.purchase.models import PurchaseAllSdkLog
+
+    values = 0
+    for s in Server.objects.filter(is_test=False).all():
+        this_value = PurchaseAllSdkLog.objects.filter(server_id=s.id).aggregate(Sum('order_money'))['order_money__sum']
+        values += this_value
+        print "server{0}.value".format(s.id), this_value
+
+    print "sum.value", values
+
+    sys.exit(0)
