@@ -4,7 +4,7 @@ __author__ = 'Wang Chao'
 __date__ = '14-6-30'
 
 from utils.decorate import json_return
-from core.purchase import purchase_ios_verify
+from core.purchase import purchase_ios_verify, purchase_allsdk_verify
 
 from apps.purchase.models import Purchase91Log, PurchaseAiyingyongLog
 from preset import errormsg
@@ -21,6 +21,19 @@ def ios_verify(request):
 
     return purchase_ios_verify(server_id, char_id, receipt)
 
+
+@json_return
+def allsdk_verify(request):
+    try:
+        server_id = int(request.POST['server_id'])
+        char_id = int(request.POST['char_id'])
+        sn = request.POST['sn']
+        goods_id = int(request.POST['goods_id'])
+        platform = request.POST['platform']
+    except:
+        return {'ret': errormsg.BAD_MESSAGE}
+
+    return purchase_allsdk_verify(server_id, char_id, sn, goods_id, platform)
 
 
 @json_return

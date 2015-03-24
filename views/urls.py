@@ -29,6 +29,7 @@ urlpatterns = patterns('',
                        url(r'^api/checkin/get/$', 'views.api.checkin.views.get_checkin_package'),
 
                        url(r'^api/purchase/verify/$', 'views.api.purchase.views.ios_verify'),
+                       url(r'^api/purchase/allsdk/verify/$', 'views.api.purchase.views.allsdk_verify'),
 
                        url(r'^api/purchase/91/orderid/$', 'views.api.purchase.views.get_purchase91_order_id'),
                        url(r'^api/purchase/91/confirm/$', 'views.api.purchase.views.purchase91_confirm'),
