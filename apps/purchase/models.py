@@ -91,6 +91,44 @@ class Purchase91Log(models.Model):
         return order_id
 
 
+
+# 91平台
+class PurchaseJodoPlayLog(models.Model):
+    order_id = models.CharField("订单号", max_length=255, primary_key=True)
+    order_time = models.DateTimeField("订单创建时间", auto_now_add=True, db_index=True)
+    server_id = models.IntegerField("服务器ID", db_index=True)
+    char_id = models.IntegerField("角色ID", db_index=True)
+    goods_id = models.IntegerField("商品ID")
+
+    jodo_order_id = models.CharField("卓动订单号", max_length=255, db_index=True)
+    jodo_price = models.IntegerField("Jodo 充值金额")
+    uid = models.CharField("Jodo 帐号ID", max_length=255)
+    pay_at = models.DateTimeField("支付时间", null=True)
+
+    confirmed = models.BooleanField("确认", default=False)
+
+    class Meta:
+        db_table = 'purchase_jodoplay_log'
+        verbose_name = 'Jodo充值记录'
+        verbose_name_plural = 'Jodo充值记录'
+
+    @classmethod
+    def make_order_id(cls, server_id, char_id, goods_id):
+        order_id = str(uuid.uuid4())
+        cls.objects.create(
+            order_id=order_id,
+            server_id=server_id,
+            char_id=char_id,
+            goods_id=goods_id,
+
+            jodo_order_id='',
+            jodo_price='',
+            uid='',
+        )
+
+        return order_id
+
+
 # aiyingyong
 class PurchaseAiyingyongLog(models.Model):
     PAY_STATUS = (

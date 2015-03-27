@@ -15,6 +15,7 @@ urlpatterns = patterns('',
                        url(r'^callback/test91/$', 'views.callback.views.purchase_91_notify'),
 
                        url(r'^callback/aiyingyong/$', 'views.callback.views.purchase_aiyingyong_notify'),
+                       url(r'^callback/jodoplay/$', 'views.callback.views.purchase_jodoplay_notify'),
 
                         # API called from server
                        url(r'^api/server-list/register/$', 'views.api.server.views.server_register_view'),
@@ -31,9 +32,10 @@ urlpatterns = patterns('',
                        url(r'^api/purchase/verify/$', 'views.api.purchase.views.ios_verify'),
                        url(r'^api/purchase/allsdk/verify/$', 'views.api.purchase.views.allsdk_verify'),
 
-                       url(r'^api/purchase/91/orderid/$', 'views.api.purchase.views.get_purchase91_order_id'),
+                       url(r'^api/purchase/orderid/$', 'views.api.purchase.views.get_purchase_order_id'),
                        url(r'^api/purchase/91/confirm/$', 'views.api.purchase.views.purchase91_confirm'),
                        url(r'^api/purchase/aiyingyong/confirm/$', 'views.api.purchase.views.purchase_aiyingyong_confirm'),
+                       url(r'^api/purchase/jodoplay/confirm/$', 'views.api.purchase.views.purchase_jodoplay_confirm'),
 
                        url(r'^api/system/broadcast/$', 'views.api.system.views.get_system_broadcast'),
 )

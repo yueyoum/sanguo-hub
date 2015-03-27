@@ -152,7 +152,6 @@ def account_bind(data):
     }
 
 
-
 def account_login(data):
     try:
         data = get_login_request_data(data)
@@ -200,6 +199,12 @@ def account_login(data):
         if data['platform'] == '91':
             try:
                 verify_91(data['uid'], data['param'])
+            except:
+                traceback.print_exc()
+                return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
+        elif data['platform'] == 'jodoplay':
+            try:
+                verify_jodoplay(data['uid'], data['param'])
             except:
                 traceback.print_exc()
                 return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
@@ -286,4 +291,43 @@ def verify_91(uid, sessionid):
     res = res.json()
     print res
     if res['ErrorCode'] != '1':
+        raise GateException(errormsg.ACCOUNT_LOGIN_FAILURE)
+
+
+def verify_jodoplay(uid, sessionid):
+    settings_jodoplay = settings.THIRD_PLATFORM['jodoplay']
+    url = settings_jodoplay['verify']
+    cpid = settings_jodoplay['cpid']
+    gameid = settings_jodoplay['gameid']
+    channelid = settings_jodoplay['channelid']
+    pn = ""
+    secretkey = settings_jodoplay["secretkey"]
+
+    psw_text = "{0}{1}{2}{3}{4}{5}{6}".format(
+        secretkey, cpid, gameid, channelid, pn, sessionid, uid
+    )
+
+    psw = hashlib.sha256(psw_text).hexdigest()
+
+    data = {
+        'cpid': cpid,
+        'gameid': gameid,
+        'channelid': channelid,
+        'pn': pn,
+        'sessiontoken': sessionid,
+        'gameuid': uid,
+        'psw': psw
+    }
+
+    try:
+        req = requests.get(url, params=data)
+    except Exception as e:
+        print "==== ERROR ===="
+        print "jodoplay verify reqeusts error"
+        print e
+        raise GateException(errormsg.ACCOUNT_LOGIN_FAILURE)
+
+    res = req.json()
+    print res
+    if res['state']['code'] != 0:
         raise GateException(errormsg.ACCOUNT_LOGIN_FAILURE)

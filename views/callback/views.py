@@ -8,13 +8,15 @@ import hashlib
 import traceback
 import pprint
 
+import arrow
+
 from django.conf import settings
 from django.http import HttpResponse
 
-from apps.purchase.models import Purchase91Log, PurchaseAiyingyongLog
+from apps.purchase.models import Purchase91Log, PurchaseAiyingyongLog, PurchaseJodoPlayLog
 from apps.character.models import Character
 
-from utils.api import api_purchase91_done, api_purchase_aiyingyong_done
+from utils.api import api_purchase91_done, api_purchase_aiyingyong_done, api_purchase_jodoplay_done
 
 def purchase_91_notify(request):
     try:
@@ -165,3 +167,73 @@ def purchase_aiyingyong_notify(request):
     api_purchase_aiyingyong_done(char.server_id, char_id, goods_id)
     return HttpResponse('ok', content_type='text/plain')
 
+
+def purchase_jodoplay_notify(request):
+    pprint.pprint(request.GET)
+    data = {
+        'state': {
+            'code': 0,
+            'msg': ""
+        }
+    }
+
+    try:
+        uid = request.GET['uid']
+        serverid = request.GET['serverid']
+        rolename = request.GET['rolename']
+        price = request.GET['price']
+        ext = request.GET.get('ext', '')
+        orderid = request.GET['orderid']
+        cporderid = request.GET['cporderid']
+        ts = request.GET['ts']
+        psw = request.GET['psw']
+    except:
+        print "==== ERROR ===="
+        traceback.print_exc()
+
+        data = {
+            'state': {
+                'code': 1000,
+                'msg': "参数错误"
+            }
+        }
+        return HttpResponse(json.dumps(data), content_type='application/json')
+
+    if PurchaseJodoPlayLog.objects.filter(jodo_order_id=orderid).exists():
+        return HttpResponse(json.dumps(data), content_type='application/json')
+
+    try:
+        p = PurchaseJodoPlayLog.objects.get(order_id=cporderid)
+    except PurchaseJodoPlayLog.DoesNotExist:
+        print "==== WARNING ===="
+        print "Order id {0} Does Not Exist. Ignore".format(cporderid)
+        return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+    settings_jodoplay = settings.THIRD_PLATFORM['jodoplay']
+    secretkey = settings_jodoplay["secretkey"]
+
+    psw_text = "{0}{1}{2}{3}{4}{5}{6}{7}{8}".format(
+        secretkey, uid, serverid, rolename, price, ext, orderid, cporderid, ts
+    )
+
+    psw_sign = hashlib.sha256(psw_text).hexdigest()
+
+    if psw_sign != psw:
+        data = {
+            'state': {
+                'code': 1000,
+                'msg': "psw验证错误"
+            }
+        }
+        print "psw verify failure!"
+        return HttpResponse(json.dumps(data), content_type='application/json')
+
+    p.jodo_order_id = orderid
+    p.jodo_price = price
+    p.uid = uid
+    p.pay_at = arrow.get(ts).format("YYYY-MM-DD HH:mm:ss")
+    p.save()
+
+    api_purchase_jodoplay_done(p.server_id, p.char_id, p.goods_id, price)
+    return HttpResponse(json.dumps(data), content_type='application/json')

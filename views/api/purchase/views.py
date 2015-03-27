@@ -6,7 +6,7 @@ __date__ = '14-6-30'
 from utils.decorate import json_return
 from core.purchase import purchase_ios_verify, purchase_allsdk_verify
 
-from apps.purchase.models import Purchase91Log, PurchaseAiyingyongLog
+from apps.purchase.models import Purchase91Log, PurchaseAiyingyongLog, PurchaseJodoPlayLog
 from preset import errormsg
 
 
@@ -37,14 +37,18 @@ def allsdk_verify(request):
 
 
 @json_return
-def get_purchase91_order_id(request):
+def get_purchase_order_id(request):
     server_id = int(request.POST['server_id'])
     char_id = int(request.POST['char_id'])
     goods_id = int(request.POST['goods_id'])
+    platform = request.POST['platform']
 
-    order_id = Purchase91Log.make_order_id(server_id, char_id, goods_id)
-    # if not order_id:
-    #     return {'ret': errormsg.PURCHASE_91_NOT_CONFIRM}
+    if platform == '91':
+        order_id = Purchase91Log.make_order_id(server_id, char_id, goods_id)
+    elif platform == 'jodoplay':
+        order_id = PurchaseJodoPlayLog.make_order_id(server_id, char_id, goods_id)
+    else:
+        return {'ret': errormsg.BAD_MESSAGE}
 
     return {
         'ret': 0,
@@ -124,3 +128,30 @@ def purchase_aiyingyong_confirm(request):
     p.confirmed = True
     p.save()
     return data
+
+@json_return
+def purchase_jodoplay_confirm(request):
+    char_id = int(request.POST['char_id'])
+
+    data = {
+        'ret': 0,
+        'data': {
+            'status': 0,
+            'goods_id': 0,
+        }
+    }
+
+    p = PurchaseJodoPlayLog.objects.filter(char_id=char_id).order_by('-order_time')[0:1]
+    if p.count() == 0:
+        # WAITING
+        data['ret'] = errormsg.PURCHASE_91_FAILURE
+        data['data']['status'] = 1
+        return data
+
+    p = p[0]
+    data['data']['goods_id'] = p.goods_id
+
+    p.confirmed = True
+    p.save()
+    return data
+
