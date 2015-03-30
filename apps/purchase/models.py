@@ -122,7 +122,7 @@ class PurchaseJodoPlayLog(models.Model):
             goods_id=goods_id,
 
             jodo_order_id='',
-            jodo_price='',
+            jodo_price=0,
             uid='',
         )
 
