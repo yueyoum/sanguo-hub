@@ -202,7 +202,7 @@ def account_login(data):
             except:
                 traceback.print_exc()
                 return {'ret': errormsg.ACCOUNT_LOGIN_FAILURE}
-        elif data['platform'] == 'jodoplay':
+        elif data['platform'] == 'jodo' or data['platform'] == 'jodoplay':
             try:
                 verify_jodoplay(data['uid'], data['param'])
             except:

@@ -45,7 +45,7 @@ def get_purchase_order_id(request):
 
     if platform == '91':
         order_id = Purchase91Log.make_order_id(server_id, char_id, goods_id)
-    elif platform == 'jodoplay':
+    elif platform == 'jodo' or platform == 'jodoplay':
         order_id = PurchaseJodoPlayLog.make_order_id(server_id, char_id, goods_id)
     else:
         return {'ret': errormsg.BAD_MESSAGE}
