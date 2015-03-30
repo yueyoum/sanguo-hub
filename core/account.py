@@ -300,7 +300,7 @@ def verify_jodoplay(uid, sessionid):
     cpid = settings_jodoplay['cpid']
     gameid = settings_jodoplay['gameid']
     channelid = settings_jodoplay['channelid']
-    pn = ""
+    pn = settings_jodoplay['pn']
     secretkey = settings_jodoplay["secretkey"]
 
     psw_text = "{0}{1}{2}{3}{4}{5}{6}".format(

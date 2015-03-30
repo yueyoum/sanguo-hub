@@ -58,4 +58,14 @@
         <appid>xxx</appid>
         <appkey>xxx</appkey>
     </third>
+
+    <third platform="jodoplay">
+        <verify>http://usercenter.1fpay.com/usercenter/loginverify</verify>
+        <cpid>xxx</cpid>
+        <gameid>xxx</gameid>
+        <pn>xxx</pn>
+        <channelid>xxx</channelid>
+        <secretkey>xxx</secretkey>
+    </third>
+
 </config>
