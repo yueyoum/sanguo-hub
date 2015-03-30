@@ -109,7 +109,7 @@ class PurchaseJodoPlayLog(models.Model):
 
     class Meta:
         db_table = 'purchase_jodoplay_log'
-        ordering = [-'order_time']
+        ordering = ['-order_time']
         verbose_name = 'Jodo充值记录'
         verbose_name_plural = 'Jodo充值记录'
 
