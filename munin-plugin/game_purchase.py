@@ -85,7 +85,7 @@ if PLATFORM == 'allsdk':
 
     sys.exit(0)
 
-if PLATFORM == 'jodo' or PLATFORM == 'jodopaly':
+if PLATFORM == 'jodo' or PLATFORM == 'jodoplay':
     from apps.purchase.models import PurchaseJodoPlayLog
 
     values = 0
