@@ -232,7 +232,7 @@ def purchase_jodoplay_notify(request):
     p.jodo_order_id = orderid
     p.jodo_price = price
     p.uid = uid
-    p.pay_at = arrow.get(ts).format("YYYY-MM-DD HH:mm:ss")
+    p.pay_at = arrow.get(ts/1000).format("YYYY-MM-DD HH:mm:ss")
     p.save()
 
     api_purchase_jodoplay_done(p.server_id, p.char_id, p.goods_id, price)

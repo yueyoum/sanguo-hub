@@ -9,6 +9,7 @@ from core.purchase import purchase_ios_verify, purchase_allsdk_verify
 from apps.purchase.models import Purchase91Log, PurchaseAiyingyongLog, PurchaseJodoPlayLog
 from preset import errormsg
 
+from django.db.models import Q
 
 @json_return
 def ios_verify(request):
@@ -141,7 +142,9 @@ def purchase_jodoplay_confirm(request):
         }
     }
 
-    p = PurchaseJodoPlayLog.objects.filter(char_id=char_id).order_by('-order_time')[0:1]
+    condition = Q(char_id=char_id) & ~Q(jodo_order_id='')
+
+    p = PurchaseJodoPlayLog.objects.filter(condition).order_by('-order_time')[0:1]
     if p.count() == 0:
         # WAITING
         data['ret'] = errormsg.PURCHASE_91_FAILURE
