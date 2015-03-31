@@ -213,11 +213,11 @@ def purchase_jodoplay_notify(request):
     settings_jodoplay = settings.THIRD_PLATFORM['jodoplay']
     secretkey = settings_jodoplay["secretkey"]
 
-    psw_text = "{0}{1}{2}{3}{4}{5}{6}{7}{8}".format(
+    psw_text = u"{0}{1}{2}{3}{4}{5}{6}{7}{8}".format(
         secretkey, uid, serverid, rolename, price, ext, orderid, cporderid, ts
     )
 
-    psw_sign = hashlib.sha256(psw_text).hexdigest()
+    psw_sign = hashlib.sha256(psw_text.encode('utf-8')).hexdigest()
 
     if psw_sign != psw:
         data = {
