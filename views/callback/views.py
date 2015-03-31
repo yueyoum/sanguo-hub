@@ -181,11 +181,11 @@ def purchase_jodoplay_notify(request):
         uid = request.GET['uid']
         serverid = request.GET['serverid']
         rolename = request.GET['rolename']
-        price = request.GET['price']
+        price = int(request.GET['price'])
         ext = request.GET.get('ext', '')
         orderid = request.GET['orderid']
         cporderid = request.GET['cporderid']
-        ts = request.GET['ts']
+        ts = int(request.GET['ts'])
         psw = request.GET['psw']
     except:
         print "==== ERROR ===="
