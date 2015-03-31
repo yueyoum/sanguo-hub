@@ -84,3 +84,18 @@ if PLATFORM == 'allsdk':
     print "sum.value", values
 
     sys.exit(0)
+
+if PLATFORM == 'jodo' or PLATFORM == 'jodopaly':
+    from apps.purchase.models import PurchaseJodoPlayLog
+
+    values = 0
+    for s in Server.objects.filter(is_test=False).all():
+        this_value = PurchaseJodoPlayLog.objects.filter(server_id=s.id).aggregate(Sum('jodo_price'))['jodo_price__sum']
+        if this_value is None:
+            this_value = 0
+        values += this_value
+        print "server{0}.value".format(s.id), this_value
+
+    print "sum.value", values
+
+    sys.exit(0)
