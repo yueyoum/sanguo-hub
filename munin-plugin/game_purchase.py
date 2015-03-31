@@ -93,6 +93,8 @@ if PLATFORM == 'jodo' or PLATFORM == 'jodoplay':
         this_value = PurchaseJodoPlayLog.objects.filter(server_id=s.id).aggregate(Sum('jodo_price'))['jodo_price__sum']
         if this_value is None:
             this_value = 0
+        else:
+            this_value *= 2
         values += this_value
         print "server{0}.value".format(s.id), this_value
 
