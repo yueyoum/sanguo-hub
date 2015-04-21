@@ -94,7 +94,8 @@ if PLATFORM == 'jodo' or PLATFORM == 'jodoplay':
         if this_value is None:
             this_value = 0
         else:
-            this_value *= 2
+            # 数据库中记录的是新台币，所以这里除5换算成RMB
+            this_value /= 5
         values += this_value
         print "server{0}.value".format(s.id), this_value
 
