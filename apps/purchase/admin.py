@@ -43,6 +43,8 @@ class PurchaseJodoPlayLogAdmin(admin.ModelAdmin):
         'jodo_order_id', 'jodo_price', 'uid', 'pay_at', 'confirmed'
     )
 
+    search_fields = ('char_id',)
+
 
 
 admin.site.register(PurchaseIOSSuccessLog, PurchaseIOSSuccessLogAdmin)
