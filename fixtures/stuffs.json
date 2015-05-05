@@ -508,7 +508,7 @@
     "model": "item.stuff", 
     "fields": {
         "name": "\u5415\u5e03\u5c06\u9b42\u5b9d\u7bb1", 
-        "tip_des": "\u6709\u51e0\u7387\u83b7\u5f97\u5415\u5e03\u7684\u5c06\u9b42\uff081~5\uff09\u4e2a", 
+        "tip_des": "\u6709\u51e0\u7387\u83b7\u5f97\u5415\u5e03\u7684\u5c06\u9b42\uff081~5\uff09\u4e2a\u3002\r\n\u6218\u795e\u5415\u5e03\u662f\u65e0\u6cd5\u88ab\u4fd8\u864f\u7684\u3002", 
         "tip_type": "\u5b9d\u7bb1", 
         "des": "\u6709\u51e0\u7387\u83b7\u5f97\u5415\u5e03\u7684\u5c06\u9b42\uff082~5\uff09\u4e2a", 
         "buy_sycee": 200, 
@@ -939,10 +939,10 @@
     "pk": 3003, 
     "model": "item.stuff", 
     "fields": {
-        "name": "\u8e0f\u6625\u9526\u56ca", 
+        "name": "\u9526\u56ca", 
         "tip_des": "\u6253\u5f00\u540e\u968f\u673a\u83b7\u5f975000\u94f6\u4e24\u30012\u5143\u5b9d\u3001\u4e00\u9636\u5b9d\u77f3\u4e4b\u4e2d\u7684\u4e00\u79cd\u3002", 
-        "tip_type": "\u8e0f\u6625\u9526\u56ca", 
-        "des": "\u8e0f\u6625\u9526\u56ca", 
+        "tip_type": "\u9526\u56ca", 
+        "des": "\u9526\u56ca", 
         "buy_sycee": 0, 
         "tp": 3, 
         "default_package": null, 
