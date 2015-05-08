@@ -18,7 +18,7 @@ from apps.purchase.models import (
     PurchaseAiyingyongLog,
 )
 
-FORMAT = "YYYY-MM-SS HH:mm:ssZ"
+FORMAT = "YYYY-MM-DD HH:mm:ssZ"
 
 def day_new_account(start, days):
     print "日新增用户"
@@ -52,7 +52,7 @@ def day_purchase_money_jodo(start, days):
 
         print day.format("YYYY-MM-DD"),
         money = PurchaseJodoPlayLog.objects.filter(condition).aggregate(Sum('jodo_price'))['jodo_price__sum']
-        print money / 5
+        print money / 5 if money else 0
 
 def day_purchase_account_aiyingyong(start, days):
     print "日充值用户"
@@ -76,11 +76,11 @@ def day_purchase_money_aiyingyong(start, days):
 
         print day.format("YYYY-MM-DD"),
         money = PurchaseAiyingyongLog.objects.filter(condition).aggregate(Sum('order_money'))['order_money__sum']
-        print money
+        print money if money else 0
 
 
 if __name__ == '__main__':
-    platform = "jodo"
+    platform = os.getenv("PLATFORM")
     start = "2015-04-01 00:00:00+0800"
     days = 30
 
