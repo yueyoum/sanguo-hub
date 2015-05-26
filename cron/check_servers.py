@@ -14,7 +14,7 @@ from core.server import make_servers, pong_from_server
 def run(signum):
     connection.close()
     logger = Logger('check_server.log')
-    servers = make_servers()
+    servers = make_servers(is_test=False)
 
     for s in servers.keys():
         try:
