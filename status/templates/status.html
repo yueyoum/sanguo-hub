@@ -1,111 +1,97 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sanguo Status</title>
+    <head>
+        <meta charset="utf-8">
+        <title>Sanguo Status</title>
 
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        
+        <link rel="stylesheet" href="/static/pure-min.css">
+        <link rel="stylesheet" href="/static/pikaday.css">
+        
+        <style type="text/css">
+            .chart {
+                width: 100%;
+                height: 300px;
+                max-height: 600px;
+            }
+        </style>
+        
+        <script src="/static/Chart.min.js"></script>
+        <script src="/static/moment.min.js"></script>
+        <script src="/static/pikaday.js"></script>
+        
+        <script type="text/javascript">
+            Chart.defaults.global.responsive = true;
+        </script>
 
-</head>
-<body>
-    <h2>
-        服务器
-    </h2>
-    <table class="pure-table">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>host</th>
-            <th>status</th>
-            <th>players</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for s in servers %}
-            <tr>
-            <td>{{ s.id }}</td>
-            <td>{{ s.name }}</td>
-            <td>{{ s.host }}</td>
-            <td>{{ s.status }}</td>
-            <td>{{ s.players_amount }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    </head>
+    <body>
+        <div>
+        <form class="pure-form">
+            <fieldset>
+            <input type="text" id="datepicker1" />
+            <input type="text" id="datepicker2" />
+            <a class="pure-button pure-button-primary" href="#">查询</a>
+            </fieldset>
+        </form>
+        </div>
 
-    <h2>用户</h2>
-    <table class="pure-table">
-        <thead>
-        <tr>
-            <th>总数</th>
-            <th>24小时新增</th>
-            <th>24小时登录</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>{{ player.total_amount }}</td>
-            <td>{{ player.new_24 }}</td>
-            <td>{{ player.login_24 }}</td>
-        </tr>
-        </tbody>
-    </table>
+        <h2>日新增用户</h2>
+        <canvas id="rixinzengyonghu" class="chart"></canvas>
+        <h2>日充值用户</h2>
+        <canvas id="richongzhiyonghu" class="chart"></canvas>
+        <h2>日充值金额</h2>
+        <canvas id="richongzhijine" class="chart"></canvas>
 
-    <h2>充值</h2>
-    <p>总共{{ purchase_chars_amount_total }}人充值，产生{{ order_total }}订单，充值{{ purchase_total }}元</p>
-    <h4>各个服务器情况</h4>
-    <table class="pure-table">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>充值</th>
-            <th>充值人数</th>
-            <th>成功订单</th>
-            <th>失败订单</th>
-            <th>未确认订单</th>
-            <th>24小时新增订单</th>
-            <th>24小时新增充值</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for p in purchase_server_info %}
-            <tr>
-            <td>{{ p.id }}</td>
-            <td>{{ p.name }}</td>
-            <td>{{ p.purchase_total }}</td>
-            <td>{{ p.purchase_char_amount }}</td>
-            <td>{{ p.order_success_total }}</td>
-            <td>{{ p.order_failure_total }}</td>
-            <td>{{ p.order_unconfirmed_total }}</td>
-            <td>{{ p.order_new_24 }}</td>
-            <td>{{ p.purchase_new_24 }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <script type="text/javascript">
+            var i18n = {
+                previousMonth: "上月",
+                nextMonth: "下月",
+                months: ["一月", "二月", "三月", "四月", "五月", "六月","七月", "八月", "九月","十月", "十一月", "十二月",],
+                weekdays: ["周一","周二","周三","周四","周五","周六","周日"],
+                weekdaysShort: ["周一","周二","周三","周四","周五","周六","周日"]
+            };
 
-    <h4>充值最多前{{ show_chars_amount }}位角色</h4>
-    <table class="pure-table">
-        <thead>
-        <tr>
-            <th>角色ID</th>
-            <th>所在服ID</th>
-            <th>充值</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for p in purchase_char_info %}
-            <tr>
-            <td>{{ p.char_id }}</td>
-            <td>{{ p.server_id }}</td>
-            <td>{{ p.sum_order_money }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            var picker1 = new Pikaday({
+                field: document.getElementById("datepicker1"),
+                format: "YYYY-MM-DD",
+                i18n: i18n
+            });
 
-</body>
+            var picker2 = new Pikaday({
+                field: document.getElementById("datepicker2"),
+                format: "YYYY-MM-DD",
+                i18n: i18n
+            });
+
+            var lineData = {
+                labels: [1,2,3,4,5,6,7,8],
+                datasets: [
+                    {
+                        label: "One",
+                        fillColor: "rgba(180, 220, 200, 0.2)",
+                        strokeColor: "rgba(180, 220, 200, 1)",
+                        pointColor: "rgba(180, 220, 200, 1)",
+                        pointHighlightFill: "#fff",
+                        data: [23, 89, 34, 109, 33, 10, 0, 90]
+                    },
+                    
+                    {
+                        label: "Two",
+                        fillColor: "rgba(150, 220, 220, 0.2)",
+                        strokeColor: "rgba(150, 220, 220, 1)",
+                        pointColor: "rgba(150, 220, 220, 1)",
+                        pointHighlightFill: "#fff",
+                        data: [50, 9, 56, 90, 34, 50, 80, 30]
+                    }
+                ]
+            };
+        
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var c = new Chart(ctx).Line(lineData);
+            
+        </script>
+
+    </body>
 </html>

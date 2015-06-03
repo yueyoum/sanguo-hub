@@ -191,6 +191,8 @@ MANAGERS = ADMINS
 
 VERSION_URL = tree.find('version').text
 
+STATUS_PLATFORM = tree.find('status').text
+
 THIRD_PLATFORM = {}
 _THIRDS = tree.findall('third')
 for _TH in _THIRDS:

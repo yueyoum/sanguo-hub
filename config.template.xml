@@ -42,6 +42,9 @@
     <account>self</account>
     <account>91</account>
 
+    <!-- 用于status页面查询的平台 -->
+    <status>aiyingyong</status>
+
     <third platform="91">
         <verify>http://service.sj.91.com/usercenter/AP.aspx</verify>
         <appid>xxx</appid>
