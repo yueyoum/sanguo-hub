@@ -5,11 +5,12 @@ if settings.ENABLE_ADMIN:
     from django.contrib import admin
     admin.autodiscover()
 
-    from status.views import StatusView
+    import status.views
 
     urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^status/$', StatusView.as_view()),
+    url(r'^status/$', status.views.StatusView.as_view()),
+    url(r'^status/ajax/$', status.views.status_ajax),
     )
 
 else:
