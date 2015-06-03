@@ -97,20 +97,29 @@
                         cd1 = $.extend(true, {}, chartData);
                         for(var x in data.rixinzengyonghu){
                             cd1.labels.push(x.date);
-                            cd1.datesets[0].data.push(x.value);
+                            cd1.datasets[0].data.push(x.value);
                         }
+
+                        var ctx1 = document.getElementById("rixinzengyonghu").getContext("2d");
+                        new Chart(ctx1).Line(cd1);
 
                         cd2 = $.extend(true, {}, chartData);
                         for(var x in data.richongzhiyonghu){
                             cd2.labels.push(x.date);
-                            cd2.datesets[0].data.push(x.value);
+                            cd2.datasets[0].data.push(x.value);
                         }
+
+                        var ctx2 = document.getElementById("richongzhiyonghu").getContext("2d");
+                        new Chart(ctx2).Line(cd2);
 
                         cd3 = $.extend(true, {}, chartData);
                         for(var x in data.richongzhijine){
                             cd3.labels.push(x.date);
-                            cd3.datesets[0].data.push(x.value);
+                            cd3.datasets[0].data.push(x.value);
                         }
+
+                        var ctx3 = document.getElementById("richongzhijine").getContext("2d");
+                        new Chart(ctx3).Line(cd3);
 
                         return false;
                     },
