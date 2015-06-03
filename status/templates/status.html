@@ -90,7 +90,7 @@
                     url: "/status/ajax/",
                     data: {
                         date1: picker1.getMoment().format("YYYY-MM-DD"),
-                        data2: picker2.getMoment().format("YYYY-MM-DD")
+                        date2: picker2.getMoment().format("YYYY-MM-DD")
                     },
                     dataType: "json",
                     success: function(data){
@@ -112,12 +112,12 @@
                             cd3.datesets[0].data.push(x.value);
                         }
 
-
+                        return false;
                     },
                     error: function (r, s, e) {
                         alert("Error!");
+                        return false;
                     }
-
                 });
             });
             
