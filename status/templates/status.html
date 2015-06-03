@@ -12,7 +12,7 @@
         <style type="text/css">
             .chart {
                 width: 100%;
-                height: 300px;
+                height: 200px;
                 max-height: 600px;
             }
         </style>
@@ -65,25 +65,15 @@
                 i18n: i18n
             });
 
-            var lineData = {
-                labels: [1,2,3,4,5,6,7,8],
+            var chartData = {
+                labels: [],
                 datasets: [
                     {
-                        label: "One",
-                        fillColor: "rgba(180, 220, 200, 0.2)",
-                        strokeColor: "rgba(180, 220, 200, 1)",
-                        pointColor: "rgba(180, 220, 200, 1)",
-                        pointHighlightFill: "#fff",
-                        data: [23, 89, 34, 109, 33, 10, 0, 90]
-                    },
-                    
-                    {
-                        label: "Two",
-                        fillColor: "rgba(150, 220, 220, 0.2)",
+                        fillColor: "rgba(150, 220, 220, 0.3)",
                         strokeColor: "rgba(150, 220, 220, 1)",
                         pointColor: "rgba(150, 220, 220, 1)",
                         pointHighlightFill: "#fff",
-                        data: [50, 9, 56, 90, 34, 50, 80, 30]
+                        data: []
                     }
                 ]
             };
@@ -104,6 +94,24 @@
                     },
                     dataType: "json",
                     success: function(data){
+                        cd1 = $.extend(true, {}, chartData);
+                        for(var x in data.rixinzengyonghu){
+                            cd1.labels.push(x.date);
+                            cd1.datesets[0].data.push(x.value);
+                        }
+
+                        cd2 = $.extend(true, {}, chartData);
+                        for(var x in data.richongzhiyonghu){
+                            cd2.labels.push(x.date);
+                            cd2.datesets[0].data.push(x.value);
+                        }
+
+                        cd3 = $.extend(true, {}, chartData);
+                        for(var x in data.richongzhijine){
+                            cd3.labels.push(x.date);
+                            cd3.datesets[0].data.push(x.value);
+                        }
+
 
                     },
                     error: function (r, s, e) {
