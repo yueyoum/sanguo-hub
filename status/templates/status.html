@@ -37,6 +37,22 @@
         </form>
         </div>
 
+        <div>
+            <table class="pure-table pure-table-bordered">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>日新增用户</th>
+                    <th>日充值用户</th>
+                    <th>日充值金额</th>
+                </tr>
+                </thead>
+                <tbody id="table-body">
+
+                </tbody>
+            </table>
+        </div>
+
         <h2>日新增用户</h2>
         <canvas id="rixinzengyonghu" class="chart"></canvas>
         <h2>日充值用户</h2>
@@ -48,7 +64,7 @@
             var i18n = {
                 previousMonth: "上月",
                 nextMonth: "下月",
-                months: ["一月", "二月", "三月", "四月", "五月", "六月","七月", "八月", "九月","十月", "十一月", "十二月",],
+                months: ["一月", "二月", "三月", "四月", "五月", "六月","七月", "八月", "九月","十月", "十一月", "十二月"],
                 weekdays: ["周一","周二","周三","周四","周五","周六","周日"],
                 weekdaysShort: ["周一","周二","周三","周四","周五","周六","周日"]
             };
@@ -105,31 +121,39 @@
                     dataType: "json",
                     success: function(data){
                         cd1 = $.extend(true, {}, chartData);
-                        for(var i=0; i<data.rixinzengyonghu.length; i++){
-                            cd1.labels.push(data.rixinzengyonghu[i].date);
+                        cd2 = $.extend(true, {}, chartData);
+                        cd3 = $.extend(true, {}, chartData);
+
+                        for(i=0; i<data.rixinzengyonghu.length; i++){
+                            date = data.rixinzengyonghu[i].date;
+
+                            cd1.labels.push(date);
                             cd1.datasets[0].data.push(data.rixinzengyonghu[i].value);
+
+                            cd2.labels.push(date);
+                            cd2.datasets[0].data.push(data.richongzhiyonghu[i].value);
+
+                            cd3.labels.push(date);
+                            cd3.datasets[0].data.push(data.richongzhijine[i].value);
+
+                            table_tr = "<tr><td>" + date + "</td>" +
+                                    "<td>" + data.rixinzengyonghu[i].value + "</td>" +
+                                    "<td>" + data.richongzhiyonghu[i].value + "</td>" +
+                                    "<td>" + data.richongzhijine[i].value + "</td></tr>";
+
+                            $("#table-body").append(table_tr);
+
                         }
 
                         chart1.destroy();
                         chart1 = new Chart(ctx1).Line(cd1);
 
-                        cd2 = $.extend(true, {}, chartData);
-                        for(var i=0; i<data.richongzhiyonghu.length; i++){
-                            cd2.labels.push(data.richongzhiyonghu[i].date);
-                            cd2.datasets[0].data.push(data.richongzhiyonghu[i].value);
-                        }
-
                         chart2.destroy();
                         chart2 = new Chart(ctx2).Line(cd2);
 
-                        cd3 = $.extend(true, {}, chartData);
-                        for(var i=0; i<data.richongzhijine.length; i++){
-                            cd3.labels.push(data.richongzhijine[i].date);
-                            cd3.datasets[0].data.push(data.richongzhijine[i].value);
-                        }
-
                         chart3.destroy();
                         chart3 = new Chart(ctx3).Line(cd3);
+
 
                         return false;
                     },
