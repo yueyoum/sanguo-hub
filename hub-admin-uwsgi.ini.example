@@ -1,14 +1,14 @@
 [uwsgi]
-chdir = /PATH
+chdir = %d
 virtualenv = env
 env = DJANGO_SETTINGS_MODULE=hub.settings_admin
 module = hub.wsgi_admin:application
-socket = 127.0.0.1:9021
+socket = 127.0.0.1:9901
 listen = 1024
 max-requests = 10000
 reload-on-as = 128
 master = true
-processes = 1
+processes = 2
 enable-threads = true
 buffer-size = 32768
 daemonize = run/admin-uwsgi.log

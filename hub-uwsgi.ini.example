@@ -1,15 +1,17 @@
 [uwsgi]
-chdir = /PATH
+chdir = %d
 virtualenv = env
 env = DJANGO_SETTINGS_MODULE=hub.settings
 module = hub.wsgi:application
-socket = 127.0.0.1:9021
+socket = 127.0.0.1:9902
 listen = 2048
 max-requests = 50000
 reload-on-as = 512
 master = true
-processes = 2
+processes = 4
 enable-threads = true
+threads = 4
+thunder-lock = true
 buffer-size = 32768
 daemonize = run/uwsgi.log
 pidfile = run/uwsgi.pid
