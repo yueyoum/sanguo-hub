@@ -17,7 +17,9 @@ def get_bulletins(request):
 
     width = request.GET.get('width', '')
     if not width:
-        width = config.window_width
+        width = "device-width"
+    else:
+        width = width+"px"
 
     context = {
         'width': width,
