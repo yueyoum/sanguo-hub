@@ -24,7 +24,6 @@ def get_bulletins(request):
     context = {
         'width': width,
         'margin': config.window_margin,
-        'image_width': int(width) - config.window_margin * 2 if width else '',
         'radius': config.bulletin_window_border_radius,
         'window_bg_color': config.window_bg_color,
         'window_bg_image': config.window_bg_image.url if config.window_bg_image else '',
