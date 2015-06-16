@@ -2,20 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width={{ width }}px, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>公告</title>
+
+    <style>
+        @-ms-viewport{width:auto!important}
+    </style>
+
 
     <style type="text/css">
 
+	@-webkit-viewport{width:device-width}
+	@-moz-viewport{width:device-width}
+	@-ms-viewport{width:device-width}
+	@-o-viewport{width:device-width}
+	@viewport{width:device-width}
 
         body {
         margin: 0;
         padding: 0;
-        background-color: transparent;
-        {% if width %}
-            width: {{ width }}px;
-        {% endif %}
-
+        background-color: #130f0b;
         }
 
         ul, ol {
@@ -51,7 +57,7 @@
     <div class="bulletin">
         <div class="head" style="color: #{{ bulletin.title_color }};">
             {% if bulletin.title_bg_image %}
-                <div><img src="{{ bulletin.title_bg_image }}"/></div>
+                <div><img src="{{ bulletin.title_bg_image }}" width="100%"/></div>
             {% endif %}
             {% if bulletin.title %}
                 {{ bulletin.title }}
@@ -60,7 +66,7 @@
 
         {% if bulletin.content_image %}
             <div class="content_image">
-            <img src="{{ bulletin.content_image }}"  {% if image_width %}width="{{ image_width }}px"{% endif %}/>
+            <img src="{{ bulletin.content_image }}" width="100%"/>
             </div>
         {% endif %}
 
