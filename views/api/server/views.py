@@ -13,7 +13,8 @@ def server_register_view(request):
 
 @json_return
 def server_list(request):
-    servers = get_server_list()
+    is_test = request.POST.get('is_test', '0') == '1'
+    servers = get_server_list(is_test=is_test)
     return {
         'ret': 0,
         'data': servers,
