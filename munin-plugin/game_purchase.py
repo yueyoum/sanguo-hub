@@ -102,3 +102,19 @@ if PLATFORM == 'jodo' or PLATFORM == 'jodoplay':
     print "sum.value", values
 
     sys.exit(0)
+
+if PLATFORM == 'ios':
+    from apps.purchase.models import PurchaseIOSSuccessLog
+
+    values = 0
+    for s in Server.objects.filter(is_test=False).all():
+        this_value = PurchaseIOSSuccessLog.objects.filter(server_id=s.id).aggregate(Sum('order_money'))['order_money__sum']
+        if this_value is None:
+            this_value = 0
+
+        values += this_value
+        print "server{0}.value".format(s.id), this_value
+
+    print "sum.value", values
+
+    sys.exit(0)
