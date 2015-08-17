@@ -47,6 +47,18 @@ from utils.api import api_send_mail, APIFailure
 # }
 #
 
+def send_test_mail():
+    servers = make_servers()
+    available_server_ids = [k for k, v in servers.items() if v['status'] != 4]
+
+    data = {'mode': 'test'}
+    for s in available_server_ids:
+        print "send to {0}".format(s),
+        api_send_mail(s, json.dumps(data))
+        print "done"
+
+
+
 def make_payload(mail):
     data = {}
     data['mail'] = {
@@ -91,7 +103,7 @@ def send_one_mail(mail, server_ids):
             try:
                 api_send_mail(sid, json.dumps(data))
             except APIFailure:
-                raise Exception("send mail error!")
+                raise Exception(traceback.format_exc())
             else:
                 mail.has_send_to = mail.has_send_to + ',' + ','.join([str(i) for i in this_server_cids])
                 mail.save()
@@ -99,7 +111,7 @@ def send_one_mail(mail, server_ids):
 
     if mail.send_type == 1:
         # 发给全部
-        sids = server_ids
+        sids = [i for i in server_ids if i not in has_send_to]
     else:
         # 发给部分服务器
         sids = [int(i) for i in mail.send_to.split(',') if int(i) not in has_send_to]
@@ -108,7 +120,7 @@ def send_one_mail(mail, server_ids):
         try:
             api_send_mail(sid, json.dumps(data))
         except APIFailure:
-            raise Exception("send mail error!")
+            raise Exception(traceback.format_exc())
         else:
             mail.has_send_to = mail.has_send_to + ',' + str(sid)
             mail.save()
@@ -131,8 +143,9 @@ def run(signum):
         try:
             send_one_mail(m, available_server_ids)
         except Exception as e:
-            logger.write("ERROR: mail: {0}. error: {1}".format(m.id, str(e)))
-            logger.write(traceback.format_exc())
+            logger.write("==== ERROR ====")
+            logger.write("mail: {0}".format(m.id))
+            logger.write(str(e))
             m.status = 1
         else:
             m.status = 3
