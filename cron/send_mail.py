@@ -48,7 +48,7 @@ from utils.api import api_send_mail, APIFailure
 #
 
 def send_test_mail():
-    servers = make_servers()
+    servers = make_servers(is_test=False)
     available_server_ids = [k for k, v in servers.items() if v['status'] != 4]
 
     data = {'mode': 'test'}
@@ -132,7 +132,7 @@ def run(signum):
     logger = Logger('send_mail.log')
     logger.write('Send Mail Start. mails amount: {0}'.format(mails.count()))
 
-    servers = make_servers()
+    servers = make_servers(is_test=False)
     available_server_ids = [k for k, v in servers.items() if v['status'] != 4]
 
     for m in mails:

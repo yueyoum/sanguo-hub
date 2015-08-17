@@ -23,10 +23,9 @@ def run(signum):
 
     data = json.dumps(checkin_obj.export_data())
 
-    try:
-        api_send_checkin_data(data)
-    except:
-        logger.write("---- ERROR ----")
-        logger.write(traceback.format_exc())
+    error_servers = api_send_checkin_data(data)
+    if error_servers:
+        logger.write("ERROR SERVERS: {0}".format(error_servers))
 
+    logger.write("Done")
     logger.close()
