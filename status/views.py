@@ -10,11 +10,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django.db.models import Sum, Q
 
-from apps.server.models import Server
 from apps.account.models import Account
 from apps.purchase.models import (
     PurchaseJodoPlayLog,
     PurchaseAiyingyongLog,
+    PurchaseIOSSuccessLog,
 )
 
 FORMAT = "YYYY-MM-DD HH:mm:ssZ"
@@ -72,7 +72,7 @@ def status_ajax(request):
             condition = Q(order_time__gte=day_start.format(FORMAT)) & Q(order_time__lte=day_end.format(FORMAT))
             richongzhiyonghu.append({
                 'date': date_str,
-                'value': PurchaseAiyingyongLog.objects.filter((condition)).count()
+                'value': PurchaseAiyingyongLog.objects.filter(condition).count()
             })
 
             money = PurchaseAiyingyongLog.objects.filter(condition).aggregate(Sum('order_money'))['order_money__sum']
@@ -82,7 +82,20 @@ def status_ajax(request):
                 'date': date_str,
                 'value': money
             })
+        elif settings.STATUS_PLATFORM == 'ios':
+            condition = Q(buy_time__gte=day_start.format(FORMAT)) & Q(buy_time__lte=day_end.format(FORMAT))
+            richongzhiyonghu.append({
+                'date': date_str,
+                'value': PurchaseIOSSuccessLog.objects.filter(condition).count()
+            })
 
+            money = PurchaseIOSSuccessLog.objects.filter(condition).aggregate(Sum('order_money'))['order_money__sum']
+            money = money if money else 0
+
+            richongzhijine.append({
+                'date': date_str,
+                'value': money
+            })
 
         day_start = day_end
 

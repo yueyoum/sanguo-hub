@@ -31,7 +31,7 @@ class PurchaseIOSSuccessLog(models.Model):
     receipt = models.TextField()
 
     order_money = models.FloatField("支付价格")
-    buy_time = models.DateTimeField("购买时间", auto_now_add=True)
+    buy_time = models.DateTimeField("购买时间", auto_now_add=True, db_index=True)
 
     class Meta:
         db_table = 'purchase_ios_success_log'
