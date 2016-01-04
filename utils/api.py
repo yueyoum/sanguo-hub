@@ -44,16 +44,16 @@ def api_send_mail(server_id, data):
     url = u'https://{0}:{1}/api/mail/send/'.format(s['host'], s['port_https'])
     return apicall(data=data, cmd=url)
 
-def api_send_checkin_data(data):
-    error_servers = []
-    for s in make_servers().values():
-        url = u'https://{0}:{1}/api/checkin/send/'.format(s['host'], s['port_https'])
-        try:
-            apicall(data=data, cmd=url)
-        except:
-            error_servers.append(s['id'])
-
-    return error_servers
+# def api_send_checkin_data(data):
+#     error_servers = []
+#     for s in make_servers().values():
+#         url = u'https://{0}:{1}/api/checkin/send/'.format(s['host'], s['port_https'])
+#         try:
+#             apicall(data=data, cmd=url)
+#         except:
+#             error_servers.append(s['id'])
+#
+#     return error_servers
 
 
 def api_check_server(server_id):
