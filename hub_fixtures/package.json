@@ -304,7 +304,7 @@
     "model": "package.package", 
     "fields": {
         "sycee": 100, 
-        "name": "1.04\u66f4\u65b0\u8865\u507f\u793c\u5305", 
+        "name": "\u66f4\u65b0\u8865\u507f\u793c\u5305", 
         "gold": 20000, 
         "mode": 1, 
         "exp": 0, 
@@ -318,6 +318,234 @@
         "sycee": 50, 
         "name": "\u56fd\u5e86\u793c\u530510000\u94f6\u5e0150\u5143\u5b9d", 
         "gold": 10000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 28, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 0, 
+        "name": "\u65b0\u624b\u5305\u53a2", 
+        "gold": 0, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 29, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 0, 
+        "name": "\u65b0\u5e74\u5b9d\u7bb1", 
+        "gold": 0, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 30, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 1000, 
+        "name": "BUG\u8865\u507f\u793c\u5305", 
+        "gold": 0, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 31, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 0, 
+        "name": "\u8d75\u4e91\u8865\u507f", 
+        "gold": 0, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 32, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 200, 
+        "name": "200\u5143\u5b9d", 
+        "gold": 0, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 33, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 200, 
+        "name": "\u5145\u503c\u900120\u5415\u5e03\u9b42BUG\u8865\u507f", 
+        "gold": 0, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 34, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 200, 
+        "name": "\u5145\u503c\u900120\u5e9e\u7edf\u9b42BUG\u8865\u507f", 
+        "gold": 0, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 35, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 0, 
+        "name": "\u7ed9dack5201\u7684\u8865\u507f", 
+        "gold": 0, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 41, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 188, 
+        "name": "\u5708\u5708\u7684\u5927\u798f\u888b", 
+        "gold": 88888, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 42, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 25, 
+        "name": "\u65b0\u6bcf\u65e5\u7b7e\u52301", 
+        "gold": 2000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 43, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 50, 
+        "name": "\u65b0\u6bcf\u65e5\u7b7e\u52302", 
+        "gold": 5000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 44, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 100, 
+        "name": "\u65b0\u6bcf\u65e5\u7b7e\u52303", 
+        "gold": 10000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 45, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 25, 
+        "name": "\u65b0\u6bcf\u65e5\u7b7e\u52304", 
+        "gold": 15000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 46, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 50, 
+        "name": "\u65b0\u6bcf\u65e5\u7b7e\u52305", 
+        "gold": 20000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 47, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 100, 
+        "name": "\u65b0\u6bcf\u65e5\u7b7e\u52306", 
+        "gold": 25000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 48, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 200, 
+        "name": "\u65b0\u6bcf\u65e5\u7b7e\u52307", 
+        "gold": 30000, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 49, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 0, 
+        "name": "bug\u8865\u507f\u5305", 
+        "gold": 0, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 50, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 0, 
+        "name": "\u5143\u65e6\u7b7e\u5230\u8865\u507f", 
+        "gold": 0, 
+        "mode": 1, 
+        "exp": 0, 
+        "official_exp": 0
+    }
+},
+{
+    "pk": 51, 
+    "model": "package.package", 
+    "fields": {
+        "sycee": 0, 
+        "name": "\u95ea\u95ea\u53d1\u5149\u7684\u5b9d\u77f3", 
+        "gold": 0, 
         "mode": 1, 
         "exp": 0, 
         "official_exp": 0

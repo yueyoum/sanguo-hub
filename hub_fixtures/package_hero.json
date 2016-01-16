@@ -28,5 +28,25 @@
         "prob": 100000, 
         "package": 25
     }
+},
+{
+    "pk": 4, 
+    "model": "package.packagehero", 
+    "fields": {
+        "amount": 1, 
+        "hero": 15, 
+        "prob": 100000, 
+        "package": 31
+    }
+},
+{
+    "pk": 5, 
+    "model": "package.packagehero", 
+    "fields": {
+        "amount": 1, 
+        "hero": 102, 
+        "prob": 100000, 
+        "package": 41
+    }
 }
 ]

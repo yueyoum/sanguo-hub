@@ -12,5 +12,12 @@
     "fields": {
         "checkin_date": "2014-10-01"
     }
+},
+{
+    "pk": 3, 
+    "model": "checkin.checkindate", 
+    "fields": {
+        "checkin_date": "2016-01-01"
+    }
 }
 ]
