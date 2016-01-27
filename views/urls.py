@@ -23,7 +23,10 @@ urlpatterns = patterns('',
 
                        url(r'^api/account/login/$', 'views.api.account.views.login'),
                        url(r'^api/account/bind/$', 'views.api.account.views.bind'),
+
                        url(r'^api/character/create/$', 'views.api.character.views.create'),
+                       url(r'^api/character/failure/$', 'views.api.character.views.failure'),
+
                        url(r'^api/store/get/$', 'views.api.store.views.get'),
                        url(r'^api/store/buy/$', 'views.api.store.views.buy'),
 

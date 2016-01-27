@@ -6,11 +6,8 @@ __date__ = '4/1/14'
 from django.db import transaction, IntegrityError
 
 from apps.character.models import Character
-from core.exception import GateException
 from utils.decorate import json_return
 from preset import errormsg
-
-from utils.api import api_character_initialize, APIFailure
 
 
 def get_name_length(name):
@@ -44,30 +41,26 @@ def create(request):
                 name=name,
             )
 
-            data = {
-                'account_id': account_id,
-                'char_id': char.id,
-                'name': name
-            }
-
-            try:
-                res = api_character_initialize(server_id, data)
-            except APIFailure:
-                raise GateException("Char Initialize Failure in Server: {0}".format(server_id))
-
-            if res['ret'] != 0:
-                raise GateException("Char Initialize Failure in Server: {0}. ret is {1}".format(server_id, res['ret']))
-
     except IntegrityError as e:
         if 'account_id' in e.args[1]:
             return {'ret': errormsg.CHAR_ALREADY_EXIST}
         return {'ret': errormsg.CHAR_NAME_HAS_BEEN_TAKEN}
-    except GateException as e:
-        return {'ret': errormsg.CHAR_CREATE_FAUILER}
 
     return {
         'ret': 0,
         'data': {
             'char_id': char.id
         }
+    }
+
+@json_return
+def failure(request):
+    try:
+        char_id = int(request.POST['char_id'])
+    except (KeyError, ValueError):
+        return {'ret': errormsg.BAD_MESSAGE}
+
+    Character.objects.filter(id=char_id).delete()
+    return {
+        'ret': 0
     }
