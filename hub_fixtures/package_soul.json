@@ -1,2 +1,32 @@
 [
+{
+    "pk": 1, 
+    "model": "package.packagesoul", 
+    "fields": {
+        "prob": 100000, 
+        "amount": 20, 
+        "soul": 34, 
+        "package": 33
+    }
+},
+{
+    "pk": 2, 
+    "model": "package.packagesoul", 
+    "fields": {
+        "prob": 100000, 
+        "amount": 20, 
+        "soul": 104, 
+        "package": 34
+    }
+},
+{
+    "pk": 3, 
+    "model": "package.packagesoul", 
+    "fields": {
+        "prob": 100000, 
+        "amount": 280, 
+        "soul": 34, 
+        "package": 35
+    }
+}
 ]

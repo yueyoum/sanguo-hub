@@ -48,5 +48,85 @@
         "gem": 36, 
         "package": 12
     }
+},
+{
+    "pk": 10, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 9, 
+        "prob": 100000, 
+        "gem": 7, 
+        "package": 35
+    }
+},
+{
+    "pk": 23, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 2, 
+        "prob": 100000, 
+        "gem": 6, 
+        "package": 41
+    }
+},
+{
+    "pk": 24, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 3, 
+        "prob": 100000, 
+        "gem": 16, 
+        "package": 41
+    }
+},
+{
+    "pk": 25, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 3, 
+        "prob": 100000, 
+        "gem": 26, 
+        "package": 41
+    }
+},
+{
+    "pk": 26, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 3, 
+        "prob": 100000, 
+        "gem": 36, 
+        "package": 41
+    }
+},
+{
+    "pk": 27, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 1, 
+        "prob": 100000, 
+        "gem": 34, 
+        "package": 44
+    }
+},
+{
+    "pk": 28, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 2, 
+        "prob": 100000, 
+        "gem": 17, 
+        "package": 49
+    }
+},
+{
+    "pk": 29, 
+    "model": "package.packagegem", 
+    "fields": {
+        "amount": 1, 
+        "prob": 100000, 
+        "gem": 9, 
+        "package": 51
+    }
 }
 ]

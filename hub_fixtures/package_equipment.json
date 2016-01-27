@@ -20,5 +20,16 @@
         "prob": 100000, 
         "package": 21
     }
+},
+{
+    "pk": 3, 
+    "model": "package.packageequipment", 
+    "fields": {
+        "equipment": 17, 
+        "amount": 1, 
+        "level": 1, 
+        "prob": 100000, 
+        "package": 42
+    }
 }
 ]

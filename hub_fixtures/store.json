@@ -690,13 +690,13 @@
         "hero": null, 
         "total_amount": 0, 
         "item_tp": 4, 
-        "sell_price": 180, 
+        "sell_price": 100, 
         "equipment": null, 
         "sell_type": 2, 
         "tag": 3, 
         "limit_amount": 0, 
         "gem": null, 
-        "vip_condition": 8, 
+        "vip_condition": 7, 
         "active": true, 
         "level_condition": 0, 
         "has_total_amount": false, 
@@ -7565,6 +7565,28 @@
         "level_condition": 0, 
         "has_total_amount": false, 
         "has_limit_amount": true
+    }
+},
+{
+    "pk": 801, 
+    "model": "store.store", 
+    "fields": {
+        "original_price": 1000000, 
+        "stuff": 29, 
+        "hero": null, 
+        "total_amount": 0, 
+        "item_tp": 4, 
+        "sell_price": 200000, 
+        "equipment": null, 
+        "sell_type": 1, 
+        "tag": 3, 
+        "limit_amount": 0, 
+        "gem": null, 
+        "vip_condition": 7, 
+        "active": true, 
+        "level_condition": 0, 
+        "has_total_amount": false, 
+        "has_limit_amount": false
     }
 }
 ]
