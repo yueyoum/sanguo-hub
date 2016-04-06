@@ -46,6 +46,7 @@ GEMS = _make_data('gems.json')
 STUFFS = _make_data('stuffs.json')
 HORSES = _make_data('horse.json')
 RESOURCE_TYPE = _make_data('resource_type.json')
+PURCHASES_CHOICE = _make_data('purchase.json')
 
 PURCHASES = _object_maker('purchase.json')
 

@@ -3,6 +3,34 @@
 import uuid
 from django.db import models
 
+from core.fixtures import PURCHASES_CHOICE, PURCHASES
+
+# 自己的？
+class PurchaseSelfLog(models.Model):
+    server_id = models.IntegerField()
+    char_id = models.IntegerField(verbose_name="角色ID")
+    goods_id = models.IntegerField(choices=PURCHASES_CHOICE, verbose_name="商品")
+    rmb = models.IntegerField()
+    buy_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'purchase_self_log'
+        verbose_name = "自充值记录"
+        verbose_name_plural = "自充值记录"
+
+    def save(self, **kwargs):
+        from apps.character.models import Character
+        from utils.api import api_purchase_self
+
+        c = Character.objects.get(id=self.char_id)
+
+        api_purchase_self(c.server_id, self.char_id, self.goods_id)
+
+        self.server_id = c.server_id
+        self.rmb = PURCHASES[self.goods_id].rmb
+
+        super(PurchaseSelfLog, self).save(**kwargs)
+
 
 # IOS平台
 class PurchaseIOSErrorLog(models.Model):

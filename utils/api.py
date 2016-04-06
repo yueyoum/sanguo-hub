@@ -97,3 +97,13 @@ def api_purchase_jodoplay_done(server_id, char_id, goods_id, price):
 
     url = u'https://{0}:{1}/api/purchase/jodoplay/done/'.format(s['host'], s['port_https'])
     apicall(data=data, cmd=url)
+
+def api_purchase_self(server_id, char_id, goods_id):
+    s = make_servers()[server_id]
+    data = {
+        'char_id': char_id,
+        'goods_id': goods_id
+    }
+
+    url = u'https://{0}:{1}/api/purchase/self/'.format(s['host'], s['port_https'])
+    apicall(data=data, cmd=url)

@@ -1,7 +1,25 @@
 from django.contrib import admin
 
 
-from apps.purchase.models import PurchaseIOSSuccessLog, PurchaseIOSErrorLog, Purchase91Log, PurchaseAiyingyongLog, PurchaseAllSdkLog, PurchaseJodoPlayLog
+from apps.purchase.models import (
+    PurchaseSelfLog,
+    PurchaseIOSSuccessLog,
+    PurchaseIOSErrorLog,
+    Purchase91Log,
+    PurchaseAiyingyongLog,
+    PurchaseAllSdkLog,
+    PurchaseJodoPlayLog,
+)
+
+class PurchaseSelfLogAdmin(admin.ModelAdmin):
+    list_display = (
+        'id', 'server_id', 'char_id', 'goods_id', 'rmb', 'buy_time'
+    )
+
+    exclude = ('server_id', 'rmb',)
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 class PurchaseIOSSuccessLogAdmin(admin.ModelAdmin):
@@ -46,7 +64,7 @@ class PurchaseJodoPlayLogAdmin(admin.ModelAdmin):
     search_fields = ('char_id',)
 
 
-
+admin.site.register(PurchaseSelfLog, PurchaseSelfLogAdmin)
 admin.site.register(PurchaseIOSSuccessLog, PurchaseIOSSuccessLogAdmin)
 admin.site.register(PurchaseIOSErrorLog, PurchaseIOSErrorLogAdmin)
 admin.site.register(Purchase91Log, Purchase91LogAdmin)
