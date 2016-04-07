@@ -13,7 +13,7 @@ from apps.purchase.models import (
 
 class PurchaseSelfLogAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'server_id', 'char_id', 'goods_id', 'rmb', 'buy_time'
+        'id', 'server_id', 'char_id', 'goods_id', 'rmb', 'amount', 'buy_time'
     )
 
     exclude = ('server_id', 'rmb',)
