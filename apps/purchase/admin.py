@@ -29,11 +29,18 @@ class PurchaseIOSSuccessLogAdmin(admin.ModelAdmin):
     )
 
 
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 class PurchaseIOSErrorLogAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'server_id', 'char_id', 'error_code', 'buy_time',
     )
+
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 class Purchase91LogAdmin(admin.ModelAdmin):
@@ -44,16 +51,29 @@ class Purchase91LogAdmin(admin.ModelAdmin):
         'pay_status', 'create_time',
     )
 
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 class PurchaseAiyingyongLogAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'order_id', 'order_time', 'server_id', 'char_id', 'goods_id', 'order_money', 'confirmed'
     )
 
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
 class PurchaseAllSDKLogAdmin(admin.ModelAdmin):
     list_display = (
         'sn', 'return_code', 'order_time', 'server_id', 'char_id', 'goods_id', 'order_money', 'verify_time', 'verify_ok'
     )
+
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 class PurchaseJodoPlayLogAdmin(admin.ModelAdmin):
     list_display = (
@@ -62,6 +82,9 @@ class PurchaseJodoPlayLogAdmin(admin.ModelAdmin):
     )
 
     search_fields = ('char_id',)
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 admin.site.register(PurchaseSelfLog, PurchaseSelfLogAdmin)

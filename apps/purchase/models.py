@@ -28,6 +28,10 @@ class PurchaseSelfLog(models.Model):
         from apps.character.models import Character
         from utils.api import api_purchase_self
 
+        if self.id:
+            # 修改已经编辑过的，直接返回
+            return
+
         c = Character.objects.get(id=self.char_id)
         api_purchase_self(c.server_id, self.char_id, self.goods_id, self.amount)
 
